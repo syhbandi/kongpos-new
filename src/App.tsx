@@ -272,13 +272,16 @@ const App = () => {
                     Chat dengan kami
                   </span>
                 </a>
-                <button
+                <a
                   role={"button"}
-                  className="border-2 border-black font-semibold font-poppins flex items-center justify-center py-3 rounded w-1/2 hover:bg-black hover:text-white"
+                  className="w-1/2"
+                  href="mailto:misterkongpos@gmail.com"
                 >
-                  <FaEnvelope className="mr-2" />
-                  cs@misterkong.com
-                </button>
+                  <span className="border-2 border-black font-semibold font-poppins flex items-center justify-center py-3 rounded hover:bg-black hover:text-white">
+                    <FaEnvelope className="mr-2" />
+                    cs@misterkong.com
+                  </span>
+                </a>
               </div>
             </div>
           </div>
