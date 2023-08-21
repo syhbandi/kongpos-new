@@ -130,7 +130,7 @@ const App = () => {
         <div className="container mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="flex flex-col justify-center">
-              <h1 className="text-3x; md:text-4xl font-poppins font-bold text-center md:text-left mb-5">
+              <h1 className="text-3xl md:text-4xl font-poppins font-bold text-center md:text-left mb-5">
                 Manajemen Pelanggan, Promosi & Reward Loyalty
               </h1>
               <p className="text-xl leading-8 text-center md:text-left font-roboto">
@@ -187,7 +187,7 @@ const App = () => {
         <div className="container mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="flex flex-col justify-center">
-              <h1 className="text-3x; md:text-4xl font-poppins font-bold text-center md:text-left mb-5">
+              <h1 className="text-3xl md:text-4xl font-poppins font-bold text-center md:text-left mb-5">
                 Fitur Outlet
               </h1>
               <p className="text-xl leading-8 text-center md:text-left font-roboto">
@@ -265,7 +265,7 @@ const App = () => {
                   target={"_blank"}
                   role={"button"}
                   rel="noreferrer"
-                  className="w-1/2"
+                  className="md:w-1/2"
                 >
                   <span className=" py-3 border-2 border-green-700 bg-green-700 font-medium font-poppins text-white rounded flex items-center justify-center hover:border-green-800 hover:bg-green-800">
                     <FaWhatsapp className="mr-2" />
@@ -274,7 +274,7 @@ const App = () => {
                 </a>
                 <a
                   role={"button"}
-                  className="w-1/2"
+                  className="md:w-1/2"
                   href="mailto:misterkongpos@gmail.com"
                 >
                   <span className="border-2 border-black font-semibold font-poppins flex items-center justify-center py-3 rounded hover:bg-black hover:text-white">
