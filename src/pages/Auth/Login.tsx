@@ -73,7 +73,7 @@ const Login = () => {
               </a>
             </div>
           </div>
-          <div className="bg-kong p-20 hidden md:block">
+          <div className="bg-kong p-20 hidden md:flex items-center justify-center">
             <img src={homeHero} alt="" />
           </div>
         </div>
