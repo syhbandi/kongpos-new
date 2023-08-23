@@ -25,10 +25,10 @@ const Navbar = () => {
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between py-4">
         <h3 className="text-xl font-bold font-poppins">KONGPOS</h3>
         <div className="flex items-center gap-3">
-          <Link to={""}>
+          <Link to={"/login"}>
             <div className="font-medium font-poppins">Login</div>
           </Link>
-          <Link to={""}>
+          <Link to={"/daftar"}>
             <button className="px-5 py-2 border-2 border-black font-medium font-poppins rounded hover:bg-black hover:text-white ">
               Daftar
             </button>

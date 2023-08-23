@@ -7,6 +7,7 @@ import laporan from "../assets/laporan.png";
 import onlineOffline from "../assets/onlineOffline.png";
 import cs from "../assets/cs.jpg";
 import homeHero from "../assets/homeHero.png";
+import logo from "../assets/kongpos.png";
 
 export {
   hardware,
@@ -18,4 +19,5 @@ export {
   onlineOffline,
   cs,
   homeHero,
+  logo,
 };
