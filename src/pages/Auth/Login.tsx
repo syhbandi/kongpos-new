@@ -5,6 +5,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 const Login = () => {
   const [lihat, setLihat] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+  };
 
   return (
     <div className="w-full h-screen bg-gray-100 flex items-center justify-center select-none">
@@ -31,35 +37,40 @@ const Login = () => {
             <p className="font-roboto text-base mb-5">
               Silakan login untuk mengatur toko anda
             </p>
-            <div className="flex items-center gap-2 font-roboto border border-gray-400 focus-within:border-black rounded p-3 mb-5">
-              <span className="text-gray-400">
-                <MdEmail />
-              </span>
-              <input
-                type="text"
-                placeholder="Email atau No. Hp"
-                className="outline-none flex-grow"
-              />
-            </div>
-            <div className="flex items-center gap-2 font-roboto border border-gray-400 focus-within:border-black rounded p-3 mb-5">
-              <span className="text-gray-400">
-                <MdLock />
-              </span>
-              <input
-                type={lihat ? "text" : "password"}
-                placeholder="Password"
-                className="outline-none flex-grow"
-              />
-              <span
-                className="cursor-pointer text-gray-400"
-                onClick={() => setLihat(!lihat)}
-              >
-                {lihat ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-              </span>
-            </div>
-            <button className="outline-none rounded border-2 border-black bg-black text-white font-poppins text-lg font-semibold w-full py-3 hover:bg-gray-900 hover:border-gray-900 mb-5">
-              Login
-            </button>
+
+            <form onSubmit={onSubmit}>
+              <div className="flex items-center gap-2 font-roboto border border-gray-400 focus-within:border-black focus-within:text-black rounded p-3 mb-5">
+                <MdEmail className="text-gray-500" />
+                <input
+                  type="text"
+                  placeholder="Email atau No. Hp"
+                  className="outline-none flex-grow"
+                  autoComplete="email"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                />
+              </div>
+              <div className="flex items-center gap-2 font-roboto border border-gray-400 focus-within:border-black focus-within:text-black rounded p-3 mb-5">
+                <MdLock className="text-gray-500" />
+                <input
+                  type={lihat ? "text" : "password"}
+                  placeholder="Password"
+                  className="outline-none flex-grow"
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span
+                  className="cursor-pointer text-gray-500"
+                  onClick={() => setLihat(!lihat)}
+                >
+                  {lihat ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                </span>
+              </div>
+              <button className="outline-none rounded border-2 border-black bg-black text-white font-poppins text-lg font-semibold w-full py-3 hover:bg-gray-900 hover:border-gray-900 mb-5">
+                Login
+              </button>
+            </form>
 
             <div className="mt-auto font-poppins text-center">
               &copy;{new Date().getFullYear()} KONGPOS dari{" "}
