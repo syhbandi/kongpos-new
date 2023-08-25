@@ -40,7 +40,7 @@ const Login = () => {
     mutation.mutate({ no_hp: userName, passwd: password });
   };
 
-  if (Object.keys(user).length) return <Navigate to={"/"} />;
+  if (Object.keys(user).length) return <Navigate to={"/dashboard"} />;
 
   return (
     <div className="w-full h-screen bg-gray-100 flex items-center justify-center select-none">
