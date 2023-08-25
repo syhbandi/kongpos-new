@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-
   useEffect(() => {
     const onScroll = () => {
       setScrolled(() => (window.scrollY > 30 ? true : false));
@@ -24,6 +22,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between py-4">
         <h3 className="text-xl font-bold font-poppins">KONGPOS</h3>
+
         <div className="flex items-center gap-3">
           <Link to={"/login"}>
             <div className="font-medium font-poppins">Login</div>

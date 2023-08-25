@@ -1,3 +1,4 @@
+import { userState } from "./atom/User";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import {
@@ -13,8 +14,13 @@ import {
 } from "./constants/Images";
 
 import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import { useRecoilValue } from "recoil";
 
 const App = () => {
+  const user = useRecoilValue(userState);
+
+  console.log(user);
+
   return (
     <>
       <Navbar />

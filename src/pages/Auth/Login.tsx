@@ -1,16 +1,46 @@
-import { MdArrowBackIosNew, MdEmail, MdLock } from "react-icons/md";
+import {
+  MdArrowBackIosNew,
+  MdEmail,
+  MdErrorOutline,
+  MdLock,
+} from "react-icons/md";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { homeHero, logo } from "../../constants/Images";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "../../api/Login";
+import { AxiosError } from "axios";
+import { useRecoilState } from "recoil";
+import { userState } from "../../atom/User";
+
+type ErrorData = {
+  message: string;
+};
+
 const Login = () => {
   const [lihat, setLihat] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useRecoilState(userState);
+
+  const mutation = useMutation({
+    mutationFn: login,
+    onSuccess(data) {
+      localStorage.setItem("KONGPOS_AUTH", JSON.stringify(data));
+      setUser(data);
+    },
+    onError(error: AxiosError<ErrorData>) {
+      console.log(error);
+    },
+  });
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    mutation.mutate({ no_hp: userName, passwd: password });
   };
+
+  if (Object.keys(user).length) return <Navigate to={"/"} />;
 
   return (
     <div className="w-full h-screen bg-gray-100 flex items-center justify-center select-none">
@@ -25,7 +55,7 @@ const Login = () => {
                 </h1>
               </div>
               <Link to={"/"}>
-                <div className="inline-flex items-center gap-1 font-poppins text-sm hover:text-blue-600">
+                <div className="inline-flex items-center gap-1 font-poppins hover:text-blue-600">
                   <MdArrowBackIosNew />
                   <span>Kembali</span>
                 </div>
@@ -37,7 +67,12 @@ const Login = () => {
             <p className="font-roboto text-base mb-5">
               Silakan login untuk mengatur toko anda
             </p>
-
+            {mutation.isError && (
+              <div className="p-3 bg-red-200 text-red-600 rounded mb-3 font-medium font-roboto flex items-center justify-center gap-2">
+                <MdErrorOutline />
+                {mutation.error?.response?.data.message}
+              </div>
+            )}
             <form onSubmit={onSubmit}>
               <div className="flex items-center gap-2 font-roboto border border-gray-400 focus-within:border-black focus-within:text-black rounded p-3 mb-5">
                 <MdEmail className="text-gray-500" />
@@ -67,8 +102,12 @@ const Login = () => {
                   {lihat ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                 </span>
               </div>
-              <button className="outline-none rounded border-2 border-black bg-black text-white font-poppins text-lg font-semibold w-full py-3 hover:bg-gray-900 hover:border-gray-900 mb-5">
-                Login
+
+              <button
+                className="outline-none rounded border-2 border-black bg-black text-white font-poppins text-lg font-semibold w-full py-3 hover:bg-gray-900 hover:border-gray-900 mb-5 disabled:opacity-50"
+                disabled={mutation.isLoading}
+              >
+                {mutation.isLoading ? "Proses..." : "Login"}
               </button>
             </form>
 
