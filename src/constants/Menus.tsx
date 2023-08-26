@@ -1,5 +1,10 @@
 import { ReactElement } from "react";
-import { MdDashboard, MdFileOpen, MdOutlineHandshake } from "react-icons/md";
+import {
+  MdDashboard,
+  MdFileOpen,
+  MdOutlineHandshake,
+  MdOutlineLogout,
+} from "react-icons/md";
 
 type Menus = {
   title: string;
@@ -23,6 +28,11 @@ const menus: Menus[] = [
     title: "Kontrak",
     link: "/dashboard/kontrak",
     icon: <MdOutlineHandshake />,
+  },
+  {
+    title: "Logout",
+    link: "/logout",
+    icon: <MdOutlineLogout />,
   },
 ];
 
