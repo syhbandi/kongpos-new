@@ -11,7 +11,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`fixed  top-0 w-64 bg-gray-800 shadow-lg h-screen transition-all ease-in-out duration-300 ${
+      className={`fixed  top-0 w-64 bg-gray-800 shadow-lg h-screen transition-all ease-in-out duration-300 overflow-auto ${
         isAktif ? "left-0 " : "-left-64"
       }`}
     >

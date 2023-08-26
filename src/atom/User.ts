@@ -8,3 +8,8 @@ export const isLoggedInState = selector({
   key: "isLoggedIn",
   get: ({ get }) => Object.keys(get(userState)),
 });
+
+export const companyIdState = atom({
+  key: "companyId",
+  default: "",
+});
