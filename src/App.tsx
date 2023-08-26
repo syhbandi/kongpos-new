@@ -285,7 +285,7 @@ const App = () => {
                 >
                   <span className="border-2 border-black font-semibold font-poppins flex items-center justify-center py-3 rounded hover:bg-black hover:text-white">
                     <FaEnvelope className="mr-2" />
-                    cs@misterkong.com
+                    misterkongpos@gmail.com
                   </span>
                 </a>
               </div>

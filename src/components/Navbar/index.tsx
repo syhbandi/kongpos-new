@@ -27,11 +27,15 @@ const Navbar = () => {
           <Link to={"/login"}>
             <div className="font-medium font-poppins">Login</div>
           </Link>
-          <Link to={"/daftar"}>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.kong.pos"
+            target="_blank"
+            rel="noreferrer"
+          >
             <button className="px-5 py-2 border-2 border-black font-medium font-poppins rounded hover:bg-black hover:text-white ">
               Daftar
             </button>
-          </Link>
+          </a>
         </div>
       </div>
     </div>
