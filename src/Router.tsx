@@ -7,6 +7,7 @@ import Home from "./pages/Dashboard/Home";
 import Laporan from "./pages/Dashboard/Laporan";
 import Penjualan from "./pages/Dashboard/Laporan/Penjualan";
 import Summary from "./pages/Dashboard/Laporan/Summary";
+import Nota from "./pages/Dashboard/Laporan/Penjualan/Nota";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
           {
             element: <Penjualan />,
             path: "penjualan",
+            children: [{ path: "nota", element: <Nota /> }],
           },
         ],
       },

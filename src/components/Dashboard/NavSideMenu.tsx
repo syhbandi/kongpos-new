@@ -13,13 +13,13 @@ type Props = {
 
 const NavSideMenu = ({ menus }: Props) => {
   return (
-    <div className="rounded bg-white shadow flex flex-col">
+    <div className="rounded bg-white shadow flex flex-col p-1">
       {menus.map((menu) => (
         <NavLink
           to={menu.link}
           className={({ isActive }) =>
-            `p-3 rounded flex items-center gap-3 ${
-              isActive ? "font-semibold" : ""
+            `px-3 py-2 rounded flex items-center gap-3 capitalize border-2  ${
+              isActive ? "font-semibold border-black" : "border-transparent"
             }`
           }
           key={menu.title}

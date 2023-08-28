@@ -19,8 +19,8 @@ const NavMenu = ({ menus }: Props) => {
           to={menu.link}
           key={menu.title}
           className={({ isActive }) =>
-            `rounded  min-w-fit py-2 px-5 text-center cursor-pointer bg-white capitalize ${
-              isActive ? "bg-gray-50 text-kong font-semibold" : ""
+            `rounded  min-w-fit py-2 px-5 text-center cursor-pointer bg-white capitalize border-2 ${
+              isActive ? "border-black font-semibold" : "border-transparent"
             }`
           }
           end={menu.isEnd}
