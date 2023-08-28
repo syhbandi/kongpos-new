@@ -9,7 +9,7 @@ const Dashboard = () => {
   const isAktif = useRecoilValue(sidebarState);
   return (
     <div
-      className={`bg-gray-200 min-h-screen flex flex-col transition-all ease-in-out duration-300 font-roboto ${
+      className={`bg-gray-200 min-h-screen flex flex-col transition-all ease-in-out duration-300 font-roboto select-none ${
         isAktif ? "pl-64" : ""
       }`}
     >
