@@ -4,6 +4,9 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Auth/Login";
 import Logout from "./pages/Auth/Logout";
 import Home from "./pages/Dashboard/Home";
+import Laporan from "./pages/Dashboard/Laporan";
+import Penjualan from "./pages/Dashboard/Laporan/Penjualan";
+import Summary from "./pages/Dashboard/Laporan/Summary";
 
 export const router = createBrowserRouter([
   {
@@ -22,7 +25,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "laporan",
-        element: <>Laporan</>,
+        element: <Laporan />,
+        children: [
+          {
+            index: true,
+            element: <Summary />,
+          },
+          {
+            element: <Penjualan />,
+            path: "penjualan",
+          },
+        ],
       },
       {
         path: "kontrak",
