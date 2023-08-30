@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getUsaha } from "../../api/Login";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../atom/User";
-import { useEffect } from "react";
 import { MdOutlineStore } from "react-icons/md";
+import { useEffect } from "react";
 
 const SelectUsaha = () => {
   const { no_hp } = useRecoilValue(userState);
@@ -17,7 +17,7 @@ const SelectUsaha = () => {
     if (data) {
       setCompanyId(data[0].company_id);
     }
-  }, []);
+  }, [data]);
 
   if (isLoading) return <>Memuat...</>;
   if (isError)
@@ -31,6 +31,7 @@ const SelectUsaha = () => {
         value={companyId}
         onChange={({ target }) => setCompanyId(target.value)}
       >
+        <option value="">Pilih usaha</option>
         {data.map((usaha: any) => (
           <option key={usaha?.company_id} value={usaha.company_id}>
             {usaha?.nama_usaha}

@@ -4,9 +4,11 @@ import Sidebar from "../../components/Dashboard/Sidebar";
 import { useRecoilValue } from "recoil";
 import { sidebarState } from "../../atom/sidebar";
 import Footer from "../../components/Dashboard/Footer";
+import { companyIdState } from "../../atom/User";
 
 const Dashboard = () => {
   const isAktif = useRecoilValue(sidebarState);
+  const companyId = useRecoilValue(companyIdState);
   return (
     <div
       className={`bg-gray-200 min-h-screen flex flex-col transition-all ease-in-out duration-300 font-roboto select-none ${
@@ -16,7 +18,7 @@ const Dashboard = () => {
       <Sidebar />
       <Navbar />
       <div className="p-5">
-        <Outlet />
+        {!companyId ? <>Pilh usaha dulu</> : <Outlet />}
       </div>
       <Footer />
     </div>
