@@ -4,13 +4,13 @@ import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../../atom/User";
 import { useState, useEffect } from "react";
 import Table from "../../../../components/Table";
-import penjualanColumns from "../../../../constants/ColumnsHelper/penjualanColumns";
+import notaColumns from "../../../../constants/ColumnsHelper/penjualan/notaColumns";
 import {
   PenjualanDataCount,
   PenjualanParams,
   PenjualanPerNota,
 } from "../../../../constants/Types/penjualanTypes";
-import userFormatRupiah from "../../../../hooks/userFormatRupiah";
+import { userFormatRupiah } from "../../../../hooks/userFormat";
 
 const Nota = () => {
   const { access_token } = useRecoilValue(userState);
@@ -77,7 +77,7 @@ const Nota = () => {
     <div className="p-5 bg-white shadow rounded overflow-auto">
       <Table
         data={data}
-        columns={penjualanColumns}
+        columns={notaColumns}
         isLoading={queries[0].isLoading || queries[1].isLoading}
         setSearch={onCari}
         length={params.length}

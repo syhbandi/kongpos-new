@@ -24,3 +24,81 @@ export type PenjualanPerNota = {
   "Jumlah Item": string;
   Total: string;
 };
+
+export type PenjualanPerCustomer = {
+  "Kode Customer": string;
+  "Kode Divisi": string;
+  "Jumlah Nota": string;
+  Divisi: string;
+  Customer: string;
+  Total: string;
+};
+
+export type PenjualanPerDivisi = {
+  "Kode Divisi": string;
+  "Jumlah Nota": string;
+  Divisi: string;
+  "Kepala Nota": string;
+  Total: string;
+};
+
+export type PenjualanPerKas = {
+  "Kode Kas": string;
+  "No Rekening": string;
+  Total: string;
+};
+
+export type PenjualanPerUser = {
+  "Kode User": string;
+  User: string;
+  Total: string;
+};
+
+export type PenjualanPerJenisBayar = {
+  "Kode Jenis": string;
+  "Jenis Bayar": string;
+  Total: string;
+};
+
+export type PenjualanPerVoucher = {
+  "Kode Voucher": string;
+  Voucher: string;
+  Total: string;
+};
+
+export type PenjualanPerHari = {
+  "Kode Divisi": string;
+  Tanggal: string;
+  Divisi: string;
+  Total: string;
+};
+
+export type PenjualanPerBulan = {
+  "Kode Divisi": string;
+  Periode: string;
+  Divisi: string;
+  Total: string;
+};
+
+export type PenjualanPerTahun = {
+  "Kode Divisi": string;
+  Periode: string;
+  Divisi: string;
+  Total: string;
+};
+
+export type PenjualanPerBarang = {
+  "Kode Barang": string;
+  "Kode Divisi": string;
+  Produk: string;
+  Divisi: string;
+  Total: string;
+};
+
+export type PenjualanPerPegawai = {
+  "Kode Pegawai": string;
+  "Kode Divisi": string;
+  pegawai: string;
+  Divisi: string;
+  Total: string;
+};

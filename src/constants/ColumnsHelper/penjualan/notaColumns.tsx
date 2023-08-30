@@ -1,24 +1,25 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { PenjualanPerNota } from "../Types/penjualanTypes";
+import { PenjualanPerNota } from "../../Types/penjualanTypes";
+import { useFormatTanggal } from "../../../hooks/userFormat";
 
-const columnHelper = createColumnHelper<PenjualanPerNota>();
-const penjualanColumns = [
-  columnHelper.accessor("No Transaksi", {
+const helper = createColumnHelper<PenjualanPerNota>();
+const notaColumns = [
+  helper.accessor("No Transaksi", {
     cell: (data) => data.getValue(),
   }),
-  columnHelper.accessor("Tanggal", {
+  helper.accessor("Tanggal", {
+    cell: (data) => useFormatTanggal(data.getValue()),
+  }),
+  helper.accessor("Divisi", {
     cell: (data) => data.getValue(),
   }),
-  columnHelper.accessor("Divisi", {
+  helper.accessor("Customer", {
     cell: (data) => data.getValue(),
   }),
-  columnHelper.accessor("Customer", {
+  helper.accessor("Jumlah Item", {
     cell: (data) => data.getValue(),
   }),
-  columnHelper.accessor("Jumlah Item", {
-    cell: (data) => data.getValue(),
-  }),
-  columnHelper.accessor("Total", {
+  helper.accessor("Total", {
     cell: (data) => (
       <div className="text-right">
         {new Intl.NumberFormat("ID", {
@@ -31,4 +32,4 @@ const penjualanColumns = [
   }),
 ];
 
-export default penjualanColumns;
+export default notaColumns;
