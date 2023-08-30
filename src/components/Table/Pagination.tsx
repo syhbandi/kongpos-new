@@ -3,7 +3,6 @@ import ReactPaginate from "react-paginate";
 
 type Props = {
   pageCount: number;
-  offset: number;
   length: number;
   setOffset: (e: number) => void;
 };
