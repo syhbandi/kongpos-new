@@ -149,20 +149,20 @@ const Footer = ({ data, dataCount }: FooterProps) => {
   return (
     <div className="inline-flex items-center gap-3">
       <div>
-        <span>Jumlah item: </span>
-        <span>{useFormatNumber(jumlahItem)}</span>
+        <span>Item: </span>
+        <strong>{useFormatNumber(jumlahItem)}</strong>
       </div>
       <div>
-        <span>Jumlah data: </span>
-        <span>{useFormatNumber(jumlahData)}</span>
+        <span>Data: </span>
+        <strong>{useFormatNumber(jumlahData)}</strong>
       </div>
       <div>
         <span>Sub Total: </span>
-        <span>{userFormatRupiah(subTotal)}</span>
+        <strong>{userFormatRupiah(subTotal)}</strong>
       </div>
       <div>
         <span>Grand Total: </span>
-        <span>{userFormatRupiah(grandTotal)}</span>
+        <strong>{userFormatRupiah(grandTotal)}</strong>
       </div>
     </div>
   );
