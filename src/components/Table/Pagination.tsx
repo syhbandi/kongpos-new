@@ -11,6 +11,7 @@ type Props = {
 
 const Pagination = ({ dataCount, setOffset, dataPerPage, offset }: Props) => {
   const [page, setPage] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
   const onPageChange = (e: any) => {
     setOffset((e?.selected * dataPerPage) % dataCount);
     setPage(e?.selected);
@@ -22,10 +23,18 @@ const Pagination = ({ dataCount, setOffset, dataPerPage, offset }: Props) => {
     }
   }, [offset]);
 
+  useEffect(() => {
+    if (dataCount) {
+      setPageCount(Math.ceil(dataCount / dataPerPage));
+    }
+
+    return () => setPageCount(1);
+  }, [dataCount, dataPerPage]);
+
   return (
     <ReactPaginate
       onPageChange={onPageChange}
-      pageCount={Math.ceil(dataCount / dataPerPage)}
+      pageCount={pageCount}
       forcePage={page}
       nextLabel={
         <span className="inline-flex items-center justify-center text-2xl p-2">
