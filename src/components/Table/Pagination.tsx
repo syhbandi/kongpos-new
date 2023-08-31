@@ -37,12 +37,12 @@ const Pagination = ({ dataCount, setOffset, dataPerPage, offset }: Props) => {
       pageCount={pageCount}
       forcePage={page}
       nextLabel={
-        <span className="inline-flex items-center justify-center text-2xl p-2">
+        <span className="inline-flex items-center justify-center text-2xl p-1">
           <MdKeyboardArrowRight />
         </span>
       }
       previousLabel={
-        <span className="inline-flex items-center justify-center text-2xl p-2">
+        <span className="inline-flex items-center justify-center text-2xl p-1">
           <MdKeyboardArrowLeft />
         </span>
       }
@@ -51,10 +51,10 @@ const Pagination = ({ dataCount, setOffset, dataPerPage, offset }: Props) => {
       pageRangeDisplayed={3}
       marginPagesDisplayed={2}
       containerClassName={
-        "inline-flex items-center rounded border border-gray-400"
+        "inline-flex items-center rounded border border-gray-400 bg-gray-100"
       }
-      pageLinkClassName={"p-2"}
-      activeLinkClassName="font-bold bg-kong rounded"
+      pageLinkClassName={"px-2"}
+      activeLinkClassName="font-extrabold text-blue-500"
       disabledClassName="text-gray-400"
       disabledLinkClassName="cursor-not-allowed"
     />
