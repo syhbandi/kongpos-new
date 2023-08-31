@@ -10,13 +10,23 @@ import {
   PenjualanParams,
   PenjualanPerNota,
 } from "../../../../constants/Types/penjualanTypes";
-import { userFormatRupiah } from "../../../../hooks/userFormat";
+import {
+  useFormatNumber,
+  userFormatRupiah,
+} from "../../../../hooks/userFormat";
+import PageSelect from "../../../../components/Table/PageSelect";
+import DateRange from "../../../../components/Dashboard/DateRange";
+import Search from "../../../../components/Table/Search";
+import Pagination from "../../../../components/Table/Pagination";
 
 const Nota = () => {
   const { access_token } = useRecoilValue(userState);
   const companyId = useRecoilValue(companyIdState);
   const [data, setData] = useState<PenjualanPerNota[]>([]);
-  const [dataCount, setDataCount] = useState<PenjualanDataCount>();
+  const [dataCount, setDataCount] = useState<PenjualanDataCount>({
+    "Jumlah Record": "0",
+    "Grand Total": "0",
+  });
   const [params, setParams] = useState<PenjualanParams>({
     company_id: companyId,
     awal: new Date().toISOString().split("T")[0],
@@ -62,10 +72,12 @@ const Nota = () => {
     ],
   });
 
+  // update params.company_id sesuai dengan state companyId
   useEffect(() => {
     setParams((prev) => ({ ...prev, company_id: companyId }));
   }, [companyId]);
 
+  // update data dan count dari hasil queries
   useEffect(() => {
     if (queries[0].data && queries[1].data) {
       setData(queries[0].data);
@@ -75,87 +87,74 @@ const Nota = () => {
 
   return (
     <div className="p-5 bg-white shadow rounded overflow-auto">
+      <div className="flex items-center mb-2 justify-between">
+        <PageSelect
+          id="length"
+          name="length"
+          value={params.length}
+          onChange={onParamsChange}
+        />
+        <div className="flex items-center gap-2">
+          {/* input awal */}
+          <DateRange
+            id="awal"
+            name="awal"
+            value={params.awal}
+            onChange={onParamsChange}
+          />
+          <span>S/D</span>
+          <DateRange
+            id="akhir"
+            name="akhir"
+            value={params.akhir}
+            onChange={onParamsChange}
+          />
+          <Search onChange={onCari} />
+        </div>
+      </div>
       <Table
         data={data}
         columns={notaColumns}
         isLoading={queries[0].isLoading || queries[1].isLoading}
-        setSearch={onCari}
-        length={params.length}
-        setParams={onParamsChange}
-        offset={params.limit}
-        setOffset={onPageChange}
-        additional={
-          <Filter
-            awal={params.awal}
-            akhir={params.akhir}
-            setParams={onParamsChange}
-          />
-        }
-        totalData={dataCount}
-        additionalFooter={
-          <Footer
-            subTotal={data.reduce(
-              (total, current) => total + parseFloat(current.Total),
-              0
-            )}
-            records={dataCount?.["Jumlah Record"]}
-            grandTotal={parseFloat(dataCount?.["Grand Total"] || "0")}
-            items={data.reduce(
-              (total, current) => total + parseFloat(current["Jumlah Item"]),
-              0
-            )}
-          />
-        }
       />
+      <div className="mt-2 flex items-center justify-between">
+        <Footer data={data} dataCount={dataCount} />
+        <Pagination
+          dataCount={dataCount["Jumlah Record"]}
+          dataPerPage={params.length}
+          offset={params.limit}
+          setOffset={onPageChange}
+        />
+      </div>
     </div>
   );
 };
 
-type filterProps = {
-  awal: string;
-  akhir: string;
-  setParams: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
-const Filter = ({ awal, akhir, setParams }: filterProps) => {
-  return (
-    <>
-      <input
-        type="date"
-        name="awal"
-        value={awal}
-        onChange={setParams}
-        className="p-2 rounded border border-gray-400"
-      />
-      <span>S/D</span>
-      <input
-        type="date"
-        name="akhir"
-        value={akhir}
-        onChange={setParams}
-        className="p-2 rounded border border-gray-400"
-      />
-    </>
-  );
-};
-
 type FooterProps = {
-  subTotal: number;
-  records: number | string | undefined;
-  items: number | string;
-  grandTotal: number;
+  data: PenjualanPerNota[];
+  dataCount: PenjualanDataCount;
 };
 
-const Footer = ({ subTotal, records, items, grandTotal }: FooterProps) => {
+const Footer = ({ data, dataCount }: FooterProps) => {
+  const jumlahItem = data.reduce(
+    (total, current) => total + parseFloat(current["Jumlah Item"]),
+    0
+  );
+  const jumlahData = parseFloat(dataCount["Jumlah Record"]);
+  const subTotal = data.reduce(
+    (total, current) => total + parseFloat(current.Total),
+    0
+  );
+  const grandTotal = parseFloat(dataCount["Grand Total"]);
   return (
     <div className="inline-flex items-center gap-3">
       <div>
         <span>Jumlah item: </span>
-        <span>{items}</span>
+        <span>{useFormatNumber(jumlahItem)}</span>
       </div>
       <div>
         <span>Jumlah data: </span>
-        <span>{records}</span>
+        <span>{useFormatNumber(jumlahData)}</span>
       </div>
       <div>
         <span>Sub Total: </span>

@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import { MdSearch } from "react-icons/md";
 
 type SearchProps = {
-  id: string;
-  name: string;
-  value: string;
   onChange: (e: string) => void;
 };
 

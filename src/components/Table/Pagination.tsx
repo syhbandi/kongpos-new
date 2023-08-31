@@ -3,7 +3,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import ReactPaginate from "react-paginate";
 
 type Props = {
-  dataCount: number;
+  dataCount: number | any;
   dataPerPage: number;
   offset: number;
   setOffset: (e: number) => void;
