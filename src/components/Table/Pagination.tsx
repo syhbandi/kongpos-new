@@ -3,17 +3,16 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import ReactPaginate from "react-paginate";
 
 type Props = {
-  pageCount: number;
-  length: number;
+  dataCount: number;
+  dataPerPage: number;
   offset: number;
   setOffset: (e: number) => void;
 };
 
-const Pagination = ({ pageCount, setOffset, length, offset }: Props) => {
-  console.log(pageCount, length, offset);
+const Pagination = ({ dataCount, setOffset, dataPerPage, offset }: Props) => {
   const [page, setPage] = useState(0);
   const onPageChange = (e: any) => {
-    setOffset(e?.selected * length);
+    setOffset((e?.selected * dataPerPage) % dataCount);
     setPage(e?.selected);
   };
 
@@ -26,7 +25,7 @@ const Pagination = ({ pageCount, setOffset, length, offset }: Props) => {
   return (
     <ReactPaginate
       onPageChange={onPageChange}
-      pageCount={pageCount}
+      pageCount={Math.ceil(dataCount / dataPerPage)}
       forcePage={page}
       nextLabel={
         <span className="inline-flex items-center justify-center text-2xl p-2">
