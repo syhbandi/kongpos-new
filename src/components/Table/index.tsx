@@ -7,6 +7,7 @@ import {
   OnChangeFn,
 } from "@tanstack/react-table";
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
+import Spinner from "../Dashboard/Spinner";
 
 type Props<TData> = {
   data: TData[];
@@ -78,7 +79,7 @@ const Table = <TData extends Object>({
               className="border border-gray-400 p-2 text-center"
               colSpan={table.getHeaderGroups()[0].headers.length}
             >
-              Memuat...
+              <Spinner />
             </td>
           </tr>
         ) : table.getRowModel().rows.length ? (

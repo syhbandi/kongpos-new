@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../atom/User";
 import { MdOutlineStore } from "react-icons/md";
 import { useEffect } from "react";
+import Spinner from "./Spinner";
 
 const SelectUsaha = () => {
   const { no_hp } = useRecoilValue(userState);
@@ -19,7 +20,7 @@ const SelectUsaha = () => {
     }
   }, [data]);
 
-  if (isLoading) return <>Memuat...</>;
+  if (isLoading) return <Spinner />;
   if (isError)
     return <div className="font-medium text-red-600">Terjadi kesalahan!</div>;
 
