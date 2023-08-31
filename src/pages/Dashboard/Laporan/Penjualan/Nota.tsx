@@ -82,6 +82,7 @@ const Nota = () => {
         setSearch={onCari}
         length={params.length}
         setParams={onParamsChange}
+        offset={params.limit}
         setOffset={onPageChange}
         additional={
           <Filter

@@ -19,6 +19,7 @@ type Props = {
   additional?: ReactElement;
   additionalFooter?: ReactElement;
   totalData?: any;
+  offset: number;
   setOffset: (e: number) => void;
 };
 
@@ -32,6 +33,7 @@ const Table = ({
   additional,
   totalData,
   additionalFooter,
+  offset,
   setOffset,
 }: Props) => {
   const [cari, setCari] = useState("");
@@ -137,6 +139,7 @@ const Table = ({
               ? Math.ceil(totalData?.["Jumlah Record"] / length)
               : 0
           }
+          offset={offset}
           setOffset={setOffset}
           length={length}
         />
