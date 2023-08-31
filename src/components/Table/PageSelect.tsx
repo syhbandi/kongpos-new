@@ -9,7 +9,7 @@ const PageSelect = ({ name, id, value, onChange }: SelectProps) => {
     <select
       id={id}
       name={name}
-      className="p-2 rounded border border-gray-400"
+      className="p-2 rounded border border-gray-400 outline-none focus:border-black"
       value={value}
       onChange={onChange}
     >
