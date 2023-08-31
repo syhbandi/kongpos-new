@@ -8,6 +8,7 @@ import onlineOffline from "../assets/onlineOffline.png";
 import cs from "../assets/cs.jpg";
 import homeHero from "../assets/homeHero.png";
 import logo from "../assets/kongpos.png";
+import NotFound from "../assets/Oops! 404 Error with a broken robot-rafiki.png";
 
 export {
   hardware,
@@ -20,4 +21,5 @@ export {
   cs,
   homeHero,
   logo,
+  NotFound,
 };

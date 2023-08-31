@@ -8,17 +8,17 @@ import Laporan from "./pages/Dashboard/Laporan";
 import Penjualan from "./pages/Dashboard/Laporan/Penjualan";
 import Summary from "./pages/Dashboard/Laporan/Summary";
 import Nota from "./pages/Dashboard/Laporan/Penjualan/Nota";
+import ErrorPage from "./pages/Dashboard/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <>Oops halaman tidak ditemukan</>,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/dashboard",
     element: <Dashboard />,
-    errorElement: <>Oops halaman tidak ditemukan</>,
     children: [
       {
         index: true,
