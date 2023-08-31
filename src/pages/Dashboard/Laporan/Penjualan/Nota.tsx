@@ -18,6 +18,7 @@ import PageSelect from "../../../../components/Table/PageSelect";
 import DateRange from "../../../../components/Dashboard/DateRange";
 import Search from "../../../../components/Table/Search";
 import Pagination from "../../../../components/Table/Pagination";
+import { SortingState } from "@tanstack/react-table";
 
 const Nota = () => {
   const { access_token } = useRecoilValue(userState);
@@ -39,6 +40,7 @@ const Nota = () => {
     length: 10,
     count_stats: 0,
   });
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const onParamsChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -85,6 +87,19 @@ const Nota = () => {
     }
   }, [queries]);
 
+  useEffect(() => {
+    if (sorting.length) {
+      setParams((prev) => ({
+        ...prev,
+        order_col: sorting[0].id,
+        order_type: sorting[0].desc ? "DESC" : "ASC",
+      }));
+    }
+
+    return () =>
+      setParams((prev) => ({ ...prev, order_col: "", order_type: "" }));
+  }, [sorting]);
+
   return (
     <div className="p-5 bg-white shadow rounded overflow-auto">
       <div className="flex items-center mb-2 justify-between">
@@ -116,6 +131,8 @@ const Nota = () => {
         data={data}
         columns={notaColumns}
         isLoading={queries[0].isLoading || queries[1].isLoading}
+        sorting={sorting}
+        setSorting={setSorting}
       />
       <div className="mt-2 flex items-center justify-between">
         <Footer data={data} dataCount={dataCount} />
