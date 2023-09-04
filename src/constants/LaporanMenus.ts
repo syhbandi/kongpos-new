@@ -9,8 +9,8 @@ type Menus = {
 
 export const laporanMenus: Menus[] = [
   {
-    title: "Ringkasan",
-    link: "/dashboard/laporan",
+    title: "ringkasan",
+    link: "",
     isEnd: true,
   },
   {
@@ -18,24 +18,24 @@ export const laporanMenus: Menus[] = [
     link: "penjualan",
   },
   {
-    title: "penjualan order",
-    link: "penjualan-order",
+    title: "order penjualan",
+    link: "order-penjualan",
   },
   {
-    title: "penjualan retur",
-    link: "penjualan-retur",
+    title: "retur penjualan",
+    link: "retur-penjualan",
   },
   {
     title: "pembelian",
     link: "pembelian",
   },
   {
-    title: "pembelian order",
-    link: "pembelian-order",
+    title: "order pembelian",
+    link: "order-pembelian",
   },
   {
-    title: "pembelian-retur",
-    link: "pembelian-retur",
+    title: "retur pembelian",
+    link: "retur-pembelian",
   },
   {
     title: "inventori",

@@ -13,7 +13,7 @@ type Props = {
 
 const NavMenu = ({ menus }: Props) => {
   return (
-    <div className="flex items-center gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent scrollbar-track-rounded-full py-2 hover:scrollbar-thumb-slate-400">
+    <div className="flex items-center gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent scrollbar-track-rounded-full py-2 hover:scrollbar-thumb-slate-400 mb-5">
       {menus.map((menu) => (
         <NavLink
           to={menu.link}

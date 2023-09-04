@@ -6,9 +6,8 @@ import Logout from "./pages/Auth/Logout";
 import Home from "./pages/Dashboard/Home";
 import Laporan from "./pages/Dashboard/Laporan";
 import Penjualan from "./pages/Dashboard/Laporan/Penjualan";
-import Summary from "./pages/Dashboard/Laporan/Summary";
-import Nota from "./pages/Dashboard/Laporan/Penjualan/Nota";
 import ErrorPage from "./pages/Dashboard/Error";
+import Summary from "./pages/Dashboard/Laporan/Summary";
 
 export const router = createBrowserRouter([
   {
@@ -32,11 +31,18 @@ export const router = createBrowserRouter([
             index: true,
             element: <Summary />,
           },
-          {
-            element: <Penjualan />,
-            path: "penjualan",
-            children: [{ path: "nota", element: <Nota /> }],
-          },
+          { path: "penjualan", element: <Penjualan /> },
+          { path: "order-penjualan", element: "" },
+          { path: "retur-penjualan", element: "" },
+          { path: "pembelian", element: "" },
+          { path: "order-pembelian", element: "" },
+          { path: "retur-pembelian", element: "" },
+          { path: "inventori", element: "" },
+          { path: "biaya", element: "" },
+          { path: "pendapatan", element: "" },
+          { path: "hutang", element: "" },
+          { path: "piutang", element: "" },
+          { path: "laba-rugi", element: "" },
         ],
       },
       {
