@@ -11,6 +11,7 @@ import ReturPenjualan from "./pages/Dashboard/Laporan/ReturPenjualan";
 import ErrorPage from "./pages/Dashboard/Error";
 import Summary from "./pages/Dashboard/Laporan/Summary";
 import Pembelian from "./pages/Dashboard/Laporan/Pembelian";
+import OrderPembelian from "./pages/Dashboard/Laporan/OrderPembelian";
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
           { path: "order-penjualan", element: <OrderPenjualan /> },
           { path: "retur-penjualan", element: <ReturPenjualan /> },
           { path: "pembelian", element: <Pembelian /> },
-          { path: "order-pembelian", element: "" },
+          { path: "order-pembelian", element: <OrderPembelian /> },
           { path: "retur-pembelian", element: "" },
           { path: "inventori", element: "" },
           { path: "biaya", element: "" },

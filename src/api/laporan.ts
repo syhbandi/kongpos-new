@@ -43,3 +43,15 @@ export const getPembelian = async (params: PembelianParams, token: string) => {
   });
   return data;
 };
+
+export const getOrderPembelian = async (
+  params: PembelianParams,
+  token: string
+) => {
+  const { data } = await api.post("laporan/pembelian_order", params, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data;
+};
