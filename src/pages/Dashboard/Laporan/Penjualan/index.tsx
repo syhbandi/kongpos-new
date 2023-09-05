@@ -10,7 +10,7 @@ const index = () => {
   return (
     <div className="bg-white p-5 rounded shadow">
       <div className="flex items-center gap-3 mb-5">
-        <div>
+        <div className="flex items-center gap-3">
           <label htmlFor="awal">Awal</label>
           <DateRange
             id="awal"
@@ -19,7 +19,7 @@ const index = () => {
             onChange={(e) => setAwal(e.target.value)}
           />
         </div>
-        <div>
+        <div className="flex items-center gap-3">
           <label htmlFor="akhir">Akhir</label>
           <DateRange
             id="akhir"
@@ -28,7 +28,7 @@ const index = () => {
             onChange={(e) => setAkhir(e.target.value)}
           />
         </div>
-        <div>
+        <div className="flex items-center gap-3">
           <label htmlFor="jenis">Grup</label>
           <select
             id="jenis"
