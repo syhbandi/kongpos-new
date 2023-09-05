@@ -6,6 +6,8 @@ import Logout from "./pages/Auth/Logout";
 import Home from "./pages/Dashboard/Home";
 import Laporan from "./pages/Dashboard/Laporan";
 import Penjualan from "./pages/Dashboard/Laporan/Penjualan";
+import OrderPenjualan from "./pages/Dashboard/Laporan/OrderPenjualan";
+import ReturPenjualan from "./pages/Dashboard/Laporan/ReturPenjualan";
 import ErrorPage from "./pages/Dashboard/Error";
 import Summary from "./pages/Dashboard/Laporan/Summary";
 
@@ -32,8 +34,8 @@ export const router = createBrowserRouter([
             element: <Summary />,
           },
           { path: "penjualan", element: <Penjualan /> },
-          { path: "order-penjualan", element: "" },
-          { path: "retur-penjualan", element: "" },
+          { path: "order-penjualan", element: <OrderPenjualan /> },
+          { path: "retur-penjualan", element: <ReturPenjualan /> },
           { path: "pembelian", element: "" },
           { path: "order-pembelian", element: "" },
           { path: "retur-pembelian", element: "" },
