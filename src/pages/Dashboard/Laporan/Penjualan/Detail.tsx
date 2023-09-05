@@ -47,6 +47,10 @@ const Detail = ({ awal, akhir, jenis }: Props) => {
   useEffect(() => {
     setParams((prev) => ({
       ...prev,
+      company_id: companyId,
+      jenis,
+      awal,
+      akhir,
       limit: 0, //reset page pagination
     }));
   }, [awal, akhir, jenis, companyId]);
@@ -67,30 +71,13 @@ const Detail = ({ awal, akhir, jenis }: Props) => {
   const queries = useQueries({
     queries: [
       {
-        queryKey: ["penjualan", { ...params, jenis, awal, akhir, companyId }],
-        queryFn: () =>
-          getPenjualan(
-            { ...params, jenis, awal, akhir, company_id: companyId },
-            access_token
-          ),
+        queryKey: ["penjualan", params],
+        queryFn: () => getPenjualan(params, access_token),
       },
       {
-        queryKey: [
-          "penjualan",
-          { ...params, jenis, awal, akhir, companyId, count_stats: 1 },
-        ],
+        queryKey: ["penjualan", { ...params, count_stats: 1 }],
         queryFn: () =>
-          getPenjualan(
-            {
-              ...params,
-              jenis,
-              awal,
-              akhir,
-              company_id: companyId,
-              count_stats: 1,
-            },
-            access_token
-          ),
+          getPenjualan({ ...params, count_stats: 1 }, access_token),
       },
     ],
   });
