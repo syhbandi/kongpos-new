@@ -1,6 +1,7 @@
 import { PenjualanParams } from "../constants/Types/penjualanTypes";
 import { PembelianParams } from "../constants/Types/pembelianTypes";
 import api from "./api";
+import { InventoriParams } from "../constants/Types/inventoriTypes";
 
 export const getPenjualan = async (params: PenjualanParams, token: string) => {
   const { data } = await api.post("laporan/penjualan", params, {
@@ -61,6 +62,15 @@ export const getReturPembelian = async (
   token: string
 ) => {
   const { data } = await api.post("laporan/pembelian_retur", params, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data;
+};
+
+export const getInventori = async (params: InventoriParams, token: string) => {
+  const { data } = await api.post("laporan/stok", params, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

@@ -13,6 +13,7 @@ import Summary from "./pages/Dashboard/Laporan/Summary";
 import Pembelian from "./pages/Dashboard/Laporan/Pembelian";
 import OrderPembelian from "./pages/Dashboard/Laporan/OrderPembelian";
 import ReturPembelian from "./pages/Dashboard/Laporan/ReturPembelian";
+import Inventori from "./pages/Dashboard/Laporan/Inventori";
 
 export const router = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
           { path: "pembelian", element: <Pembelian /> },
           { path: "order-pembelian", element: <OrderPembelian /> },
           { path: "retur-pembelian", element: <ReturPembelian /> },
-          { path: "inventori", element: "" },
+          { path: "inventori", element: <Inventori /> },
           { path: "biaya", element: "" },
           { path: "pendapatan", element: "" },
           { path: "hutang", element: "" },
