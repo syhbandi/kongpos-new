@@ -14,6 +14,7 @@ import Pembelian from "./pages/Dashboard/Laporan/Pembelian";
 import OrderPembelian from "./pages/Dashboard/Laporan/OrderPembelian";
 import ReturPembelian from "./pages/Dashboard/Laporan/ReturPembelian";
 import Inventori from "./pages/Dashboard/Laporan/Inventori";
+import Biaya from "./pages/Dashboard/Laporan/Biaya";
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +45,7 @@ export const router = createBrowserRouter([
           { path: "order-pembelian", element: <OrderPembelian /> },
           { path: "retur-pembelian", element: <ReturPembelian /> },
           { path: "inventori", element: <Inventori /> },
-          { path: "biaya", element: "" },
+          { path: "biaya", element: <Biaya /> },
           { path: "pendapatan", element: "" },
           { path: "hutang", element: "" },
           { path: "piutang", element: "" },

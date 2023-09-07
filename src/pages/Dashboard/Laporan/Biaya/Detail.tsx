@@ -1,46 +1,47 @@
 import { useState, useEffect } from "react";
-import {
-  InventoriCount,
-  InventoriParams,
-} from "../../../../constants/Types/inventoriTypes";
 import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../../atom/User";
-import inventoriColumns from "../../../../constants/ColumnsHelper/inventori";
+import biayaColumns from "../../../../constants/ColumnsHelper/biaya";
+import {
+  biayaCount,
+  biayaParams,
+} from "../../../../constants/Types/biayaTypes";
 import { SortingState } from "@tanstack/react-table";
 import { useQueries } from "@tanstack/react-query";
-import { getInventori } from "../../../../api/laporan";
-import Table from "../../../../components/Table";
+import { getBiaya } from "../../../../api/laporan";
 import PageSelect from "../../../../components/Table/PageSelect";
 import Search from "../../../../components/Table/Search";
+import Table from "../../../../components/Table";
+import Info from "../../../../components/Table/Info";
 import Pagination from "../../../../components/Table/Pagination";
-import { useFormatNumber } from "../../../../hooks/userFormat";
 
 type Props = {
-  periode: string;
   jenis: string;
+  awal: string;
+  akhir: string;
 };
 
-const Detail = ({ periode, jenis }: Props) => {
+const Detail = ({ jenis, awal, akhir }: Props) => {
   const companyId = useRecoilValue(companyIdState);
   const user = useRecoilValue(userState);
-  const column = inventoriColumns.find((col) => col.jenis === jenis)?.column;
+  const column = biayaColumns.find((col) => col.jenis === jenis)?.column;
   const [data, setData] = useState([]);
-  const [count, setCount] = useState<InventoriCount>({
-    jumlah_record: "0",
+  const [count, setCount] = useState<biayaCount>({
+    "Grand Total": "",
+    "Jumlah Record": "",
   });
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [params, setParams] = useState<InventoriParams>({
+  const [params, setParams] = useState<biayaParams>({
     company_id: companyId,
-    kd_barang: "",
-    kd_divisi: "",
-    periode,
     jenis,
-    search: "",
+    awal,
+    akhir,
+    count_stats: 0,
+    length: 10,
+    limit: 0,
     order_col: "",
     order_type: "",
-    limit: 0,
-    length: 10,
-    count_stats: 0,
+    search: "",
   });
 
   useEffect(() => {
@@ -48,10 +49,11 @@ const Detail = ({ periode, jenis }: Props) => {
       ...prev,
       company_id: companyId,
       jenis,
-      periode,
+      awal,
+      akhir,
       limit: 0, //reset page pagination
     }));
-  }, [periode, jenis, companyId]);
+  }, [awal, akhir, jenis, companyId]);
 
   useEffect(() => {
     if (sorting.length) {
@@ -69,13 +71,13 @@ const Detail = ({ periode, jenis }: Props) => {
   const queries = useQueries({
     queries: [
       {
-        queryKey: ["inventori", params],
-        queryFn: () => getInventori(params, user.access_token),
+        queryKey: ["biaya", params],
+        queryFn: () => getBiaya(params, user.access_token),
       },
       {
-        queryKey: ["inventori", { ...params, count_stats: 1 }],
+        queryKey: ["biaya", { ...params, count_stats: 1 }],
         queryFn: () =>
-          getInventori({ ...params, count_stats: 1 }, user.access_token),
+          getBiaya({ ...params, count_stats: 1 }, user.access_token),
       },
     ],
   });
@@ -88,13 +90,13 @@ const Detail = ({ periode, jenis }: Props) => {
 
     return () => {
       setData([]);
-      setCount({ jumlah_record: "" });
+      setCount({ "Grand Total": "", "Jumlah Record": "" });
     };
   }, [queries[0].data, queries[1].data]);
 
   return (
     <>
-      <div className="flex items-center mb-2 mt-5 justify-between">
+      <div className="flex items-center mb-2 justify-between mt-5">
         <PageSelect
           id="length"
           name="length"
@@ -122,13 +124,14 @@ const Detail = ({ periode, jenis }: Props) => {
         setSorting={setSorting}
       />
       <div className="flex items-center mt-2">
-        <div className="inline-flex items-center gap-3">
-          <span>Data:</span>
-          <strong>{useFormatNumber(parseFloat(count.jumlah_record))}</strong>
-        </div>
+        <Info
+          data={data}
+          dataCount={count}
+          sumColumn={biayaColumns.find((col) => col.jenis === jenis)?.sumColumn}
+        />
         <div className="ml-auto">
           <Pagination
-            dataCount={count.jumlah_record}
+            dataCount={count["Jumlah Record"]}
             dataPerPage={params.length}
             offset={params.limit}
             setOffset={(offset) =>
