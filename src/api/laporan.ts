@@ -3,6 +3,7 @@ import { PembelianParams } from "../constants/Types/pembelianTypes";
 import api from "./api";
 import { InventoriParams } from "../constants/Types/inventoriTypes";
 import { biayaParams } from "../constants/Types/biayaTypes";
+import { pendapatanParams } from "../constants/Types/pendapatanTypes";
 
 export const getPenjualan = async (params: PenjualanParams, token: string) => {
   const { data } = await api.post("laporan/penjualan", params, {
@@ -81,6 +82,17 @@ export const getInventori = async (params: InventoriParams, token: string) => {
 
 export const getBiaya = async (params: biayaParams, token: string) => {
   const { data } = await api.post("laporan/biaya", params, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data;
+};
+export const getPendapatan = async (
+  params: pendapatanParams,
+  token: string
+) => {
+  const { data } = await api.post("laporan/pendapatan", params, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
