@@ -11,13 +11,25 @@ const hutangColumns = [
   helper.accessor("Kode Supplier", { cell: (data) => data.getValue() }),
   helper.accessor("Supplier", { cell: (data) => data.getValue() }),
   helper.accessor("Total Pembelian", {
-    cell: (data) => userFormatRupiah(parseFloat(data.getValue())),
+    cell: (data) => (
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
   helper.accessor("Total Cicilan", {
-    cell: (data) => userFormatRupiah(parseInt(data.getValue())),
+    cell: (data) => (
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
   helper.accessor("Sisa Hutang", {
-    cell: (data) => userFormatRupiah(parseFloat(data.getValue())),
+    cell: (data) => (
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
 ];
 

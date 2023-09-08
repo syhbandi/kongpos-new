@@ -188,7 +188,7 @@ const Info = ({ data, count }: InfoTypes) => {
           {Object.values(all).map((v, index) => (
             <td
               key={index}
-              className="p-2 border border-gray-400 font-bold text-center"
+              className="p-2 border border-gray-400 font-bold text-right"
             >
               {v}
             </td>
