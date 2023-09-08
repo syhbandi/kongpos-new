@@ -1,5 +1,4 @@
 export const userFormatRupiah = (kepeng: number) => {
-  if (!kepeng) return null;
   return new Intl.NumberFormat("ID", {
     style: "currency",
     currency: "IDR",
@@ -7,7 +6,6 @@ export const userFormatRupiah = (kepeng: number) => {
 };
 
 export const useFormatNumber = (kepeng: number) => {
-  if (!kepeng) return null;
   return new Intl.NumberFormat("ID").format(kepeng);
 };
 
