@@ -17,6 +17,7 @@ import Inventori from "./pages/Dashboard/Laporan/Inventori";
 import Biaya from "./pages/Dashboard/Laporan/Biaya";
 import Pendapatan from "./pages/Dashboard/Laporan/Pendapatan";
 import Hutang from "./pages/Dashboard/Laporan/Hutang";
+import Piutang from "./pages/Dashboard/Laporan/Piutang";
 
 export const router = createBrowserRouter([
   {
@@ -50,7 +51,7 @@ export const router = createBrowserRouter([
           { path: "biaya", element: <Biaya /> },
           { path: "pendapatan", element: <Pendapatan /> },
           { path: "hutang", element: <Hutang /> },
-          { path: "piutang", element: "" },
+          { path: "piutang", element: <Piutang /> },
           { path: "laba-rugi", element: "" },
         ],
       },
