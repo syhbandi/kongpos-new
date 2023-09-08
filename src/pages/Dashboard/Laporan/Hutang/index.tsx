@@ -177,7 +177,7 @@ const Info = ({ data, count }: InfoTypes) => {
       <thead>
         <tr>
           {Object.keys(all).map((a) => (
-            <td className="p-2 border border-gray-400" key={a}>
+            <td className="p-2 border border-gray-400 text-center" key={a}>
               {a}
             </td>
           ))}
@@ -186,7 +186,10 @@ const Info = ({ data, count }: InfoTypes) => {
       <tbody>
         <tr>
           {Object.values(all).map((v, index) => (
-            <td key={index} className="p-2 border border-gray-400 font-bold">
+            <td
+              key={index}
+              className="p-2 border border-gray-400 font-bold text-center"
+            >
               {v}
             </td>
           ))}
