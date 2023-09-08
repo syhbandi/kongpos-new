@@ -7,7 +7,11 @@ const jenisBayar = [
   helper.accessor("Kode Jenis", { cell: (data) => data.getValue() }),
   helper.accessor("Jenis Bayar", { cell: (data) => data.getValue() }),
   helper.accessor("Total", {
-    cell: (data) => userFormatRupiah(parseFloat(data.getValue())),
+    cell: (data) => (
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
 ];
 export default jenisBayar;

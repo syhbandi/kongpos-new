@@ -8,7 +8,11 @@ const bulan = [
   helper.accessor("Divisi", { cell: (data) => data.getValue() }),
   helper.accessor("Periode", { cell: (data) => data.getValue() }),
   helper.accessor("Total", {
-    cell: (data) => userFormatRupiah(parseFloat(data.getValue())),
+    cell: (data) => (
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
 ];
 export default bulan;

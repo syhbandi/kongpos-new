@@ -10,7 +10,11 @@ const hari = [
     cell: (data) => useFormatTanggal(data.getValue()),
   }),
   helper.accessor("Total", {
-    cell: (data) => userFormatRupiah(parseFloat(data.getValue())),
+    cell: (data) => (
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
 ];
 

@@ -7,7 +7,11 @@ const jenis = [
   helper.accessor("Kode Pendapatan", { cell: (data) => data.getValue() }),
   helper.accessor("Jenis Pendapatan", { cell: (data) => data.getValue() }),
   helper.accessor("Total", {
-    cell: (data) => userFormatRupiah(parseFloat(data.getValue())),
+    cell: (data) => (
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
 ];
 export default jenis;

@@ -9,7 +9,11 @@ const divisi = [
   helper.accessor("Divisi", { cell: (data) => data.getValue() }),
   helper.accessor("Kepala Nota", { cell: (data) => data.getValue() }),
   helper.accessor("Total", {
-    cell: (data) => userFormatRupiah(parseFloat(data.getValue())),
+    cell: (data) => (
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
 ];
 
