@@ -55,7 +55,7 @@ export const laporanMenus: Menus[] = [
   },
   {
     title: "piutang",
-    link: "piutrang",
+    link: "piutang",
   },
   {
     title: "laba rugi",
