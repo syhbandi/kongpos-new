@@ -9,7 +9,6 @@ import Penjualan from "./pages/Dashboard/Laporan/Penjualan";
 import OrderPenjualan from "./pages/Dashboard/Laporan/OrderPenjualan";
 import ReturPenjualan from "./pages/Dashboard/Laporan/ReturPenjualan";
 import ErrorPage from "./pages/Dashboard/Error";
-import Summary from "./pages/Dashboard/Laporan/Summary";
 import Pembelian from "./pages/Dashboard/Laporan/Pembelian";
 import OrderPembelian from "./pages/Dashboard/Laporan/OrderPembelian";
 import ReturPembelian from "./pages/Dashboard/Laporan/ReturPembelian";
