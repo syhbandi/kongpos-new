@@ -37,11 +37,7 @@ export const router = createBrowserRouter([
         path: "laporan",
         element: <Laporan />,
         children: [
-          {
-            index: true,
-            element: <Summary />,
-          },
-          { path: "penjualan", element: <Penjualan /> },
+          { index: true, element: <Penjualan /> },
           { path: "order-penjualan", element: <OrderPenjualan /> },
           { path: "retur-penjualan", element: <ReturPenjualan /> },
           { path: "pembelian", element: <Pembelian /> },

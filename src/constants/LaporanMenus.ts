@@ -9,13 +9,9 @@ type Menus = {
 
 export const laporanMenus: Menus[] = [
   {
-    title: "ringkasan",
+    title: "penjualan",
     link: "",
     isEnd: true,
-  },
-  {
-    title: "penjualan",
-    link: "penjualan",
   },
   {
     title: "order penjualan",
