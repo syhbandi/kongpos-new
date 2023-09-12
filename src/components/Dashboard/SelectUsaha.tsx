@@ -16,7 +16,7 @@ const SelectUsaha = () => {
 
   useEffect(() => {
     if (data) {
-      setCompanyId(data[0].company_id);
+      setCompanyId(data[1].company_id);
     }
   }, [data]);
 

@@ -17,6 +17,8 @@ import Biaya from "./pages/Dashboard/Laporan/Biaya";
 import Pendapatan from "./pages/Dashboard/Laporan/Pendapatan";
 import Hutang from "./pages/Dashboard/Laporan/Hutang";
 import Piutang from "./pages/Dashboard/Laporan/Piutang";
+import Kontrak from "./pages/Dashboard/Kontrak";
+import BuatKontrak from "./pages/Dashboard/Kontrak/BuatKontrak";
 
 export const router = createBrowserRouter([
   {
@@ -52,7 +54,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "kontrak",
-        element: <>Kontrak</>,
+        element: <Kontrak />,
+        children: [
+          {
+            element: <BuatKontrak />,
+            index: true,
+          },
+        ],
       },
       {
         path: "Pengaturan",

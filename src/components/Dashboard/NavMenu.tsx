@@ -1,9 +1,8 @@
-import { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
 type Menus = {
   title: string;
   link: string;
-  icon?: ReactElement;
+  icon?: React.ReactElement;
   isEnd?: boolean;
 };
 
