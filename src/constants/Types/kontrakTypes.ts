@@ -30,3 +30,11 @@ export type BuatKontrakTypes = {
 export type BuatKontrakCountTypes = {
   "jumlah record": string;
 };
+
+export type AjukanKontrakTypes = {
+  cid_sumber: string;
+  cid_tujuan: string;
+  kd_customer: string;
+  id_cid_tujuan: string;
+  periode_bulan: string;
+};

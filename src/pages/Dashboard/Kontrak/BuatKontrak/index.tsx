@@ -15,6 +15,7 @@ import PageSelect from "../../../../components/Table/PageSelect";
 import Search from "../../../../components/Table/Search";
 import Pagination from "../../../../components/Table/Pagination";
 import { useFormatNumber } from "../../../../hooks/userFormat";
+
 const index = () => {
   const companyId = useRecoilValue(companyIdState);
   const user = useRecoilValue(userState);

@@ -1,5 +1,30 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { BuatKontrakTypes } from "../../Types/kontrakTypes";
+import { Link } from "react-router-dom";
+import { MdSend } from "react-icons/md";
+
+const status = [
+  {
+    status: "0",
+    msg: "Belum diajukan",
+    className: "bg-red-600 text-white",
+  },
+  {
+    status: "-2",
+    msg: "Menunggu approval Customer",
+    className: "bg-orange-400 text-white",
+  },
+  {
+    status: "-1",
+    msg: "sudah diapprove customer",
+    className: "bg-sky-600 text-white",
+  },
+  {
+    status: "1",
+    msg: "terkontrak",
+    className: "bg-green-600 text-white",
+  },
+];
 
 const helper = createColumnHelper<BuatKontrakTypes>();
 const buatKontrakCoumns = [
@@ -13,18 +38,49 @@ const buatKontrakCoumns = [
     header: "Email",
   }),
   helper.accessor("hp", { cell: (data) => data.getValue(), header: "No. Hp" }),
-  helper.accessor("status", {
-    cell: (data) =>
-      data.getValue() === "0" ? (
-        <span className="p-2 text-sm font-medium bg-red-600 text-white rounded">
-          Belum terkontrak
+  helper.display({
+    cell: ({ row: { original } }) => {
+      const selectedStatus = status.find(
+        (status) => status.status === original.status
+      );
+      return (
+        <span
+          className={`p-2 text-sm font-medium rounded ${selectedStatus?.className}`}
+        >
+          {original.kontrak_id && original.status === "-2"
+            ? "Proses validasi admin"
+            : selectedStatus?.msg}
         </span>
-      ) : (
-        <span className="p-2 text-sm font-medium bg-green-600 text-white rounded">
-          Terkontrak
-        </span>
-      ),
+      );
+    },
     header: "Status",
+  }),
+  helper.display({
+    header: "Aksi",
+    cell: ({ row: { original } }) => {
+      if (original.status === "-1" && original.kontrak_id)
+        return <Link to={"bayar"}>Bayar</Link>;
+      if (original.status === "0")
+        return (
+          <Link
+            to={"pengajuan"}
+            state={{
+              cid_sumber: original.cid_sumber,
+              cid_tujuan: original.cid_tujuan,
+              kd_customer: original.kd_customer,
+              id_cid_tujuan: original.id_cid_tujuan,
+              nama: original.nama,
+              kontrak_id: original.kontrak_id,
+            }}
+          >
+            <button className="text-sm font-medium rounded bg-black text-white py-2 px-5 hover:bg-gray-700 inline-flex items-center gap-2">
+              <MdSend />
+              Ajukan
+            </button>
+          </Link>
+        );
+      return null;
+    },
   }),
 ];
 

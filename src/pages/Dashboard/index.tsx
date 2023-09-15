@@ -5,6 +5,8 @@ import { useRecoilValue } from "recoil";
 import { sidebarState } from "../../atom/sidebar";
 import Footer from "../../components/Dashboard/Footer";
 import { companyIdState } from "../../atom/User";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Dashboard = () => {
   const isAktif = useRecoilValue(sidebarState);
@@ -21,6 +23,7 @@ const Dashboard = () => {
         {!companyId ? <>Pilh usaha dulu</> : <Outlet />}
       </div>
       <Footer />
+      <ToastContainer autoClose={3000} />
     </div>
   );
 };
