@@ -1,6 +1,7 @@
 import {
   AjukanKontrakTypes,
   BuatKontrakParamsTypes,
+  GetKontrakTypes,
 } from "../constants/Types/kontrakTypes";
 import api from "./api";
 
@@ -26,6 +27,15 @@ export const ajukanKontrak = async ({
 }) => {
   const { data } = await api.post("post_request_contract", params, {
     headers: { Authorization: "Bearer " + access_token },
+  });
+  return data;
+};
+
+export const getKontrak = async (params: GetKontrakTypes, token: string) => {
+  const { data } = await api.post("selected_contracted", params, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   return data;
 };

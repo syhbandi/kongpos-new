@@ -1,7 +1,7 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { BuatKontrakTypes } from "../../Types/kontrakTypes";
 import { Link } from "react-router-dom";
-import { MdSend } from "react-icons/md";
+import { MdPayment, MdSend } from "react-icons/md";
 
 const status = [
   {
@@ -59,7 +59,22 @@ const buatKontrakCoumns = [
     header: "Aksi",
     cell: ({ row: { original } }) => {
       if (original.status === "-1" && original.kontrak_id)
-        return <Link to={"bayar"}>Bayar</Link>;
+        return (
+          <Link
+            to={"bayar"}
+            state={{
+              id_kontrak: original.kontrak_id,
+              cid_sumber: original.cid_sumber,
+              cid_tujuan: original.cid_tujuan,
+              nama: original.nama,
+            }}
+          >
+            <button className="text-sm font-medium rounded bg-black text-white py-2 px-5 hover:bg-gray-700 inline-flex items-center gap-2">
+              <MdPayment />
+              Bayar
+            </button>
+          </Link>
+        );
       if (original.status === "0")
         return (
           <Link

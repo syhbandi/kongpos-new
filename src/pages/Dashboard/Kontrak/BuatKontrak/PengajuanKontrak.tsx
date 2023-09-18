@@ -36,7 +36,7 @@ const PengajuanKontrak = () => {
         <Link to={""} className="text-2xl">
           <MdArrowBack />
         </Link>
-        <h1 className="text-xl font-medium">{state.nama}</h1>
+        <h1 className="text-xl font-medium">Ajukan Kontrak ({state.nama})</h1>
       </div>
       <div className="md:w-[500px] w-full bg-white rounded shadow p-5">
         <div className="bg-green-100 text-green-600 rounded p-3 mb-3">

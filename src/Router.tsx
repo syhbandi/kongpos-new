@@ -20,6 +20,7 @@ import Piutang from "./pages/Dashboard/Laporan/Piutang";
 import Kontrak from "./pages/Dashboard/Kontrak";
 import BuatKontrak from "./pages/Dashboard/Kontrak/BuatKontrak";
 import PengajuanKontrak from "./pages/Dashboard/Kontrak/BuatKontrak/PengajuanKontrak";
+import BayarKontrak from "./pages/Dashboard/Kontrak/BuatKontrak/BayarKontrak";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
           {
             path: "pengajuan",
             element: <PengajuanKontrak />,
+          },
+          {
+            path: "bayar",
+            element: <BayarKontrak />,
           },
         ],
       },

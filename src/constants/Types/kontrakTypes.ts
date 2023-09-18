@@ -38,3 +38,18 @@ export type AjukanKontrakTypes = {
   id_cid_tujuan: string;
   periode_bulan: string;
 };
+
+export type GetKontrakTypes = {
+  id_kontrak: string;
+  cid_sumber: string;
+  cid_tujuan: string;
+};
+
+export type KontrakTypes = {
+  id_kontrak: string;
+  tanggal_request: string;
+  tanggal_response: string;
+  tanggal_kontrak: string;
+  periode_bulan: string;
+  tanggal_jatuh_tempo: string;
+};
