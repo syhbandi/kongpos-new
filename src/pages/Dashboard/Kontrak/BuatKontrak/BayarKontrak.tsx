@@ -82,10 +82,6 @@ const BayarKontrak = () => {
         </Link>
         <h1 className="text-xl font-medium">Bayar Kontrak ({state.nama})</h1>
       </div>
-      <div>
-        {JSON.stringify(data)}
-        {JSON.stringify(state)}
-      </div>
       <div className="bg-white rounded p-5 shadow w-full md:max-w-[700px]">
         <div className="grid grid-cols-1 md:grid-cols-4 mb-5">
           <div>Periode Kontrak</div>
