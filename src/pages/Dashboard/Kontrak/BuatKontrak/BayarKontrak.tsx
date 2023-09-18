@@ -1,4 +1,4 @@
-import { Link, Navigate, redirect, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { MdArrowBack, MdCancel, MdClose, MdCloudUpload } from "react-icons/md";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";
@@ -19,6 +19,7 @@ const BayarKontrak = () => {
   const { state } = useLocation();
   const user = useRecoilValue(userState);
   const [gambar, setGambar] = useState<File>();
+  const navigate = useNavigate();
 
   console.log(gambar);
 
@@ -31,7 +32,7 @@ const BayarKontrak = () => {
     mutationFn: postBayarKontrak,
     onSuccess: () => {
       toast.success("Pembayaran berhasil");
-      return redirect("/dashboard/kontrak");
+      navigate("/dashboard/kontrak");
     },
     onError: (error: AxiosError<ErrorType>) => {
       toast.error(

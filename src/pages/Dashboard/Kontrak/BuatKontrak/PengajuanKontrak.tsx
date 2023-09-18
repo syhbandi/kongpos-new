@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { MdArrowBack, MdSend } from "react-icons/md";
-import { Link, Navigate, redirect, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ajukanKontrak } from "../../../../api/kontrak";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../../atom/User";
@@ -12,12 +12,13 @@ const PengajuanKontrak = () => {
   const { state } = useLocation();
   const user = useRecoilValue(userState);
   const [durasi, setDurasi] = useState("1");
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: ajukanKontrak,
     onSuccess: (data) => {
       toast.success(data?.Pesan);
-      return redirect("/dashboard/kontrak");
+      navigate("/dashboard/kontrak");
     },
   });
 
