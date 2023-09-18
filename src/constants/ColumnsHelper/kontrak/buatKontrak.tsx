@@ -67,6 +67,7 @@ const buatKontrakCoumns = [
               cid_sumber: original.cid_sumber,
               cid_tujuan: original.cid_tujuan,
               nama: original.nama,
+              id_customer_config: original.id_customer_config,
             }}
           >
             <button className="text-sm font-medium rounded bg-black text-white py-2 px-5 hover:bg-gray-700 inline-flex items-center gap-2">

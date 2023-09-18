@@ -53,3 +53,13 @@ export type KontrakTypes = {
   periode_bulan: string;
   tanggal_jatuh_tempo: string;
 };
+
+export type bayarKontrakParamsTypes = {
+  images: any;
+  cid_sumber: string;
+  cid_tujuan: string;
+  id_kontrak: string;
+  periode: string;
+  nominal_bayar: string | number;
+  id_customer_config: string;
+};

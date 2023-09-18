@@ -17,7 +17,7 @@ const PengajuanKontrak = () => {
     mutationFn: ajukanKontrak,
     onSuccess: (data) => {
       toast.success(data?.Pesan);
-      redirect("/dashboard/kontrak");
+      return redirect("/dashboard/kontrak");
     },
   });
 

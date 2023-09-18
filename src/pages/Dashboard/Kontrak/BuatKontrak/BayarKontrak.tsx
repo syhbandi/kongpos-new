@@ -1,15 +1,19 @@
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate, redirect, useLocation } from "react-router-dom";
 import { MdArrowBack, MdCancel, MdClose, MdCloudUpload } from "react-icons/md";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../../atom/User";
-import { getKontrak } from "../../../../api/kontrak";
+import { getKontrak, postBayarKontrak } from "../../../../api/kontrak";
 import Spinner from "../../../../components/Dashboard/Spinner";
 import {
   useFormatTanggal,
   userFormatRupiah,
 } from "../../../../hooks/userFormat";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+
+type ErrorType = { Pesan: string };
 
 const BayarKontrak = () => {
   const { state } = useLocation();
@@ -22,6 +26,38 @@ const BayarKontrak = () => {
     queryKey: ["kontrak", state.kontrak_id],
     queryFn: () => getKontrak(state, user.access_token),
   });
+
+  const mutation = useMutation({
+    mutationFn: postBayarKontrak,
+    onSuccess: () => {
+      toast.success("Pembayaran berhasil");
+      return redirect("/dashboard/kontrak");
+    },
+    onError: (error: AxiosError<ErrorType>) => {
+      toast.error(
+        <div>
+          <h1>Terjadi galat saat menyimpan!</h1>
+          <p className="text-sm">{error.response?.data?.Pesan}</p>
+        </div>
+      );
+      mutation.reset();
+    },
+  });
+
+  const onSubmit = () => {
+    mutation.mutate({
+      params: {
+        cid_sumber: state?.cid_sumber,
+        cid_tujuan: state?.cid_tujuan,
+        id_customer_config: state?.id_customer_config,
+        id_kontrak: state?.id_kontrak,
+        periode: data?.[0].periode_bulan,
+        nominal_bayar: 50000 * parseFloat(data?.[0].periode_bulan),
+        images: gambar,
+      },
+      access_token: user.access_token,
+    });
+  };
 
   if (!state) return <Navigate to={"/dashboard/kontrak"} />;
   if (isLoading)
@@ -46,7 +82,10 @@ const BayarKontrak = () => {
         </Link>
         <h1 className="text-xl font-medium">Bayar Kontrak ({state.nama})</h1>
       </div>
-      <div>{JSON.stringify(data)}</div>
+      <div>
+        {JSON.stringify(data)}
+        {JSON.stringify(state)}
+      </div>
       <div className="bg-white rounded p-5 shadow w-full md:max-w-[700px]">
         <div className="grid grid-cols-1 md:grid-cols-4 mb-5">
           <div>Periode Kontrak</div>
@@ -112,8 +151,12 @@ const BayarKontrak = () => {
           </div>
         </div>
         <div className="flex justify-end mt-3">
-          <button className="rounded py-2 px-5 border border-black bg-black font-medium text-white hover:bg-gray-800">
-            Submit
+          <button
+            className="rounded py-2 px-5 border border-black bg-black font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+            disabled={!gambar || mutation.isLoading}
+            onClick={onSubmit}
+          >
+            {mutation.isLoading ? <Spinner /> : "Submit"}
           </button>
         </div>
       </div>
