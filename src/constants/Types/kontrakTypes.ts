@@ -63,3 +63,31 @@ export type bayarKontrakParamsTypes = {
   nominal_bayar: string | number;
   id_customer_config: string;
 };
+
+export type PermintaanKontrakParams = {
+  comp_id: string;
+  order_col: string;
+  order_type: string;
+  limit: number;
+  length: number;
+  search: string;
+  count_stats: number;
+};
+
+export type PermintaanKontrakTypes = {
+  this_company_id: string;
+  cid_sumber: string;
+  cid_tujuan: string;
+  id_cid_sumber: string;
+  company_id: string;
+  "Nama Usaha": string;
+  "Kategori Usaha": string;
+  alamat: string;
+  provinsi: string;
+  "No Telp": string;
+  email: string;
+};
+
+export type PermintaanKontrakCount = {
+  "jumlah record": string;
+};

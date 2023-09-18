@@ -2,6 +2,7 @@ import {
   AjukanKontrakTypes,
   BuatKontrakParamsTypes,
   GetKontrakTypes,
+  PermintaanKontrakParams,
   bayarKontrakParamsTypes,
 } from "../constants/Types/kontrakTypes";
 import api from "./api";
@@ -55,5 +56,17 @@ export const postBayarKontrak = async ({
     },
   });
 
+  return data;
+};
+
+export const getPermintaanKontrak = async (
+  params: PermintaanKontrakParams,
+  access_token: string
+) => {
+  const { data } = await api.post("compare_supplier", params, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
   return data;
 };

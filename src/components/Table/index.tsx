@@ -82,8 +82,8 @@ const Table = <TData extends Object>({
               <Spinner />
             </td>
           </tr>
-        ) : table.getRowModel().rows.length ? (
-          table.getRowModel().rows.map((row) => (
+        ) : table.getRowModel()?.rows.length ? (
+          table.getRowModel()?.rows.map((row) => (
             <tr key={row.id} className="hover:bg-gray-100">
               {row.getVisibleCells().map((cell) => (
                 <td

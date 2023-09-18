@@ -21,6 +21,7 @@ import Kontrak from "./pages/Dashboard/Kontrak";
 import BuatKontrak from "./pages/Dashboard/Kontrak/BuatKontrak";
 import PengajuanKontrak from "./pages/Dashboard/Kontrak/BuatKontrak/PengajuanKontrak";
 import BayarKontrak from "./pages/Dashboard/Kontrak/BuatKontrak/BayarKontrak";
+import PermintaanKontrak from "./pages/Dashboard/Kontrak/PermintaanKontrak";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +70,11 @@ export const router = createBrowserRouter([
           {
             path: "bayar",
             element: <BayarKontrak />,
+          },
+
+          {
+            path: "permintaan",
+            element: <PermintaanKontrak />,
           },
         ],
       },
