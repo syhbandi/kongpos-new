@@ -3,7 +3,6 @@ import { getUsaha } from "../../api/Login";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../atom/User";
 import { MdOutlineStore } from "react-icons/md";
-import { useEffect } from "react";
 import Spinner from "./Spinner";
 
 const SelectUsaha = () => {
