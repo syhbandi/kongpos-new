@@ -45,7 +45,7 @@ const index = () => {
         queryFn: () => getPermintaanKontrak(params, access_token),
       },
       {
-        queryKey: ["permintaanKontrakCount", params],
+        queryKey: ["permintaanKontrak", { ...params, count_stats: 1 }],
         queryFn: () =>
           getPermintaanKontrak({ ...params, count_stats: 1 }, access_token),
       },
@@ -53,8 +53,13 @@ const index = () => {
   });
 
   useEffect(() => {
-    setData(queries[0].data);
-    setCount(queries[1].data);
+    if (queries[0].data) {
+      setData(queries[0].data);
+    }
+
+    if (queries[1].data) {
+      setCount(queries[1].data);
+    }
 
     return () => {
       setData([]);
@@ -92,17 +97,16 @@ const index = () => {
         setSorting={setSorting}
       />
       <div className="flex items-center mt-2">
-        {count?.["jumlah record"] !== "0" && (
-          <div className="inline-flex items-center gap-3">
-            <span>
-              Menampilkan {params.limit + 1} ke {params.limit + data?.length}{" "}
-              dari{" "}
-            </span>
-            <strong>
-              {useFormatNumber(parseFloat(count?.["jumlah record"]))}
-            </strong>
-          </div>
-        )}
+        <div>
+          {Object.keys(count).map((el) => (
+            <div key={el} className="flex items-center gap-2">
+              {el} :{" "}
+              <strong>
+                {useFormatNumber(parseFloat(count[el as keyof typeof count]))}
+              </strong>
+            </div>
+          ))}
+        </div>
         <div className="ml-auto">
           <Pagination
             dataCount={count?.["jumlah record"]}
