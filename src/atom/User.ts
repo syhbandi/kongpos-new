@@ -11,5 +11,5 @@ export const isLoggedInState = selector({
 
 export const companyIdState = atom({
   key: "companyId",
-  default: "",
+  default: localStorage.getItem("KONGPOS_CID") || "",
 });

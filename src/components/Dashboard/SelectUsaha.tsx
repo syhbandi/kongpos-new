@@ -14,11 +14,10 @@ const SelectUsaha = () => {
     queryFn: () => getUsaha(no_hp),
   });
 
-  useEffect(() => {
-    if (data) {
-      setCompanyId(data[1].company_id);
-    }
-  }, [data]);
+  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    localStorage.setItem("KONGPOS_CID", e.target.value);
+    setCompanyId(e.target.value);
+  };
 
   if (isLoading) return <Spinner />;
   if (isError)
@@ -30,7 +29,7 @@ const SelectUsaha = () => {
       <select
         className=" outline-none cursor-pointer"
         value={companyId}
-        onChange={({ target }) => setCompanyId(target.value)}
+        onChange={onChange}
       >
         <option value="">Pilih usaha</option>
         {data.map((usaha: any) => (
