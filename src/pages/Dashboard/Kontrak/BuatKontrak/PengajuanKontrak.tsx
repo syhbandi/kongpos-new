@@ -68,11 +68,11 @@ const PengajuanKontrak = () => {
               disabled={mutation.isLoading}
             >
               {mutation.isLoading ? (
-                <Spinner />
+                <Spinner color="text-white" />
               ) : (
                 <>
                   <MdSend />
-                  Kirim
+                  Ajukan
                 </>
               )}
             </button>

@@ -70,3 +70,13 @@ export const getPermintaanKontrak = async (
   });
   return data;
 };
+
+export const getSuppliers = async (comp_id: string, access_token: string) => {
+  const { data } = await api.post(
+    "m_supplier",
+    { comp_id },
+    { headers: { Authorization: "Bearer " + access_token } }
+  );
+
+  return data;
+};

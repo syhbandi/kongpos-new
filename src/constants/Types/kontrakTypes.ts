@@ -86,6 +86,7 @@ export type PermintaanKontrakTypes = {
   provinsi: string;
   "No Telp": string;
   email: string;
+  periode_bulan: string;
 };
 
 export type PermintaanKontrakCount = {
