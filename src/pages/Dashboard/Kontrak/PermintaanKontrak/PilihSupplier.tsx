@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MdSearch } from "react-icons/md";
+import { MdCheckCircle, MdSearch } from "react-icons/md";
 import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../../atom/User";
 import { useQuery } from "@tanstack/react-query";
@@ -67,7 +67,7 @@ const PilihSupplier = ({ display, setDisplay, state, setState }: Props) => {
             supplier.nama.toLowerCase().includes(cari.toLowerCase())
           )
           .map((supplier) => (
-            <div key={supplier.kd_supplier}>
+            <div key={supplier.kd_supplier} className="relative">
               <input
                 type="radio"
                 name={supplier.kd_supplier}
@@ -80,10 +80,13 @@ const PilihSupplier = ({ display, setDisplay, state, setState }: Props) => {
               />
               <label
                 htmlFor={supplier.kd_supplier}
-                className="peer-checked:bg-blue-500 peer-checked:text-white peer-checked:font-medium rounded p-2 flex cursor-pointer hover:font-medium"
+                className="peer-checked:bg-blue-500 peer-checked:text-white peer-checked:font-medium rounded p-2 flex cursor-pointer hover:font-medium items-center"
               >
                 {supplier.nama}
               </label>
+              <div className="hidden peer-checked:flex absolute right-2 top-0 h-full items-center justify-center text-white">
+                <MdCheckCircle className="text-xl" />
+              </div>
             </div>
           ))}
       </div>
