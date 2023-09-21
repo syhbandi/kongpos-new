@@ -11,10 +11,6 @@ const kontrakMenus: Menus[] = [
     isEnd: true,
   },
   {
-    title: "Data Supplier",
-    link: "supplier",
-  },
-  {
     title: "Permintaan Kontrak",
     link: "permintaan",
   },
