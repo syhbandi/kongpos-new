@@ -92,3 +92,23 @@ export type PermintaanKontrakTypes = {
 export type PermintaanKontrakCount = {
   "jumlah record": string;
 };
+
+export type DaftarkanSupplierParamsType = {
+  id_cid_sumber: string;
+  cid_sumber: string;
+  cid_tujuan: string;
+  kd_supplier: string;
+};
+
+export type terimaKontrakParamsTYpe = {
+  params: {
+    kd_supplier: string;
+    kd_customer: string;
+    cid_sumber: string;
+    cid_tujuan: string;
+    periode: string;
+    id_cid_sumber: string;
+    id_cid_tujuan: string;
+  };
+  access_token: string;
+};

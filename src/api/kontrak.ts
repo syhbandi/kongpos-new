@@ -1,9 +1,11 @@
 import {
   AjukanKontrakTypes,
   BuatKontrakParamsTypes,
+  DaftarkanSupplierParamsType,
   GetKontrakTypes,
   PermintaanKontrakParams,
   bayarKontrakParamsTypes,
+  terimaKontrakParamsTYpe,
 } from "../constants/Types/kontrakTypes";
 import api from "./api";
 
@@ -78,5 +80,30 @@ export const getSuppliers = async (comp_id: string, access_token: string) => {
     { headers: { Authorization: "Bearer " + access_token } }
   );
 
+  return data;
+};
+
+export const daftarkanSupplier = async ({
+  params,
+  access_token,
+}: {
+  params: DaftarkanSupplierParamsType;
+  access_token: string;
+}) => {
+  const { data } = await api.post("post_compare_supplier_data", params, {
+    headers: { Authorization: "Bearer " + access_token },
+  });
+  return data;
+};
+
+export const terimaKontrak = async ({
+  params,
+  access_token,
+}: terimaKontrakParamsTYpe) => {
+  const { data } = await api.post("post_customer_respons_contract", params, {
+    headers: {
+      Authorization: "Bearer " + access_token,
+    },
+  });
   return data;
 };
