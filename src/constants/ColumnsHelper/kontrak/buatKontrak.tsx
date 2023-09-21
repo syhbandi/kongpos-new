@@ -45,7 +45,7 @@ const buatKontrakCoumns = [
       );
       return (
         <span
-          className={`p-2 text-sm font-medium rounded ${selectedStatus?.className}`}
+          className={`p-2 text-sm font-medium rounded capitalize ${selectedStatus?.className}`}
         >
           {original.kontrak_id && original.status === "-2"
             ? "Proses validasi admin"
