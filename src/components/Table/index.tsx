@@ -41,7 +41,10 @@ const Table = <TData extends Object>({
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <th key={header.id} className="border border-gray-400 p-2">
+              <th
+                key={header.id}
+                className="border border-gray-400 p-2 uppercase"
+              >
                 <div
                   {...{
                     className: header.column.getCanSort()

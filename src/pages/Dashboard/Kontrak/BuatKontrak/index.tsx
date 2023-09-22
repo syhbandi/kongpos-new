@@ -38,6 +38,19 @@ const index = () => {
     setParams((prev) => ({ ...prev, comp_id: companyId, limit: 0 }));
   }, [companyId]);
 
+  useEffect(() => {
+    if (sorting.length) {
+      setParams((prev) => ({
+        ...prev,
+        order_col: sorting[0].id,
+        order_type: sorting[0].desc ? "DESC" : "ASC",
+      }));
+    }
+
+    return () =>
+      setParams((prev) => ({ ...prev, order_col: "", order_type: "" }));
+  }, [sorting]);
+
   const queries = useQueries({
     queries: [
       {

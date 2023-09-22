@@ -112,3 +112,30 @@ export type terimaKontrakParamsTYpe = {
   };
   access_token: string;
 };
+
+export type ProdukKontrakParams = {
+  comp_id: string;
+  search: string;
+  order_col: string;
+  order_type: string;
+  limit: number;
+  length: number;
+  count_stats: number;
+};
+
+export type ProdukKontrakType = {
+  kd_barang: string;
+  kd_merk: string;
+  kd_kategori: string;
+  status_barang: string;
+  item: string;
+  merk: string;
+  kategori: string;
+  satuan: string;
+  kd_satuan: string;
+  mbs_status: string;
+};
+
+export type ProdukKontrakCountType = {
+  "Jumlah Record": string;
+};

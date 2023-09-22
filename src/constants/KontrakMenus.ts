@@ -6,14 +6,19 @@ type Menus = {
 };
 const kontrakMenus: Menus[] = [
   {
-    title: "Buat Kontrak",
+    title: "Kontrak",
     link: "",
     isEnd: true,
   },
   {
-    title: "Permintaan Kontrak",
+    title: "Permintaan",
     link: "permintaan",
   },
+  {
+    title: "Produk",
+    link: "produk",
+  },
+  { title: "Supplier", link: "supplier" },
 ];
 
 export default kontrakMenus;

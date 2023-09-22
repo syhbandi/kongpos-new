@@ -23,6 +23,7 @@ import PengajuanKontrak from "./pages/Dashboard/Kontrak/BuatKontrak/PengajuanKon
 import BayarKontrak from "./pages/Dashboard/Kontrak/BuatKontrak/BayarKontrak";
 import PermintaanKontrak from "./pages/Dashboard/Kontrak/PermintaanKontrak";
 import PermintaanKontrakDetail from "./pages/Dashboard/Kontrak/PermintaanKontrak/PermintaanKontrakDetail";
+import ProdukKontrak from "./pages/Dashboard/Kontrak/Produk";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
           {
             path: "permintaan/:cid",
             element: <PermintaanKontrakDetail />,
+          },
+          {
+            path: "produk",
+            element: <ProdukKontrak />,
           },
         ],
       },
