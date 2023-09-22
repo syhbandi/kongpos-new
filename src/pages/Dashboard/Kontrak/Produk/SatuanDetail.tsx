@@ -19,8 +19,8 @@ const SatuanDetail = ({ satuan, status, produk, kdSatuan }: Props) => {
   const mutation = useMutation({
     mutationFn: updateProdukKontrak,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["produkKontrak"] });
       toast.success("Update status produk berhasil");
+      queryClient.invalidateQueries({ queryKey: ["produkKontrak"] });
     },
   });
 
