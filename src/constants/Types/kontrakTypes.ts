@@ -139,3 +139,14 @@ export type ProdukKontrakType = {
 export type ProdukKontrakCountType = {
   "Jumlah Record": string;
 };
+
+export type UpdateProdukKontrakParams = {
+  params: {
+    comp_id: string;
+    kd_barang: string;
+    kd_satuan: string;
+    status_barang: string;
+    mbs_status: string;
+  };
+  access_token: string;
+};
