@@ -150,3 +150,40 @@ export type UpdateProdukKontrakParams = {
   };
   access_token: string;
 };
+
+export type SupplierKontrakParams = {
+  comp_id: string;
+  order_col: string;
+  order_type: string;
+  limit: number;
+  length: number;
+  search: string;
+  count_stats: number;
+};
+
+export type SupplierKontrakType = {
+  kd_supplier: string;
+  nama: string;
+  alamat: string;
+  telepon: string;
+  fax: string;
+  kontak: string;
+  hp: string;
+  email: string;
+  "Tanggal Request": string;
+  "Periode (Bulan)": string;
+  status_response: string;
+  id_cid_sumber: string;
+  cid_sumber: string;
+  status_kontrak: string;
+  kontrak_id: string;
+  c_config_id: string;
+  id_cid_tujuan: string;
+  cid_tujuan: string;
+  kd_customer: string;
+  histori_id: string;
+};
+
+export type SupplierKontrakCountType = {
+  "Jumlah Record": string;
+};

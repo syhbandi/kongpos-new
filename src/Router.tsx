@@ -24,21 +24,15 @@ import BayarKontrak from "./pages/Dashboard/Kontrak/BuatKontrak/BayarKontrak";
 import PermintaanKontrak from "./pages/Dashboard/Kontrak/PermintaanKontrak";
 import PermintaanKontrakDetail from "./pages/Dashboard/Kontrak/PermintaanKontrak/PermintaanKontrakDetail";
 import ProdukKontrak from "./pages/Dashboard/Kontrak/Produk";
+import SupplierKontrak from "./pages/Dashboard/Kontrak/Supplier";
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,
-  },
+  { path: "/", element: <App />, errorElement: <ErrorPage /> },
   {
     path: "/dashboard",
     element: <Dashboard />,
     children: [
-      {
-        index: true,
-        element: <Home />,
-      },
+      { index: true, element: <Home /> },
       {
         path: "laporan",
         element: <Laporan />,
@@ -61,45 +55,18 @@ export const router = createBrowserRouter([
         path: "kontrak",
         element: <Kontrak />,
         children: [
-          {
-            element: <BuatKontrak />,
-            index: true,
-          },
-          {
-            path: "pengajuan",
-            element: <PengajuanKontrak />,
-          },
-          {
-            path: "bayar",
-            element: <BayarKontrak />,
-          },
-
-          {
-            path: "permintaan",
-            element: <PermintaanKontrak />,
-          },
-          {
-            path: "permintaan/:cid",
-            element: <PermintaanKontrakDetail />,
-          },
-          {
-            path: "produk",
-            element: <ProdukKontrak />,
-          },
+          { element: <BuatKontrak />, index: true },
+          { path: "pengajuan", element: <PengajuanKontrak /> },
+          { path: "bayar", element: <BayarKontrak /> },
+          { path: "permintaan", element: <PermintaanKontrak /> },
+          { path: "permintaan/:cid", element: <PermintaanKontrakDetail /> },
+          { path: "produk", element: <ProdukKontrak /> },
+          { path: "supplier", element: <SupplierKontrak /> },
         ],
       },
-      {
-        path: "Pengaturan",
-        element: <>Pengaturan</>,
-      },
+      { path: "Pengaturan", element: <>Pengaturan</> },
     ],
   },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "logout",
-    element: <Logout />,
-  },
+  { path: "/login", element: <Login /> },
+  { path: "logout", element: <Logout /> },
 ]);

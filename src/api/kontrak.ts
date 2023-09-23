@@ -5,6 +5,7 @@ import {
   GetKontrakTypes,
   PermintaanKontrakParams,
   ProdukKontrakParams,
+  SupplierKontrakParams,
   UpdateProdukKontrakParams,
   bayarKontrakParamsTypes,
   terimaKontrakParamsTYpe,
@@ -125,6 +126,16 @@ export const updateProdukKontrak = async ({
   access_token,
 }: UpdateProdukKontrakParams) => {
   const { data } = await api.post("postBarangSatuan", params, {
+    headers: { Authorization: "Bearer " + access_token },
+  });
+  return data;
+};
+
+export const getSupplierKontrak = async (
+  params: SupplierKontrakParams,
+  access_token: string
+) => {
+  const { data } = await api.post("supplier_response_contract", params, {
     headers: { Authorization: "Bearer " + access_token },
   });
   return data;
