@@ -33,7 +33,15 @@ const supplierKontrakColumns = [
       if (original.status_kontrak === "1")
         return (
           <div className="flex items-center justify-center">
-            <Link to={"mapping"}>
+            <Link
+              to={"mapping"}
+              state={{
+                id_cid_supplier: original.id_cid_sumber,
+                company_id: original.cid_tujuan,
+                kd_supplier: original.kd_supplier,
+                supplier: original.nama,
+              }}
+            >
               <button className="px-3 py-2 text-sm rounded outline-none bg-black hover:bg-gray-800 text-white font-medium flex items-center gap-2 justify-center">
                 <MdOutlineSync className="text-lg" />
                 Mapping Produk

@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
-import { companyIdState, userState } from "../../../../atom/User";
+import { companyIdState, userState } from "../../atom/User";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateProdukKontrak } from "../../../../api/kontrak";
+import { updateProdukKontrak } from "../../api/kontrak";
 import { toast } from "react-toastify";
 
 type Props = {

@@ -187,3 +187,84 @@ export type SupplierKontrakType = {
 export type SupplierKontrakCountType = {
   "Jumlah Record": string;
 };
+
+export type SupplierItemParams = {
+  cid_customer: string;
+  order_col: string;
+  order_type: string;
+  limit: number;
+  length: number;
+  search: string;
+  count_stats: number;
+  sup_key: string;
+  id_cid_supplier: string;
+};
+
+export type SupplierItemType = {
+  kd_barang: string;
+  kd_kategori: string;
+  kd_jenis_bahan: string;
+  kd_model: string;
+  kd_merk: string;
+  kd_warna: string;
+  ukuran: string;
+  status: string;
+  status_pinjam: string;
+  nama: string;
+  merk: string;
+  kategori: string;
+  satuan: string;
+  harga_jual: string;
+  stats: string;
+  kd_satuan: string;
+  jumlah: string;
+  barang_customer: string;
+  satuan_customer: string;
+};
+
+export type SupplierItemCountType = {
+  "Jumlah Record": string;
+};
+
+export type GetBarangParams = {
+  company_id: string;
+  nama: string;
+  limit: number;
+  length: number;
+};
+
+export type GetSatuanParams = {
+  comp_id: string;
+  kd_barang: string;
+};
+
+export type BarangTypes = {
+  no: string;
+  kd_barang: string;
+  kd_kategori: string;
+  kd_jenis_bahan: string;
+  kd_model: string;
+  kd_merk: string;
+  kd_warna: string;
+  ukuran: string;
+  nama: string;
+  keterangan: string;
+  status: string;
+  status_pinjam: string;
+  pabrik: string;
+  tanggal_daftar: string;
+  date_add: string;
+  user_add: string;
+  date_modif: string;
+  user_modif: string;
+  divisi_id: string;
+  tag: string;
+  urut: string;
+};
+
+export type SatuanTypes = {
+  kd_barang: string;
+  kd_satuan: string;
+  jumlah: string;
+  nama: string;
+};

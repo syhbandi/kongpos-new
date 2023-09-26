@@ -1,6 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { ProdukKontrakType } from "../../Types/kontrakTypes";
-import SatuanDetail from "../../../pages/Dashboard/Kontrak/Produk/SatuanDetail";
+import SatuanDetail from "../../../components/ProdukKontrak/SatuanDetail";
 
 const helper = createColumnHelper<ProdukKontrakType>();
 const produkKontrakColumns = [

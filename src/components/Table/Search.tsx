@@ -3,10 +3,12 @@ import { MdSearch } from "react-icons/md";
 
 type SearchProps = {
   onChange: (e: string) => void;
+  value?: string;
+  autoFocus?: boolean;
 };
 
-const Search = ({ onChange }: SearchProps) => {
-  const [text, setText] = useState("");
+const Search = ({ onChange, value, autoFocus }: SearchProps) => {
+  const [text, setText] = useState(value || "");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -21,10 +23,11 @@ const Search = ({ onChange }: SearchProps) => {
       <MdSearch className="text-2xl text-gray-400" />
       <input
         type="search"
-        className="outline-none"
+        className="outline-none flex-grow"
         placeholder="Cari"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        autoFocus={autoFocus}
       />
     </div>
   );

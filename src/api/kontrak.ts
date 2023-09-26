@@ -2,9 +2,12 @@ import {
   AjukanKontrakTypes,
   BuatKontrakParamsTypes,
   DaftarkanSupplierParamsType,
+  GetBarangParams,
   GetKontrakTypes,
+  GetSatuanParams,
   PermintaanKontrakParams,
   ProdukKontrakParams,
+  SupplierItemParams,
   SupplierKontrakParams,
   UpdateProdukKontrakParams,
   bayarKontrakParamsTypes,
@@ -136,6 +139,36 @@ export const getSupplierKontrak = async (
   access_token: string
 ) => {
   const { data } = await api.post("supplier_response_contract", params, {
+    headers: { Authorization: "Bearer " + access_token },
+  });
+  return data;
+};
+
+export const getSupplierItems = async (
+  params: SupplierItemParams,
+  access_token: string
+) => {
+  const { data } = await api.post("get_list_item_contracted", params, {
+    headers: { Authorization: "Bearer " + access_token },
+  });
+  return data;
+};
+
+export const getBarang = async (
+  params: GetBarangParams,
+  access_token: string
+) => {
+  const { data } = await api.post("get_barang", params, {
+    headers: { Authorization: "Bearer " + access_token },
+  });
+  return data;
+};
+
+export const getSatuan = async (
+  params: GetSatuanParams,
+  access_token: string
+) => {
+  const { data } = await api.post("get_satuan", params, {
     headers: { Authorization: "Bearer " + access_token },
   });
   return data;
