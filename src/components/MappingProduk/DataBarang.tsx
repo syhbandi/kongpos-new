@@ -44,8 +44,10 @@ const DataBarang = ({ data, selectedBarang, setSelectedBarang }: Props) => {
         onClick={() => setOpen(!open)}
       >
         <span>{data.nama}</span>
-        <span className="ml-auto inline-flex items-center gap-2">
+        <span className="ml-auto text-sm">
           {query.isFetching && "Memuat..."}
+        </span>
+        <span className="ml-auto inline-flex items-center gap-2">
           {open ? <MdArrowDropUp /> : <MdArrowDropDown />}
         </span>
       </div>

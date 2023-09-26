@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   BarangTypes,
   GetBarangParams,
@@ -12,6 +12,7 @@ import { getBarang, validasiProduk } from "../../api/kontrak";
 import Spinner from "../Dashboard/Spinner";
 import Search from "../Table/Search";
 import DataBarang from "./DataBarang";
+import { toast } from "react-toastify";
 
 type Props = {
   barang: SupplierItemType;
@@ -25,7 +26,7 @@ type selected = {
 
 const CariBarang = ({ barang }: Props) => {
   const companyId = useRecoilValue(companyIdState);
-  const { access_token, nama_user } = useRecoilValue(userState);
+  const { access_token, user_id } = useRecoilValue(userState);
   const [params, setParams] = useState<GetBarangParams>({
     company_id: companyId,
     length: 10,
@@ -44,8 +45,17 @@ const CariBarang = ({ barang }: Props) => {
     queryFn: () => getBarang(params, access_token),
   });
 
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: validasiProduk,
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ["supplierItem"] });
+      toast.success("Berhasil menyesuaikan produk");
+    },
+    onError: () => {
+      mutation.reset();
+      toast.error("Galat saat menyimpan!");
+    },
   });
 
   const onSimpan = () => {
@@ -54,17 +64,15 @@ const CariBarang = ({ barang }: Props) => {
         comp_id: companyId,
         kd_barang_supplier: barang.kd_barang,
         kd_satuan_supplier: barang.kd_satuan,
-        user_id: nama_user,
-        kd_supplier: "",
+        user_id: user_id,
+        kd_supplier: barang.kd_supplier.split("_")[0],
         kd_barang_validasi: selected.kd_barang,
         kd_satuan_validasi: selected.kd_satuan,
         jumlah: selected.jumlah,
       },
       access_token,
     };
-
-    console.log(data);
-    // mutation.mutate({params:{comp_id:companyId,jumlah:selected.jumlah,kd_barang_validasi:selected.kd_barang, kd_satuan_validasi:selected.kd_satuan,kd_barang_supplier:barang.kd_barang,kd_satuan_supplier:barang.kd}})
+    mutation.mutate(data);
   };
 
   useEffect(() => {
@@ -128,13 +136,17 @@ const CariBarang = ({ barang }: Props) => {
           Terjadi galat saat memuat data
         </div>
       )}
-      <div className="mt-3 pt-3 border-t border-gray-400 flex justify-end">
+      <div
+        className={`mt-3 pt-3 border-t border-gray-400 justify-end ${
+          isLoading || !dataBarang?.length ? "hidden" : "flex"
+        }`}
+      >
         <button
           className="bg-black text-white font-roboto font-medium rounded py-2 px-4 hover:bg-gray-700 disabled:bg-gray-700 disabled:cursor-not-allowed"
-          disabled={!selected.kd_barang}
+          disabled={!selected.kd_barang || mutation.isLoading}
           onClick={onSimpan}
         >
-          Simpan
+          {mutation.isLoading ? <Spinner color="text-white" /> : "Simpan"}
         </button>
       </div>
     </>

@@ -220,6 +220,7 @@ export type SupplierItemType = {
   jumlah: string;
   barang_customer: string;
   satuan_customer: string;
+  kd_supplier: string;
 };
 
 export type SupplierItemCountType = {
