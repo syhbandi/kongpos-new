@@ -5,7 +5,7 @@ type Props = {
   data: SupplierItemType;
 };
 const BarangDetail: FC<Props> = ({ data }: Props) => {
-  return <div>BarangDetail</div>;
+  return <div>{JSON.stringify(data)}</div>;
 };
 
 export default BarangDetail;
