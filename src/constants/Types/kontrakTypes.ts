@@ -268,3 +268,17 @@ export type SatuanTypes = {
   jumlah: string;
   nama: string;
 };
+
+export type ValidasiBarangParams = {
+  params: {
+    comp_id: string;
+    user_id: string;
+    kd_barang_validasi: string;
+    kd_satuan_validasi: string;
+    kd_supplier: string;
+    kd_barang_supplier: string;
+    kd_satuan_supplier: string;
+    jumlah: string;
+  };
+  access_token: string;
+};

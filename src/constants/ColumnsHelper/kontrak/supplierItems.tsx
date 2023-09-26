@@ -94,7 +94,7 @@ const supplierItemsColumns = [
                 {isSesuaikan ? (
                   <CariBarang barang={original} />
                 ) : (
-                  <BarangDetail />
+                  <BarangDetail data={original} />
                 )}
               </Modal>
             </div>

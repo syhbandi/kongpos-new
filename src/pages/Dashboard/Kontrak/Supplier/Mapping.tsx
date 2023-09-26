@@ -40,10 +40,6 @@ const Mapping = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
 
   useEffect(() => {
-    setParams((prev) => ({ ...prev, comp_id: companyId }));
-  }, [companyId]);
-
-  useEffect(() => {
     if (sorting.length) {
       setParams((prev) => ({
         ...prev,

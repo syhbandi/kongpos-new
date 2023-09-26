@@ -10,6 +10,7 @@ import {
   SupplierItemParams,
   SupplierKontrakParams,
   UpdateProdukKontrakParams,
+  ValidasiBarangParams,
   bayarKontrakParamsTypes,
   terimaKontrakParamsTYpe,
 } from "../constants/Types/kontrakTypes";
@@ -169,6 +170,16 @@ export const getSatuan = async (
   access_token: string
 ) => {
   const { data } = await api.post("get_satuan", params, {
+    headers: { Authorization: "Bearer " + access_token },
+  });
+  return data;
+};
+
+export const validasiProduk = async ({
+  params,
+  access_token,
+}: ValidasiBarangParams) => {
+  const { data } = await api.post("submit_validate", params, {
     headers: { Authorization: "Bearer " + access_token },
   });
   return data;
