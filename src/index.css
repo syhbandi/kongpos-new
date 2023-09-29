@@ -2,3 +2,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .scrollbar-custom {
+    @apply scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-inherit scrollbar-thumb-rounded-full hover:scrollbar-thumb-gray-500;
+  }
+}
+
+body {
+  @apply scrollbar-custom;
+}

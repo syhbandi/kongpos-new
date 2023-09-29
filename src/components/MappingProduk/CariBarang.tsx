@@ -96,7 +96,7 @@ const CariBarang = ({ barang }: Props) => {
     <>
       <Search onChange={onCari} value={params.nama} autoFocus={true} />
 
-      <div className="max-h-80 flex flex-col overflow-auto mt-2">
+      <div className="max-h-80 flex flex-col overflow-auto mt-2 scrollbar-custom">
         {dataBarang?.length ? (
           <>
             {dataBarang?.map((item) => (
