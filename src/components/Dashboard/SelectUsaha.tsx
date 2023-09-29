@@ -27,6 +27,7 @@ const SelectUsaha = () => {
       <MdOutlineStore className="text-xl" />
       <select
         className=" outline-none cursor-pointer"
+        id="pilih-usaha"
         value={companyId}
         onChange={onChange}
       >

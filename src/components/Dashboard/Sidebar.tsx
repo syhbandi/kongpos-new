@@ -27,6 +27,7 @@ const Sidebar = () => {
         </span>
         <input
           type="search"
+          id="cari"
           className=" w-full outline-none font-roboto"
           placeholder="Cari menu"
           value={cari}

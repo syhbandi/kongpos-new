@@ -9,7 +9,7 @@ const index = () => {
   return (
     <div className="bg-white p-5 rounded shadow">
       <div className="inline-flex items-center gap-3 mr-3">
-        <label htmlFor="periode">Awal</label>
+        <label htmlFor="awal">Awal</label>
         <DateRange
           id="awal"
           name="awal"
@@ -18,7 +18,7 @@ const index = () => {
         />
       </div>
       <div className="inline-flex items-center gap-3 mr-3">
-        <label htmlFor="periode">Akhir</label>
+        <label htmlFor="akhir">Akhir</label>
         <DateRange
           id="akhir"
           name="akhir"
@@ -27,7 +27,7 @@ const index = () => {
         />
       </div>
       <div className="inline-flex items-center gap-3 mr-3">
-        <label htmlFor="periode">Grup</label>
+        <label htmlFor="jenis">Grup</label>
         <select
           name="jenis"
           id="jenis"
