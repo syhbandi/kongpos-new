@@ -1,5 +1,6 @@
-import { lazy } from "react";
+import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import TopbarProgress from "react-topbar-progress-indicator";
 const App = lazy(() => import("./App"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Login = lazy(() => import("./pages/Auth/Login"));
@@ -52,7 +53,15 @@ const Mapping = lazy(
 );
 
 export const router = createBrowserRouter([
-  { path: "/", element: <App />, errorElement: <ErrorPage /> },
+  {
+    path: "/",
+    element: (
+      <Suspense fallback={<TopbarProgress />}>
+        <App />
+      </Suspense>
+    ),
+    errorElement: <ErrorPage />,
+  },
   {
     path: "/dashboard",
     element: <Dashboard />,
@@ -92,7 +101,24 @@ export const router = createBrowserRouter([
       },
       { path: "Pengaturan", element: <>Pengaturan</> },
     ],
+    errorElement: <ErrorPage />,
   },
-  { path: "/login", element: <Login /> },
-  { path: "logout", element: <Logout /> },
+  {
+    path: "/login",
+    element: (
+      <Suspense fallback={<TopbarProgress />}>
+        <Login />
+      </Suspense>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/logout",
+    element: (
+      <Suspense fallback={<TopbarProgress />}>
+        <Logout />
+      </Suspense>
+    ),
+    errorElement: <ErrorPage />,
+  },
 ]);
