@@ -7,22 +7,22 @@ const status = [
   {
     status: "0",
     msg: "Belum diajukan",
-    className: "bg-red-600 text-white",
+    className: "text-red-600 bg-red-100",
   },
   {
     status: "-2",
     msg: "Menunggu approval Customer",
-    className: "bg-orange-400 text-white",
+    className: "bg-orange-100 text-orange-600",
   },
   {
     status: "-1",
     msg: "sudah diapprove customer",
-    className: "bg-sky-600 text-white",
+    className: "bg-sky-100 text-sky-600",
   },
   {
     status: "1",
     msg: "terkontrak",
-    className: "bg-green-600 text-white",
+    className: "bg-green-100 text-green-700",
   },
 ];
 

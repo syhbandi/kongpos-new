@@ -41,8 +41,10 @@ const supplierItemsColumns = [
               className="flex items-center gap-2 justify-center"
             >
               <div
-                className={`p-2 text-sm font-medium text-white rounded capitalize ${
-                  s === "1" ? "bg-green-600" : "bg-red-600"
+                className={`p-2 text-sm font-medium  rounded capitalize ${
+                  s === "1"
+                    ? "text-green-700 bg-green-100"
+                    : "text-red-700 bg-red-100"
                 }`}
               >
                 {s === "1" ? "sudah disesuaikan" : "belum disesuaikan"}

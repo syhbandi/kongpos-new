@@ -15,11 +15,11 @@ const supplierKontrakColumns = [
     header: "status",
     cell: (data) =>
       data.getValue() === "1" ? (
-        <span className="p-2 rounded bg-green-600 text-sm font-medium text-white">
+        <span className="p-2 rounded bg-green-100 text-green-700 text-sm font-medium ">
           Terkontrak
         </span>
       ) : (
-        <span className="p-2 rounded bg-red-600 text-sm font-medium text-white">
+        <span className="p-2 rounded bg-red-100 text-red-600 text-sm font-medium">
           Belum kontrak
         </span>
       ),
