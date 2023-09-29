@@ -36,7 +36,7 @@ const Modal = ({ open, setOpen, children, title }: Props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded bg-white p-4 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded bg-white p-4 text-left align-middle shadow-xl transition-all">
                 <div className="flex items-center justify-between mb-3">
                   <h1 className="text-xl font-semibold font-poppins">
                     {title}

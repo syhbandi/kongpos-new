@@ -142,7 +142,7 @@ const CariBarang = ({ barang }: Props) => {
         }`}
       >
         <button
-          className="bg-black text-white font-roboto font-medium rounded py-2 px-4 hover:bg-gray-700 disabled:bg-gray-700 disabled:cursor-not-allowed"
+          className="bg-black text-white font-roboto font-medium rounded py-2 px-4 hover:bg-gray-800 disabled:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={!selected.kd_barang || mutation.isLoading}
           onClick={onSimpan}
         >
