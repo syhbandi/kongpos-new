@@ -1,31 +1,55 @@
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
-import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Auth/Login";
-import Logout from "./pages/Auth/Logout";
-import Home from "./pages/Dashboard/Home";
-import Laporan from "./pages/Dashboard/Laporan";
-import Penjualan from "./pages/Dashboard/Laporan/Penjualan";
-import OrderPenjualan from "./pages/Dashboard/Laporan/OrderPenjualan";
-import ReturPenjualan from "./pages/Dashboard/Laporan/ReturPenjualan";
-import ErrorPage from "./pages/Dashboard/Error";
-import Pembelian from "./pages/Dashboard/Laporan/Pembelian";
-import OrderPembelian from "./pages/Dashboard/Laporan/OrderPembelian";
-import ReturPembelian from "./pages/Dashboard/Laporan/ReturPembelian";
-import Inventori from "./pages/Dashboard/Laporan/Inventori";
-import Biaya from "./pages/Dashboard/Laporan/Biaya";
-import Pendapatan from "./pages/Dashboard/Laporan/Pendapatan";
-import Hutang from "./pages/Dashboard/Laporan/Hutang";
-import Piutang from "./pages/Dashboard/Laporan/Piutang";
-import Kontrak from "./pages/Dashboard/Kontrak";
-import BuatKontrak from "./pages/Dashboard/Kontrak/BuatKontrak";
-import PengajuanKontrak from "./pages/Dashboard/Kontrak/BuatKontrak/PengajuanKontrak";
-import BayarKontrak from "./pages/Dashboard/Kontrak/BuatKontrak/BayarKontrak";
-import PermintaanKontrak from "./pages/Dashboard/Kontrak/PermintaanKontrak";
-import PermintaanKontrakDetail from "./pages/Dashboard/Kontrak/PermintaanKontrak/PermintaanKontrakDetail";
-import ProdukKontrak from "./pages/Dashboard/Kontrak/Produk";
-import SupplierKontrak from "./pages/Dashboard/Kontrak/Supplier";
-import Mapping from "./pages/Dashboard/Kontrak/Supplier/Mapping";
+const App = lazy(() => import("./App"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Login = lazy(() => import("./pages/Auth/Login"));
+const Logout = lazy(() => import("./pages/Auth/Logout"));
+const Home = lazy(() => import("./pages/Dashboard/Home"));
+const Laporan = lazy(() => import("./pages/Dashboard/Laporan"));
+const Penjualan = lazy(() => import("./pages/Dashboard/Laporan/Penjualan"));
+const OrderPenjualan = lazy(
+  () => import("./pages/Dashboard/Laporan/OrderPenjualan")
+);
+const ReturPenjualan = lazy(
+  () => import("./pages/Dashboard/Laporan/ReturPenjualan")
+);
+const ErrorPage = lazy(() => import("./pages/Dashboard/Error"));
+const Pembelian = lazy(() => import("./pages/Dashboard/Laporan/Pembelian"));
+const OrderPembelian = lazy(
+  () => import("./pages/Dashboard/Laporan/OrderPembelian")
+);
+const ReturPembelian = lazy(
+  () => import("./pages/Dashboard/Laporan/ReturPembelian")
+);
+const Inventori = lazy(() => import("./pages/Dashboard/Laporan/Inventori"));
+const Biaya = lazy(() => import("./pages/Dashboard/Laporan/Biaya"));
+const Pendapatan = lazy(() => import("./pages/Dashboard/Laporan/Pendapatan"));
+const Hutang = lazy(() => import("./pages/Dashboard/Laporan/Hutang"));
+const Piutang = lazy(() => import("./pages/Dashboard/Laporan/Piutang"));
+const Kontrak = lazy(() => import("./pages/Dashboard/Kontrak"));
+const BuatKontrak = lazy(() => import("./pages/Dashboard/Kontrak/BuatKontrak"));
+const PengajuanKontrak = lazy(
+  () => import("./pages/Dashboard/Kontrak/BuatKontrak/PengajuanKontrak")
+);
+const BayarKontrak = lazy(
+  () => import("./pages/Dashboard/Kontrak/BuatKontrak/BayarKontrak")
+);
+const PermintaanKontrak = lazy(
+  () => import("./pages/Dashboard/Kontrak/PermintaanKontrak")
+);
+const PermintaanKontrakDetail = lazy(
+  () =>
+    import(
+      "./pages/Dashboard/Kontrak/PermintaanKontrak/PermintaanKontrakDetail"
+    )
+);
+const ProdukKontrak = lazy(() => import("./pages/Dashboard/Kontrak/Produk"));
+const SupplierKontrak = lazy(
+  () => import("./pages/Dashboard/Kontrak/Supplier")
+);
+const Mapping = lazy(
+  () => import("./pages/Dashboard/Kontrak/Supplier/Mapping")
+);
 
 export const router = createBrowserRouter([
   { path: "/", element: <App />, errorElement: <ErrorPage /> },

@@ -7,6 +7,8 @@ import Footer from "../../components/Dashboard/Footer";
 import { companyIdState } from "../../atom/User";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Suspense } from "react";
+import TopBarProgress from "react-topbar-progress-indicator";
 
 const Dashboard = () => {
   const isAktif = useRecoilValue(sidebarState);
@@ -19,9 +21,11 @@ const Dashboard = () => {
     >
       <Sidebar />
       <Navbar />
-      <div className="p-5">
-        {!companyId ? <>Pilh usaha dulu</> : <Outlet />}
-      </div>
+      <Suspense fallback={<TopBarProgress />}>
+        <div className="p-5">
+          {!companyId ? <>Pilih usaha dulu</> : <Outlet />}
+        </div>
+      </Suspense>
       <Footer />
       <ToastContainer autoClose={3000} />
     </div>
