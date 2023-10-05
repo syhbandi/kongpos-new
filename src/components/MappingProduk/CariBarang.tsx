@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 
 type Props = {
   barang: SupplierItemType;
+  setModalOpen: (open: boolean) => void;
 };
 
 type selected = {
@@ -24,7 +25,7 @@ type selected = {
   jumlah: string;
 };
 
-const CariBarang = ({ barang }: Props) => {
+const CariBarang = ({ barang, setModalOpen }: Props) => {
   const companyId = useRecoilValue(companyIdState);
   const { access_token, user_id } = useRecoilValue(userState);
   const [params, setParams] = useState<GetBarangParams>({
@@ -51,6 +52,7 @@ const CariBarang = ({ barang }: Props) => {
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ["supplierItem"] });
       toast.success("Berhasil menyesuaikan produk");
+      setModalOpen(false);
     },
     onError: () => {
       mutation.reset();

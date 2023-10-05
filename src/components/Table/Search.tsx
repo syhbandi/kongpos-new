@@ -23,7 +23,7 @@ const Search = ({ onChange, value, autoFocus }: SearchProps) => {
       <MdSearch className="text-2xl text-gray-400" />
       <input
         type="search"
-        id="cari-table"
+        name="cari-table"
         className="outline-none flex-grow"
         placeholder="Cari"
         value={text}

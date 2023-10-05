@@ -19,7 +19,7 @@ const produkKontrakColumns = [
         <div>
           {satuan.map((s, index) => (
             <SatuanDetail
-              key={original.kd_barang + s}
+              key={original.kd_barang + kdSatuan[index]}
               satuan={s}
               kdSatuan={kdSatuan[index]}
               status={satuanStatus[index]}

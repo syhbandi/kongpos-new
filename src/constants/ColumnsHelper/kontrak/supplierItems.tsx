@@ -91,10 +91,9 @@ const supplierItemsColumns = [
                 open={open}
                 setOpen={setOpen}
                 title={isSesuaikan ? "Mapping" : "Detail"}
-                key={"modal" + original.kd_barang + s + index}
               >
                 {isSesuaikan ? (
-                  <CariBarang barang={original} />
+                  <CariBarang barang={original} setModalOpen={setOpen} />
                 ) : (
                   <BarangDetail data={original} />
                 )}
