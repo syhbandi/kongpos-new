@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import TopbarProgress from "react-topbar-progress-indicator";
+import ErrorPage from "./pages/Dashboard/Error";
 const App = lazy(() => import("./App"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Login = lazy(() => import("./pages/Auth/Login"));
@@ -14,7 +15,6 @@ const OrderPenjualan = lazy(
 const ReturPenjualan = lazy(
   () => import("./pages/Dashboard/Laporan/ReturPenjualan")
 );
-const ErrorPage = lazy(() => import("./pages/Dashboard/Error"));
 const Pembelian = lazy(() => import("./pages/Dashboard/Laporan/Pembelian"));
 const OrderPembelian = lazy(
   () => import("./pages/Dashboard/Laporan/OrderPembelian")
@@ -51,6 +51,7 @@ const SupplierKontrak = lazy(
 const Mapping = lazy(
   () => import("./pages/Dashboard/Kontrak/Supplier/Mapping")
 );
+const Produk = lazy(() => import("./pages/Dashboard/Produk"));
 
 export const router = createBrowserRouter([
   {
@@ -99,7 +100,8 @@ export const router = createBrowserRouter([
           { path: "supplier/mapping", element: <Mapping /> },
         ],
       },
-      { path: "Pengaturan", element: <>Pengaturan</> },
+      { path: "engaturan", element: <>Pengaturan</> },
+      { path: "produk", element: <Produk /> },
     ],
     errorElement: <ErrorPage />,
   },

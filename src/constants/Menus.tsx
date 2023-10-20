@@ -4,6 +4,7 @@ import {
   MdFileOpen,
   MdOutlineHandshake,
   MdOutlineLogout,
+  MdQrCode,
 } from "react-icons/md";
 
 type Menus = {
@@ -20,13 +21,18 @@ const menus: Menus[] = [
     isEnd: true,
   },
   {
+    title: "Produk",
+    link: "produk",
+    icon: <MdQrCode />,
+  },
+  {
     title: "Laporan",
-    link: "/dashboard/laporan",
+    link: "laporan",
     icon: <MdFileOpen />,
   },
   {
     title: "Kontrak",
-    link: "/dashboard/kontrak",
+    link: "kontrak",
     icon: <MdOutlineHandshake />,
   },
   {

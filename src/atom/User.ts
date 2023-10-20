@@ -6,7 +6,7 @@ export const userState = atom({
 
 export const isLoggedInState = selector({
   key: "isLoggedIn",
-  get: ({ get }) => Object.keys(get(userState)),
+  get: ({ get }) => Boolean(Object.keys(get(userState)).length),
 });
 
 export const companyIdState = atom({
