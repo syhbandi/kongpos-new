@@ -13,6 +13,8 @@ import { getProduks } from "../../../api/produk";
 import PageSelect from "../../../components/Table/PageSelect";
 import Search from "../../../components/Table/Search";
 import Pagination from "../../../components/Table/Pagination";
+import { Link } from "react-router-dom";
+import { MdAdd, MdDownload, MdUpload } from "react-icons/md";
 
 const index = () => {
   const companyId = useRecoilValue(companyIdState);
@@ -72,11 +74,27 @@ const index = () => {
             }
           />
 
-          <Search
-            onChange={(cari: string) =>
-              setParams((prev) => ({ ...prev, search: cari, limit: 0 }))
-            }
-          />
+          <div className="flex items-center gap-3">
+            <button className="rounded bg-teal-600 border border-teal-600 py-2 px-3 flex items-center gap-1 justify-center text-white font-medium hover:bg-teal-700">
+              <MdUpload />
+              <span>Ekspor</span>
+            </button>
+            <button className="rounded bg-green-600 border border-green-600 py-2 px-3 flex items-center gap-1 justify-center text-white font-medium hover:bg-green-700">
+              <MdDownload />
+              <span>Impor Google Sheet</span>
+            </button>
+            <Link to={"tambah"}>
+              <button className="rounded bg-blue-600 border border-blue-600 py-2 px-3 flex items-center gap-1 justify-center text-white font-medium hover:bg-blue-700">
+                <MdAdd />
+                <span>Tambah</span>
+              </button>
+            </Link>
+            <Search
+              onChange={(cari: string) =>
+                setParams((prev) => ({ ...prev, search: cari, limit: 0 }))
+              }
+            />
+          </div>
         </div>
         <Table
           columns={produkColumns}
@@ -86,7 +104,10 @@ const index = () => {
           isLoading={query.isLoading}
         />
         <div className="flex items-center justify-between mt-2">
-          <div></div>
+          <div>
+            Menampilkan {params.limit + 1} ke {params.limit + data.length} dari{" "}
+            {query.data?.jumlah_record}
+          </div>
           <Pagination
             dataCount={query.data?.jumlah_record}
             dataPerPage={params.length}
