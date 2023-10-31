@@ -22,3 +22,29 @@ export type ProdukType = {
   harga: string;
   gambar: string;
 };
+
+export type CreateProdukType = {
+  company_id: string;
+  kd_barang: string;
+  nama: string;
+  keterangan: string;
+  status: string;
+  kd_merk: string;
+  kd_kategori: string;
+  kd_model: string;
+  kd_jenis_bahan: string;
+  kd_warna: string;
+  ukuran: string;
+  status_pinjam: string;
+  pabrik: string;
+  tag: string;
+  tanggal_daftar: string;
+  mbs: {
+    kd_satuan: string;
+    jumlah: string;
+    harga: string;
+    status: string;
+    margin: string;
+  }[];
+  img?: { gambar: string; nomor: string }[];
+};

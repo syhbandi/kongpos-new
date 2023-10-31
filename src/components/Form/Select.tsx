@@ -8,16 +8,19 @@ type Props = {
     value: string | number;
     label: string | number;
   }[];
+  noMargin?: boolean;
 };
 
-const Select = ({ label, name, options }: Props) => {
+const Select = ({ label, name, options, noMargin }: Props) => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
 
   return (
-    <div className="flex flex-col gap-2 mb-5">
+    <div
+      className={`flex flex-col gap-2 flex-grow ${!noMargin ? "mb-5" : null}`}
+    >
       <label htmlFor={name} className="font-medium capitalize">
         {label}
       </label>

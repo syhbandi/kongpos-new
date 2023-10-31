@@ -14,7 +14,7 @@ import PageSelect from "../../../components/Table/PageSelect";
 import Search from "../../../components/Table/Search";
 import Pagination from "../../../components/Table/Pagination";
 import { Link } from "react-router-dom";
-import { MdAdd, MdDownload, MdUpload } from "react-icons/md";
+import { MdAddCircle, MdDownload, MdUpload } from "react-icons/md";
 
 const index = () => {
   const companyId = useRecoilValue(companyIdState);
@@ -85,7 +85,7 @@ const index = () => {
             </button>
             <Link to={"tambah"}>
               <button className="rounded bg-blue-600 border border-blue-600 py-2 px-3 flex items-center gap-1 justify-center text-white font-medium hover:bg-blue-700">
-                <MdAdd />
+                <MdAddCircle />
                 <span>Tambah</span>
               </button>
             </Link>
