@@ -4,8 +4,10 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../atom/User";
 import { MdOutlineStore } from "react-icons/md";
 import Spinner from "./Spinner";
+import { useNavigate } from "react-router-dom";
 
 const SelectUsaha = () => {
+  const navigate = useNavigate();
   const { no_hp } = useRecoilValue(userState);
   const [companyId, setCompanyId] = useRecoilState(companyIdState);
   const { data, isLoading, isError } = useQuery({
@@ -16,6 +18,7 @@ const SelectUsaha = () => {
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     localStorage.setItem("KONGPOS_CID", e.target.value);
     setCompanyId(e.target.value);
+    navigate("/dashboard", { replace: true });
   };
 
   if (isLoading) return <Spinner />;
