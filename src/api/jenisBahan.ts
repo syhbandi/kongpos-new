@@ -1,4 +1,5 @@
 import {
+  CreateJenisBahanType,
   GetJenisBahanType,
   GetJenisBahansType,
 } from "../constants/Types/jenisBahanTypes";
@@ -24,4 +25,16 @@ export const getJenisBahan = async (
     headers: { Authorization: `Bearer ${access_token}` },
   });
   return data;
+};
+
+export const createJenisBahan = async ({
+  body,
+  access_token,
+}: {
+  body: CreateJenisBahanType;
+  access_token: string;
+}) => {
+  return await api.post("jenis_bahan", body, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
 };

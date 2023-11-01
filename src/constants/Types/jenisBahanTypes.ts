@@ -15,3 +15,11 @@ export type JenisBahanType = {
   status: string;
   keterangan: string;
 };
+
+export type CreateJenisBahanType = {
+  company_id: string;
+  kd_jenis_bahan: string;
+  nama: string;
+  keterangan: string;
+  status: string;
+};
