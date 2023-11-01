@@ -42,7 +42,7 @@ const Kategori = () => {
   }, [query.data]);
 
   return (
-    <div className="flex gap-2 items-end">
+    <div className="flex gap-2 items-end mb-5">
       <Select
         label="Kategori"
         name="kd_kategori"
