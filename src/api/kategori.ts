@@ -1,6 +1,7 @@
 import {
   GetKategorisType,
   getKategoriType,
+  CreateKategoriType,
 } from "../constants/Types/kategoriTypes";
 import api from "./api";
 
@@ -21,6 +22,19 @@ export const getKategori = async (
 ) => {
   const { data } = await api.get("kategori", {
     params,
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
+  return data;
+};
+
+export const createKategori = async ({
+  body,
+  access_token,
+}: {
+  body: CreateKategoriType;
+  access_token: string;
+}) => {
+  const { data } = await api.post("kategori", body, {
     headers: { Authorization: `Bearer ${access_token}` },
   });
   return data;

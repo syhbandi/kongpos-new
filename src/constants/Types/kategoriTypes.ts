@@ -18,3 +18,11 @@ export type getKategoriType = {
   company_id: string;
   kd_kategori: string;
 };
+
+export type CreateKategoriType = {
+  kd_kategori: string;
+  nama: string;
+  keterangan: string;
+  status: string;
+  company_id: string;
+};
