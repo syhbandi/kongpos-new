@@ -1,17 +1,14 @@
-import { useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../atom/User";
 import { CreateMerkType, MerkType } from "../../../constants/Types/merkTypes";
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getMerks } from "../../../api/merk";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createMerk, getMerks } from "../../../api/merk";
 import Select from "../../../components/Form/Select";
 import Modal from "../../../components/Dashboard/Modal";
-import Input from "../../../components/Form/Input";
-import { FormProvider, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { object, string } from "yup";
 import { MdInfo } from "react-icons/md";
+import { toast } from "react-toastify";
+import Spinner from "../../../components/Dashboard/Spinner";
 
 const Merk = () => {
   const companyId = useRecoilValue(companyIdState);
@@ -67,26 +64,39 @@ const Merk = () => {
       </button>
 
       <Modal open={modal} setOpen={setModal} title="Tambah Merk">
-        <TambahMerk />
+        <TambahMerk setModalOpen={setModal} />
       </Modal>
     </div>
   );
 };
 
-const schema = object().shape({
-  nama: string().required("harus diisi"),
-  keterangan: string().required("harus diisi"),
-});
-
-const TambahMerk = () => {
+type TambahProps = {
+  setModalOpen: (open: boolean) => void;
+};
+const TambahMerk = ({ setModalOpen }: TambahProps) => {
   const [merkData, setMerkData] = useState<CreateMerkType>({
     company_id: useRecoilValue(companyIdState),
     kd_merk: "",
     keterangan: "-",
     nama: "",
-    status: "",
+    status: "1",
   });
   const [isError, setIsError] = useState(false);
+  const { access_token } = useRecoilValue(userState);
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: createMerk,
+    onSuccess: () => {
+      toast.success("Berhasil menambah Merk!");
+      queryClient.invalidateQueries({ queryKey: ["merk"] });
+      setModalOpen(false);
+    },
+    onError: () => {
+      toast.error("Gagal menambah Merk!");
+      mutation.reset();
+    },
+  });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMerkData((prev) => ({ ...prev, nama: e.target.value }));
@@ -95,7 +105,10 @@ const TambahMerk = () => {
 
   const onSubmit = () => {
     if (!merkData.nama) return setIsError(true);
-    console.log(merkData);
+    mutation.mutate({
+      body: merkData,
+      access_token,
+    });
   };
 
   return (
@@ -122,11 +135,12 @@ const TambahMerk = () => {
       </div>
       <div className="flex justify-end">
         <button
-          className="py-2 px-3 rounded bg-black text-white font-medium font-roboto"
+          className="py-2 px-3 rounded bg-black text-white font-medium font-roboto disabled:bg-opacity-50"
           type="button"
           onClick={onSubmit}
+          disabled={mutation.isLoading}
         >
-          Simpan
+          {mutation.isLoading ? <Spinner color="text-white" /> : "Simpan"}
         </button>
       </div>
     </>
