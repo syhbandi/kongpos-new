@@ -47,6 +47,7 @@ const Model = () => {
         options={models
           .filter((model) => model.status !== "0")
           .map((model) => ({ value: model.kd_model, label: model.nama }))}
+        noMargin={true}
       />
       <button
         type="button"
