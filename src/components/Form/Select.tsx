@@ -27,12 +27,13 @@ const Select = ({ label, name, options, noMargin, isLoading }: Props) => {
         {label}
       </label>
       {isLoading && <Spinner />}
-      {options && (
+      {options.length ? (
         <div className="relative">
           <select
             id={name}
             {...register(name)}
             className={`p-2 outline-none border border-gray-300 rounded-md focus:border-gray-500 w-full`}
+            defaultValue={options[0].value || ""}
           >
             {options.map((option) => (
               <option value={option.value} key={option.value}>
@@ -48,7 +49,7 @@ const Select = ({ label, name, options, noMargin, isLoading }: Props) => {
             </span>
           )}
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
