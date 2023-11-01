@@ -1,4 +1,8 @@
-import { GetModelType, GetModelsType } from "../constants/Types/modelTypes";
+import {
+  CreateModelType,
+  GetModelType,
+  GetModelsType,
+} from "../constants/Types/modelTypes";
 import api from "./api";
 
 export const getModels = async (
@@ -18,4 +22,16 @@ export const getModel = async (params: GetModelType, access_token: string) => {
     headers: { Authorization: `Bearer ${access_token}` },
   });
   return data;
+};
+
+export const createModel = async ({
+  body,
+  access_token,
+}: {
+  body: CreateModelType;
+  access_token: string;
+}) => {
+  return await api.post("model", body, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
 };
