@@ -57,7 +57,7 @@ const JenisBahan = () => {
         className="rounded bg-blue-600 text-white font-medium py-2 px-3"
         onClick={() => setModal(true)}
       >
-        Tambah Jenis Bahan
+        Tambah
       </button>
       <Modal title="Tambah Jenis Bahan" open={modal} setOpen={setModal}>
         <Tambah setModal={setModal} />

@@ -60,7 +60,7 @@ const Merk = () => {
         type="button"
         onClick={() => setModal(true)}
       >
-        Tambah Merk
+        Tambah
       </button>
 
       <Modal open={modal} setOpen={setModal} title="Tambah Merk">
