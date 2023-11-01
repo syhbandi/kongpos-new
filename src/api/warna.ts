@@ -1,4 +1,8 @@
-import { GetWarnasType, getWarnaType } from "../constants/Types/warnaTypes";
+import {
+  CreateWarnaType,
+  GetWarnasType,
+  getWarnaType,
+} from "../constants/Types/warnaTypes";
 import api from "./api";
 
 export const getWarnas = async (
@@ -18,4 +22,16 @@ export const getWarna = async (params: getWarnaType, access_token: string) => {
     headers: { Authorization: `Bearer ${access_token}` },
   });
   return data;
+};
+
+export const createWarna = async ({
+  body,
+  access_token,
+}: {
+  body: CreateWarnaType;
+  access_token: string;
+}) => {
+  return await api.post("warna", body, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
 };

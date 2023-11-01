@@ -18,3 +18,11 @@ export type getWarnaType = {
   company_id: string;
   kd_warna: string;
 };
+
+export type CreateWarnaType = {
+  kd_warna: string;
+  nama: string;
+  keterangan: string;
+  status: string;
+  company_id: string;
+};
