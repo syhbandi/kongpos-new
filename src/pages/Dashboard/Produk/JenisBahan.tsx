@@ -51,6 +51,7 @@ const JenisBahan = () => {
             label: jenisBahan.nama,
           }))}
         noMargin={true}
+        isLoading={query.isLoading}
       />
       <button
         type="button"

@@ -54,6 +54,7 @@ const Merk = () => {
             : []
         }
         noMargin={true}
+        isLoading={query.isLoading}
       />
       <button
         className="py-2 px-3 rounded text-white bg-blue-600 font-medium"

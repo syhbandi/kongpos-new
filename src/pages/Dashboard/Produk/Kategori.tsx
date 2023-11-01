@@ -57,6 +57,7 @@ const Kategori = () => {
                 }))
             : []
         }
+        isLoading={query.isLoading}
       />
       <button
         type="button"

@@ -57,6 +57,7 @@ const Warna = () => {
                 }))
             : []
         }
+        isLoading={query.isLoading}
       />
       <button
         type="button"

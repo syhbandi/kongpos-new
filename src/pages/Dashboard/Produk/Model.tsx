@@ -48,6 +48,7 @@ const Model = () => {
           .filter((model) => model.status !== "0")
           .map((model) => ({ value: model.kd_model, label: model.nama }))}
         noMargin={true}
+        isLoading={query.isLoading}
       />
       <button
         type="button"
