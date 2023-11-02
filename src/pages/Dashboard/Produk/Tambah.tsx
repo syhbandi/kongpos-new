@@ -13,6 +13,11 @@ import Merk from "./Merk";
 import Warna from "./Warna";
 import InputTag from "../../../components/Form/InputTag";
 import Satuan from "./Satuan";
+import { useMutation } from "@tanstack/react-query";
+import { uploadGambar } from "../../../api/produk";
+import { toast } from "react-toastify";
+import { useRecoilValue } from "recoil";
+import { companyIdState, userState } from "../../../atom/User";
 
 const schema = yup.object().shape({
   kd_barang: yup.string().required("harus diisi"),
@@ -32,13 +37,30 @@ type MBSType = {
 };
 
 const Tambah = () => {
+  const companyId = useRecoilValue(companyIdState);
+  const { access_token } = useRecoilValue(userState);
   const methods = useForm({ resolver: yupResolver(schema) });
   const [gambar, setGambar] = useState<File>();
   const [tags, setTags] = useState<string[]>([]);
   const [mbs, setMbs] = useState<MBSType[]>([]);
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const uploadGambarMutation = useMutation({
+    mutationFn: uploadGambar,
+  });
+
+  const onSubmit = async (data: any) => {
+    if (gambar) {
+      try {
+        const gambarRes = await uploadGambarMutation.mutateAsync({
+          data: { company_id: companyId, file: gambar },
+          access_token,
+        });
+        console.log(gambarRes);
+      } catch {
+        toast.error("Gagal upload gambar produk!");
+        uploadGambarMutation.reset();
+      }
+    }
   };
 
   return (
@@ -55,23 +77,38 @@ const Tambah = () => {
         <div className="bg-white p-5 rounded shadow flex-grow">
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
-              <Input name="kd_barang" label="kode" autoFocus={true} />
-              <Input name="nama" label="Nama" />
-              <Input name="keterangan" label="Keterangan" multiline={true} />
+              <Input
+                name="kd_barang"
+                label="kode"
+                autoFocus={true}
+                placeholder="Kode barang"
+              />
+              <Input name="nama" label="Nama" placeholder="Nama" />
+              <Input
+                name="keterangan"
+                label="Keterangan"
+                multiline={true}
+                placeholder="Keterangan"
+              />
               <Merk />
               <Kategori />
               <Model />
               <JenisBahan />
               <Warna />
-              <Input name="ukuran" label="Ukuran" />
-              <Input name="status_pinjam" label="Status Pinjam" />
-              <Input name="pabrik" label="Pabrik" />
+              <Input name="ukuran" label="Ukuran" placeholder="Ukuran" />
+              <Input
+                name="status_pinjam"
+                label="Status Pinjam"
+                placeholder="Status pinjam"
+              />
+              <Input name="pabrik" label="Pajak" placeholder="Pajak" />
               <InputTag id="tag" label="Tag" tags={tags} setTags={setTags} />
               <InputGambar
                 label="Gambar"
                 name="gambar"
                 state={gambar}
                 setState={setGambar}
+                multiple
               />
               <Select
                 name="status"

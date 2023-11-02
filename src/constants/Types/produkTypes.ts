@@ -48,3 +48,8 @@ export type CreateProdukType = {
   }[];
   img?: { gambar: string; nomor: string }[];
 };
+
+export type UploadGambarType = {
+  company_id: string;
+  file: any;
+};

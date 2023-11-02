@@ -1,4 +1,8 @@
-import { GetProdukType, GetProduksType } from "../constants/Types/produkTypes";
+import {
+  GetProdukType,
+  GetProduksType,
+  UploadGambarType,
+} from "../constants/Types/produkTypes";
 import api from "./api";
 
 export const getProduks = async (
@@ -21,4 +25,17 @@ export const getProduk = async (
     headers: { Authorization: "Bearer " + access_token },
   });
   return data;
+};
+
+type UploadGambar = {
+  data: UploadGambarType;
+  access_token: string;
+};
+export const uploadGambar = async ({ data, access_token }: UploadGambar) => {
+  return await api.post("upload-produk", data, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
