@@ -33,7 +33,6 @@ const Select = ({ label, name, options, noMargin, isLoading }: Props) => {
             id={name}
             {...register(name)}
             className={`p-2 outline-none border border-gray-300 rounded-md focus:border-gray-500 w-full`}
-            defaultValue={options[0].value || ""}
           >
             {options.map((option) => (
               <option value={option.value} key={option.value}>
