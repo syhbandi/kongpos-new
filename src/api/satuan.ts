@@ -1,4 +1,8 @@
-import { GetSatuansType } from "../constants/Types/satuanTypes";
+import {
+  CreateSatuanType,
+  GetSatuanType,
+  GetSatuansType,
+} from "../constants/Types/satuanTypes";
 import api from "./api";
 
 export const getSatuans = async (
@@ -10,4 +14,26 @@ export const getSatuans = async (
     headers: { Authorization: `Bearer ${access_token}` },
   });
   return data;
+};
+
+export const getSatuan = async (
+  params: GetSatuanType,
+  access_token: string
+) => {
+  const { data } = await api.get("satuan", {
+    params,
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
+  return data;
+};
+
+type CreateSatuan = {
+  data: CreateSatuanType;
+  access_token: string;
+};
+
+export const createSatuan = async ({ data, access_token }: CreateSatuan) => {
+  return await api.post("satuan", data, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
 };

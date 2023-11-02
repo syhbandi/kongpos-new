@@ -1,12 +1,17 @@
 import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../atom/User";
-import { useQuery } from "@tanstack/react-query";
-import { getSatuans } from "../../../api/satuan";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createSatuan, getSatuans } from "../../../api/satuan";
 import Spinner from "../../../components/Dashboard/Spinner";
 import { useEffect, useState } from "react";
-import { SatuanType } from "../../../constants/Types/satuanTypes";
+import {
+  CreateSatuanType,
+  SatuanType,
+} from "../../../constants/Types/satuanTypes";
 import Modal from "../../../components/Dashboard/Modal";
 import { userFormatRupiah } from "../../../hooks/userFormat";
+import { toast } from "react-toastify";
+import { MdInfo } from "react-icons/md";
 
 type MBS = {
   kd_satuan: string;
@@ -25,6 +30,7 @@ const Satuan = ({ MBS, setMBS }: Props) => {
   const { access_token } = useRecoilValue(userState);
   const companyId = useRecoilValue(companyIdState);
   const [satuans, setSatuans] = useState<SatuanType[]>([]);
+  const [modal, setModal] = useState(false);
   const { data, isLoading } = useQuery({
     queryKey: ["satuan"],
     queryFn: () =>
@@ -60,6 +66,15 @@ const Satuan = ({ MBS, setMBS }: Props) => {
             />
           ))}
       </div>
+      <button
+        className="outline-none font-medium mt-5 text-blue-600"
+        onClick={() => setModal(true)}
+      >
+        Tambah Satuan
+      </button>
+      <Modal open={modal} setOpen={setModal} title="Tambah Satuan">
+        <Tambah setModal={setModal} />
+      </Modal>
     </div>
   );
 };
@@ -162,6 +177,84 @@ const Detail = ({ satuan, setMBS, defaultChecked }: DetailProps) => {
           </button>
         </div>
       </Modal>
+    </>
+  );
+};
+
+type TambahProps = {
+  setModal: (open: boolean) => void;
+};
+
+const Tambah = ({ setModal }: TambahProps) => {
+  const [satuan, setSatuan] = useState<CreateSatuanType>({
+    company_id: useRecoilValue(companyIdState),
+    kd_satuan: "",
+    keterangan: "-",
+    nama: "",
+    status: "1",
+  });
+  const [isError, setIsError] = useState(false);
+  const { access_token } = useRecoilValue(userState);
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: createSatuan,
+    onSuccess: () => {
+      toast.success("Berhasil menambah satuan!");
+      queryClient.invalidateQueries({ queryKey: ["satuan"] });
+      setModal(false);
+    },
+    onError: () => {
+      toast.error("Gagal menambah satuan!");
+      mutation.reset();
+    },
+  });
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSatuan((prev) => ({ ...prev, nama: e.target.value }));
+    setIsError(false);
+  };
+
+  const onSubmit = () => {
+    if (!satuan.nama) return setIsError(true);
+    mutation.mutate({
+      data: satuan,
+      access_token,
+    });
+  };
+
+  return (
+    <>
+      <div className="flex flex-col gap-2 mb-5 font-roboto">
+        <label htmlFor="nama" className="font-medium capitalize">
+          Satuan
+        </label>
+        <div className="relative">
+          <input
+            id="nama"
+            className={`p-2 outline-none border border-gray-300 rounded-md focus:border-gray-500 w-full`}
+            value={satuan?.nama}
+            onChange={onChange}
+            placeholder="Masukkan nama satuan"
+          />
+          {isError && (
+            <span className="px-2 py-1 bg-red-100 text-xs font-medium text-red-600 absolute right-0 -top-7 rounded flex items-center gap-1">
+              <MdInfo />
+              harus diisi
+            </span>
+          )}
+        </div>
+      </div>
+      <div className="flex justify-end">
+        <button
+          className="py-2 px-3 rounded bg-black text-white font-medium font-roboto disabled:bg-opacity-50"
+          type="button"
+          onClick={onSubmit}
+          disabled={mutation.isLoading}
+        >
+          {mutation.isLoading ? <Spinner color="text-white" /> : "Simpan"}
+        </button>
+      </div>
     </>
   );
 };
