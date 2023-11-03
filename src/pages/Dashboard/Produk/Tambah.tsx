@@ -13,11 +13,13 @@ import Merk from "./Merk";
 import Warna from "./Warna";
 import InputTag from "../../../components/Form/InputTag";
 import Satuan from "./Satuan";
-import { useMutation } from "@tanstack/react-query";
-import { uploadGambar } from "../../../api/produk";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createProduk, uploadGambar } from "../../../api/produk";
 import { toast } from "react-toastify";
 import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../atom/User";
+import { useNavigate } from "react-router-dom";
+import Spinner from "../../../components/Dashboard/Spinner";
 
 const schema = yup.object().shape({
   kd_barang: yup.string().required("harus diisi"),
@@ -43,22 +45,48 @@ const Tambah = () => {
   const [gambar, setGambar] = useState<File>();
   const [tags, setTags] = useState<string[]>([]);
   const [mbs, setMbs] = useState<MBSType[]>([]);
+  const navigate = useNavigate();
 
+  const queryClient = useQueryClient();
   const uploadGambarMutation = useMutation({
     mutationFn: uploadGambar,
   });
 
-  const onSubmit = async (data: any) => {
+  const mutation = useMutation({
+    mutationFn: createProduk,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["produk"] });
+      toast.success("Berhasil menambah produk baru!");
+      navigate("/dashboard/produk", { replace: true });
+    },
+  });
+
+  const onSubmit = async (form: any) => {
     if (gambar) {
       try {
         const gambarRes = await uploadGambarMutation.mutateAsync({
           data: { company_id: companyId, file: gambar },
           access_token,
         });
-        console.log(gambarRes);
+        await mutation.mutateAsync({
+          data: {
+            company_id: companyId,
+            img: gambarRes?.data?.data?.path?.map(
+              (res: any, index: number) => ({
+                gambar: res,
+                nomor: index + 1,
+              })
+            ),
+            ...form,
+            mbs,
+            tag: tags.join(","),
+          },
+          access_token,
+        });
       } catch {
-        toast.error("Gagal upload gambar produk!");
+        toast.error("Gagal Menambah produk!");
         uploadGambarMutation.reset();
+        mutation.reset();
       }
     }
   };
@@ -73,8 +101,8 @@ const Tambah = () => {
         <h1 className="text-2xl font-semibold font-poppins">Tambah Produk</h1>
       </div>
 
-      <div className="flex flex-col md:flex-row items-start gap-2">
-        <div className="bg-white p-5 rounded shadow flex-grow">
+      <div className="flex flex-col lg:flex-row items-start gap-2">
+        <div className="bg-white p-5 rounded shadow w-full lg:flex-grow">
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
               <Input
@@ -122,9 +150,16 @@ const Tambah = () => {
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className="bg-black text-white rounded font-medium py-2 px-3 ml-auto"
+                  className="bg-black text-white rounded font-medium py-2 px-3 ml-auto disabled:bg-opacity-70"
+                  disabled={
+                    uploadGambarMutation.isLoading || mutation.isLoading
+                  }
                 >
-                  Simpan
+                  {uploadGambarMutation.isLoading || mutation.isLoading ? (
+                    <Spinner color="text-white" />
+                  ) : (
+                    "Simpan"
+                  )}
                 </button>
               </div>
             </form>

@@ -1,4 +1,5 @@
 import {
+  CreateProdukType,
   GetProdukType,
   GetProduksType,
   UploadGambarType,
@@ -37,5 +38,16 @@ export const uploadGambar = async ({ data, access_token }: UploadGambar) => {
       Authorization: `Bearer ${access_token}`,
       "Content-Type": "multipart/form-data",
     },
+  });
+};
+
+type CreateProduk = {
+  data: CreateProdukType;
+  access_token: string;
+};
+
+export const createProduk = async ({ data, access_token }: CreateProduk) => {
+  return await api.post("produk", data, {
+    headers: { Authorization: `Bearer ${access_token}` },
   });
 };

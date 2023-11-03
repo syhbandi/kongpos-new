@@ -51,11 +51,25 @@ const Satuan = ({ MBS, setMBS }: Props) => {
     if (data) setSatuans(data.data);
   }, [data]);
 
+  useEffect(() => {
+    if (satuans.length && !MBS.length) {
+      setMBS([
+        {
+          kd_satuan: satuans[0].kd_satuan,
+          harga: "0",
+          jumlah: "1",
+          margin: "0",
+          status: "1",
+        },
+      ]);
+    }
+  }, [satuans]);
+
   return (
-    <div className="bg-white rounded shadow p-5 w-full md:w-96">
+    <div className="bg-white rounded shadow p-5 w-full lg:w-96">
       <div className="font-medium mb-2">Satuan</div>
       {isLoading && <Spinner />}
-      <div className="h-80 overflow-y-auto scrollbar-custom">
+      <div className="h-64 overflow-y-auto scrollbar-custom">
         {satuans &&
           satuans.map((satuan, index) => (
             <Detail
@@ -89,7 +103,7 @@ const Detail = ({ satuan, setMBS, defaultChecked }: DetailProps) => {
   const [modal, setModal] = useState(false);
   const [data, setData] = useState({
     kd_satuan: satuan.kd_satuan,
-    jumlah: "0",
+    jumlah: "1",
     harga: "0",
     status: "1",
     margin: "0",

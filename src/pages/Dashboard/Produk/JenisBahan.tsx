@@ -43,7 +43,7 @@ const JenisBahan = () => {
     <div className="flex gap-2 items-end mb-5">
       <Select
         label="JenisBahan"
-        name="kd_jenisbahan"
+        name="kd_jenis_bahan"
         options={jenisBahans
           .filter((jenisBahan) => jenisBahan.status !== "0")
           .map((jenisBahan) => ({
