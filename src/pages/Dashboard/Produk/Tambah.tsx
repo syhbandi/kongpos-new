@@ -62,8 +62,8 @@ const Tambah = () => {
   });
 
   const onSubmit = async (form: any) => {
-    if (gambar) {
-      try {
+    try {
+      if (gambar) {
         const gambarRes = await uploadGambarMutation.mutateAsync({
           data: { company_id: companyId, file: gambar },
           access_token,
@@ -83,11 +83,22 @@ const Tambah = () => {
           },
           access_token,
         });
-      } catch {
-        toast.error("Gagal Menambah produk!");
-        uploadGambarMutation.reset();
-        mutation.reset();
+      } else {
+        await mutation.mutateAsync({
+          data: {
+            company_id: companyId,
+            img: [],
+            ...form,
+            mbs,
+            tag: tags.join(","),
+          },
+          access_token,
+        });
       }
+    } catch {
+      toast.error("Gagal Menambah produk!");
+      uploadGambarMutation.reset();
+      mutation.reset();
     }
   };
 
