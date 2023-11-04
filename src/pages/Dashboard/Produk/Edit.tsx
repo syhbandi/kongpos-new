@@ -29,11 +29,11 @@ const schema = object().shape({
   ukuran: string().required("harus diisi"),
   status_pinjam: string().required("harus diisi"),
   pabrik: string().required("harus diisi"),
-  kd_kategori: string(),
-  kd_merk: string(),
-  kd_jenis_bahan: string(),
-  kd_warna: string(),
-  status: string(),
+  kd_kategori: string().notRequired(),
+  kd_merk: string().notRequired(),
+  kd_jenis_bahan: string().notRequired(),
+  kd_warna: string().notRequired(),
+  status: string().notRequired(),
 });
 
 type MBSType = {
@@ -106,6 +106,17 @@ const Edit = () => {
         mutation.reset();
       }
       return;
+    } else {
+      await mutation.mutateAsync({
+        data: {
+          company_id: companyId,
+          img: [],
+          ...form,
+          mbs,
+          tag: tags.join(","),
+        },
+        access_token,
+      });
     }
   };
 
@@ -118,12 +129,20 @@ const Edit = () => {
       methods.reset({
         ...produk.m_barang,
       });
-      setTags(produk.m_barang.tag?.split(","));
+      setTags(produk.m_barang.tag ? produk.m_barang.tag.split(",") : []);
       setMbs(
         produk.m_barang_satuan.map((mbs) => ({ ...mbs, harga: mbs.harga_jual }))
       );
     }
   }, [produk]);
+
+  if (query.isLoading) return <Spinner />;
+  if (query.isError)
+    return (
+      <div className="font-medium text-xl text-red-600">
+        Terjadi galat sistem, silakan coba lagi
+      </div>
+    );
 
   return (
     <>
@@ -132,7 +151,7 @@ const Edit = () => {
           onClick={() => history.back()}
           className="text-2xl mr-3 cursor-pointer"
         />
-        <h1 className="text-2xl font-semibold font-poppins">Tambah Produk</h1>
+        <h1 className="text-2xl font-semibold font-poppins">Edit Produk</h1>
       </div>
 
       <div className="flex flex-col lg:flex-row items-start gap-2">

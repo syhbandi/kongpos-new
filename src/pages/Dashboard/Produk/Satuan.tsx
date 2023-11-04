@@ -66,7 +66,7 @@ const Satuan = ({ MBS, setMBS }: Props) => {
   }, [satuans, MBS]);
 
   return (
-    <div className="bg-white rounded shadow p-5 w-full lg:w-96">
+    <div className="bg-white rounded shadow p-5 w-full lg:w-[500px]">
       <div className="font-medium mb-2">Satuan (Tidak boleh kosong)</div>
       {isLoading && <Spinner />}
       <div className="h-64 overflow-y-auto scrollbar-custom">
