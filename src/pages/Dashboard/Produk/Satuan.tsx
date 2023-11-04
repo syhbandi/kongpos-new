@@ -63,20 +63,36 @@ const Satuan = ({ MBS, setMBS }: Props) => {
         },
       ]);
     }
-  }, [satuans]);
+  }, [satuans, MBS]);
 
   return (
     <div className="bg-white rounded shadow p-5 w-full lg:w-96">
-      <div className="font-medium mb-2">Satuan</div>
+      <div className="font-medium mb-2">Satuan (Tidak boleh kosong)</div>
       {isLoading && <Spinner />}
       <div className="h-64 overflow-y-auto scrollbar-custom">
-        {satuans &&
-          satuans.map((satuan, index) => (
+        {satuans
+          ?.filter((satuan) =>
+            MBS.map((mbs) => mbs.kd_satuan).includes(satuan.kd_satuan)
+          )
+          .map((satuan) => (
             <Detail
               satuan={satuan}
               key={satuan.kd_satuan}
               setMBS={setMBS}
-              defaultChecked={index === 0 ? true : false}
+              MBS={MBS}
+            />
+          ))}
+        {satuans
+          ?.filter(
+            (satuan) =>
+              !MBS.map((mbs) => mbs.kd_satuan).includes(satuan.kd_satuan)
+          )
+          .map((satuan) => (
+            <Detail
+              satuan={satuan}
+              key={satuan.kd_satuan}
+              setMBS={setMBS}
+              MBS={MBS}
             />
           ))}
       </div>
@@ -96,10 +112,10 @@ const Satuan = ({ MBS, setMBS }: Props) => {
 type DetailProps = {
   satuan: SatuanType;
   setMBS: React.Dispatch<React.SetStateAction<MBS[]>>;
-  defaultChecked?: boolean | false;
+  MBS: MBS[];
 };
-const Detail = ({ satuan, setMBS, defaultChecked }: DetailProps) => {
-  const [selected, setSelected] = useState(defaultChecked);
+const Detail = ({ satuan, setMBS, MBS }: DetailProps) => {
+  const [selected, setSelected] = useState(false);
   const [modal, setModal] = useState(false);
   const [data, setData] = useState({
     kd_satuan: satuan.kd_satuan,
@@ -108,6 +124,16 @@ const Detail = ({ satuan, setMBS, defaultChecked }: DetailProps) => {
     status: "1",
     margin: "0",
   });
+
+  useEffect(() => {
+    const selectedSatuan = MBS.find(
+      (mbs) => mbs.kd_satuan === satuan.kd_satuan
+    );
+    if (selectedSatuan) {
+      setSelected(true);
+      setData(selectedSatuan);
+    }
+  }, [MBS]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!selected) return setModal(true);
@@ -136,9 +162,11 @@ const Detail = ({ satuan, setMBS, defaultChecked }: DetailProps) => {
             checked={selected}
             onChange={onChange}
           />
-          <span className="">{satuan.nama}</span>
+          <span className={`${selected ? "font-medium" : null}`}>
+            {satuan.nama}
+          </span>
           {selected && (
-            <span>
+            <span className="text-sm font-medium">
               ({data.jumlah} - {userFormatRupiah(parseFloat(data.harga))} -{" "}
               {userFormatRupiah(parseFloat(data.margin))})
             </span>
