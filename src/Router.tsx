@@ -53,6 +53,7 @@ const Mapping = lazy(
 );
 const Produk = lazy(() => import("./pages/Dashboard/Produk"));
 const TambahProduk = lazy(() => import("./pages/Dashboard/Produk/Tambah"));
+const EditProduk = lazy(() => import("./pages/Dashboard/Produk/Edit"));
 
 export const router = createBrowserRouter([
   {
@@ -104,6 +105,7 @@ export const router = createBrowserRouter([
       { path: "engaturan", element: <>Pengaturan</> },
       { path: "produk", element: <Produk /> },
       { path: "produk/tambah", element: <TambahProduk /> },
+      { path: "produk/edit/:kd_barang", element: <EditProduk /> },
     ],
     errorElement: <ErrorPage />,
   },

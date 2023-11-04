@@ -8,7 +8,7 @@ export type GetProduksType = {
 };
 
 export type GetProdukType = {
-  key: string;
+  kd_barang: string;
   company_id: string;
 };
 
@@ -21,6 +21,33 @@ export type ProdukType = {
   satuan: string;
   harga: string;
   gambar: string;
+};
+
+export type SingleProdukType = {
+  m_barang: {
+    kd_barang: string;
+    kd_kategori: string;
+    kd_merk: string;
+    ukuran: string;
+    nama: string;
+    keterangan: string;
+    status: string;
+    tag: string;
+  };
+  m_barang_satuan: {
+    kd_barang: string;
+    kd_satuan: string;
+    jumlah: string;
+    harga_jual: string;
+    status: string;
+    margin: string;
+  }[];
+  m_barang_gambar: {
+    kd_barang: string;
+    nomor: string;
+    keterangan: string;
+    gambar: string;
+  }[];
 };
 
 export type CreateProdukType = {

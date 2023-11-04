@@ -51,3 +51,9 @@ export const createProduk = async ({ data, access_token }: CreateProduk) => {
     headers: { Authorization: `Bearer ${access_token}` },
   });
 };
+
+export const updateProduk = async ({ data, access_token }: CreateProduk) => {
+  return await api.put("produk", data, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
+};
