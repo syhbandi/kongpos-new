@@ -76,11 +76,11 @@ const index = () => {
 
           <div className="flex items-center gap-3">
             <button className="rounded bg-teal-600 border border-teal-600 py-2 px-3 flex items-center gap-1 justify-center text-white font-medium hover:bg-teal-700">
-              <MdUpload />
+              <MdDownload />
               <span>Ekspor</span>
             </button>
             <button className="rounded bg-green-600 border border-green-600 py-2 px-3 flex items-center gap-1 justify-center text-white font-medium hover:bg-green-700">
-              <MdDownload />
+              <MdUpload />
               <span>Impor Google Sheet</span>
             </button>
             <Link to={"tambah"}>
