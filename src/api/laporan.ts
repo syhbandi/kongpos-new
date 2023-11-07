@@ -32,10 +32,25 @@ export const getReturPenjualan = async (
   params: PenjualanParams,
   token: string
 ) => {
-  const { data } = await api.post("laporan/penjualan_order", params, {
+  const { data } = await api.post("laporan/penjualan_retur", params, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+  });
+  return data;
+};
+
+type ExportReturPenjualanType = {
+  data: PenjualanParams;
+  access_token: string;
+};
+export const exportReturPenjualan = async (
+  params: ExportReturPenjualanType
+) => {
+  const { data } = await api.get("laporan/penjualan-newBorn", {
+    headers: { Authorization: `Bearer ${params.access_token}` },
+    responseType: "blob",
+    params: params.data,
   });
   return data;
 };
