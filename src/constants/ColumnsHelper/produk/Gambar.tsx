@@ -3,6 +3,7 @@ import ImageViewer from "../../../components/ImageViewer";
 import { ProdukType } from "../../Types/produkTypes";
 import { useRecoilValue } from "recoil";
 import { companyIdState } from "../../../atom/User";
+import { MdRemoveRedEye } from "react-icons/md";
 
 type Props = {
   produk: ProdukType;
@@ -26,10 +27,11 @@ const Gambar = ({ produk }: Props) => {
     <>
       <div className="flex items-center justify-center">
         <button
-          className="py-2 px-3 rounded bg-sky-100 text-sky-700 text-sm font-medium hover:bg-sky-200"
+          className="py-2 px-3 rounded bg-sky-100 text-sky-700 text-sm font-medium hover:bg-sky-200 flex items-center gap-1"
           onClick={() => setOpen(true)}
         >
-          Lihat
+          <MdRemoveRedEye />
+          <span>Lihat</span>
         </button>
       </div>
       <ImageViewer open={open} setOpen={setOpen} images={images} />
