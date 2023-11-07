@@ -10,7 +10,7 @@ import { createWarna, getWarnas } from "../../../api/warna";
 import Select from "../../../components/Form/Select";
 import Modal from "../../../components/Dashboard/Modal";
 import { toast } from "react-toastify";
-import { MdInfo } from "react-icons/md";
+import { MdAddCircle, MdInfo } from "react-icons/md";
 import Spinner from "../../../components/Dashboard/Spinner";
 
 const Warna = () => {
@@ -61,9 +61,10 @@ const Warna = () => {
       />
       <button
         type="button"
-        className="rounded bg-blue-600 text-white font-medium py-2 px-3"
+        className="rounded bg-blue-600 text-white font-medium py-2 px-3 flex items-center gap-1"
         onClick={() => setModal(true)}
       >
+        <MdAddCircle />
         Tambah
       </button>
       <Modal title="Tambah Warna" open={modal} setOpen={setModal}>

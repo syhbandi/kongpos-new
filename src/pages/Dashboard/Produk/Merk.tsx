@@ -6,7 +6,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createMerk, getMerks } from "../../../api/merk";
 import Select from "../../../components/Form/Select";
 import Modal from "../../../components/Dashboard/Modal";
-import { MdInfo } from "react-icons/md";
+import { MdAddCircle, MdInfo } from "react-icons/md";
 import { toast } from "react-toastify";
 import Spinner from "../../../components/Dashboard/Spinner";
 
@@ -57,10 +57,11 @@ const Merk = () => {
         isLoading={query.isLoading}
       />
       <button
-        className="py-2 px-3 rounded text-white bg-blue-600 font-medium"
+        className="py-2 px-3 rounded text-white bg-blue-600 font-medium flex items-center gap-1"
         type="button"
         onClick={() => setModal(true)}
       >
+        <MdAddCircle />
         Tambah
       </button>
 

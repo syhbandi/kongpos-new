@@ -1,5 +1,5 @@
 import { FormProvider, useForm } from "react-hook-form";
-import { MdArrowBack } from "react-icons/md";
+import { MdArrowBack, MdSave } from "react-icons/md";
 import Input from "../../../components/Form/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -161,7 +161,7 @@ const Tambah = () => {
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className="bg-black text-white rounded font-medium py-2 px-3 ml-auto disabled:bg-opacity-70"
+                  className="bg-black text-white rounded font-medium flex items-center gap-1 py-2 px-3 ml-auto disabled:bg-opacity-70"
                   disabled={
                     uploadGambarMutation.isLoading || mutation.isLoading
                   }
@@ -169,7 +169,10 @@ const Tambah = () => {
                   {uploadGambarMutation.isLoading || mutation.isLoading ? (
                     <Spinner color="text-white" />
                   ) : (
-                    "Simpan"
+                    <>
+                      <MdSave />
+                      Simpan
+                    </>
                   )}
                 </button>
               </div>
