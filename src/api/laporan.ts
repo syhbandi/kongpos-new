@@ -133,7 +133,7 @@ type ExportOrderPembelianType = {
 export const exportOrderPembelian = async (
   params: ExportOrderPembelianType
 ) => {
-  const { data } = await api.get("laporan/pembelian-newBorn", {
+  const { data } = await api.get("laporan/pembelian_order", {
     headers: {
       Authorization: `Bearer ${params.access_token}`,
     },
