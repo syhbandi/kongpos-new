@@ -11,16 +11,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { MdArrowBack } from "react-icons/md";
 import Input from "../../../components/Form/Input";
-import Merk from "./Merk";
-import Kategori from "./Kategori";
-import Model from "./Model";
-import JenisBahan from "./JenisBahan";
-import Warna from "./Warna";
+import Merk from "../../../components/Produk/Merk";
+import Kategori from "../../../components/Produk/Kategori";
+import Model from "../../../components/Produk/Model";
+import JenisBahan from "../../../components/Produk/JenisBahan";
+import Warna from "../../../components/Produk/Warna";
 import InputTag from "../../../components/Form/InputTag";
 import InputGambar from "../../../components/Form/InputGambar";
 import Select from "../../../components/Form/Select";
 import Spinner from "../../../components/Dashboard/Spinner";
-import Satuan from "./Satuan";
+import Satuan from "../../../components/Produk/Satuan";
 
 const schema = object().shape({
   kd_barang: string().required("harus diisi"),

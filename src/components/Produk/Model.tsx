@@ -1,15 +1,15 @@
 import { useRecoilValue } from "recoil";
-import { companyIdState, userState } from "../../../atom/User";
-import { ModelType } from "../../../constants/Types/modelTypes";
+import { companyIdState, userState } from "../../atom/User";
+import { ModelType } from "../../constants/Types/modelTypes";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createModel, getModels } from "../../../api/model";
-import Select from "../../../components/Form/Select";
-import Modal from "../../../components/Dashboard/Modal";
-import { CreateModelType } from "../../../constants/Types/modelTypes";
+import { createModel, getModels } from "../../api/model";
+import Select from "../Form/Select";
+import Modal from "../Dashboard/Modal";
+import { CreateModelType } from "../../constants/Types/modelTypes";
 import { toast } from "react-toastify";
 import { MdAddCircle, MdInfo } from "react-icons/md";
-import Spinner from "../../../components/Dashboard/Spinner";
+import Spinner from "../Dashboard/Spinner";
 
 const Model = () => {
   const companyId = useRecoilValue(companyIdState);

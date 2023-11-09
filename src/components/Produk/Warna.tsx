@@ -1,17 +1,14 @@
 import { useRecoilValue } from "recoil";
-import { companyIdState, userState } from "../../../atom/User";
-import {
-  CreateWarnaType,
-  WarnaType,
-} from "../../../constants/Types/warnaTypes";
+import { companyIdState, userState } from "../../atom/User";
+import { CreateWarnaType, WarnaType } from "../../constants/Types/warnaTypes";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createWarna, getWarnas } from "../../../api/warna";
-import Select from "../../../components/Form/Select";
-import Modal from "../../../components/Dashboard/Modal";
+import { createWarna, getWarnas } from "../../api/warna";
+import Select from "../Form/Select";
+import Modal from "../Dashboard/Modal";
 import { toast } from "react-toastify";
 import { MdAddCircle, MdInfo } from "react-icons/md";
-import Spinner from "../../../components/Dashboard/Spinner";
+import Spinner from "../Dashboard/Spinner";
 
 const Warna = () => {
   const companyId = useRecoilValue(companyIdState);

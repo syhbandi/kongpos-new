@@ -1,17 +1,17 @@
 import { useRecoilValue } from "recoil";
-import { companyIdState, userState } from "../../../atom/User";
+import { companyIdState, userState } from "../../atom/User";
 import {
   CreateKategoriType,
   KategoriType,
-} from "../../../constants/Types/kategoriTypes";
+} from "../../constants/Types/kategoriTypes";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createKategori, getKategoris } from "../../../api/kategori";
-import Select from "../../../components/Form/Select";
-import Modal from "../../../components/Dashboard/Modal";
+import { createKategori, getKategoris } from "../../api/kategori";
+import Select from "../Form/Select";
+import Modal from "../Dashboard/Modal";
 import { toast } from "react-toastify";
 import { MdAddCircle, MdInfo } from "react-icons/md";
-import Spinner from "../../../components/Dashboard/Spinner";
+import Spinner from "../Dashboard/Spinner";
 
 const Kategori = () => {
   const companyId = useRecoilValue(companyIdState);

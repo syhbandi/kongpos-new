@@ -1,15 +1,15 @@
 import { useRecoilValue } from "recoil";
-import { companyIdState, userState } from "../../../atom/User";
+import { companyIdState, userState } from "../../atom/User";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createSatuan, getSatuans } from "../../../api/satuan";
-import Spinner from "../../../components/Dashboard/Spinner";
+import { createSatuan, getSatuans } from "../../api/satuan";
+import Spinner from "../Dashboard/Spinner";
 import { useEffect, useState } from "react";
 import {
   CreateSatuanType,
   SatuanType,
-} from "../../../constants/Types/satuanTypes";
-import Modal from "../../../components/Dashboard/Modal";
-import { userFormatRupiah } from "../../../hooks/userFormat";
+} from "../../constants/Types/satuanTypes";
+import Modal from "../Dashboard/Modal";
+import { userFormatRupiah } from "../../hooks/userFormat";
 import { toast } from "react-toastify";
 import { MdInfo } from "react-icons/md";
 
