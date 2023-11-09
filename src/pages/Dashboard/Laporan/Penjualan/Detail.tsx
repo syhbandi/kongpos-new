@@ -6,14 +6,16 @@ import {
 import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../../atom/User";
 import penjualanColumns from "../../../../constants/ColumnsHelper/penjualan";
-import { useQueries } from "@tanstack/react-query";
-import { getPenjualan } from "../../../../api/laporan";
+import { useMutation, useQueries } from "@tanstack/react-query";
+import { exportPenjualan, getPenjualan } from "../../../../api/laporan";
 import Table from "../../../../components/Table";
 import { SortingState } from "@tanstack/react-table";
 import PageSelect from "../../../../components/Table/PageSelect";
 import Search from "../../../../components/Table/Search";
 import Info from "../../../../components/Table/Info";
 import Pagination from "../../../../components/Table/Pagination";
+import { MdDownload } from "react-icons/md";
+import fileDownload from "js-file-download";
 
 type Props = {
   awal: string;
@@ -36,6 +38,7 @@ const Detail = ({ awal, akhir, jenis }: Props) => {
     limit: 0,
     length: 10,
     count_stats: 0,
+    export: 0,
   });
   const [data, setData] = useState([]);
   const [count, setCount] = useState<PenjualanDataCount>({
@@ -94,6 +97,17 @@ const Detail = ({ awal, akhir, jenis }: Props) => {
     };
   }, [queries[0].data, queries[1].data]);
 
+  const exportMutation = useMutation({
+    mutationFn: exportPenjualan,
+    onSuccess: (data) => {
+      fileDownload(data, `Penjualan (${params.awal}:${params.akhir}).xlsx`);
+    },
+  });
+
+  const onExport = () => {
+    exportMutation.mutate({ data: { ...params, export: 1 }, access_token });
+  };
+
   return (
     <div>
       <div className="flex items-center mb-2 justify-between">
@@ -110,11 +124,21 @@ const Detail = ({ awal, akhir, jenis }: Props) => {
           }
         />
 
-        <Search
-          onChange={(cari: string) =>
-            setParams((prev) => ({ ...prev, search: cari, limit: 0 }))
-          }
-        />
+        <div className="flex items-center gap-2">
+          <button
+            className="px-3 py-2 rounded bg-green-600 text-white flex items-center gap-1 hover:bg-green-700 disabled:bg-opacity-50"
+            disabled={!data.length || exportMutation.isLoading}
+            onClick={onExport}
+          >
+            <MdDownload />
+            <span>Expor</span>
+          </button>
+          <Search
+            onChange={(cari: string) =>
+              setParams((prev) => ({ ...prev, search: cari, limit: 0 }))
+            }
+          />
+        </div>
       </div>
       <Table
         data={data}
