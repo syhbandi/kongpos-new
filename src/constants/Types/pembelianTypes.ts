@@ -18,7 +18,7 @@ export type PembelianDataCount = {
 };
 
 export type PembelianPerNota = {
-  "No Transaksi": string;
+  "No. Transaksi": string;
   Tanggal: string;
   Divisi: string;
   Supplier: string;

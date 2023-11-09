@@ -3,8 +3,11 @@ import { PembelianPerNota } from "../../Types/pembelianTypes";
 
 const helper = createColumnHelper<PembelianPerNota>();
 const nota = [
-  helper.accessor("No Transaksi", {
-    cell: (data) => data.getValue(),
+  helper.display({
+    header: "No. Transaksi",
+    cell: ({ row: { original } }) => {
+      return original["No. Transaksi"];
+    },
   }),
   helper.accessor("Tanggal", {
     cell: (data) => data.getValue(),

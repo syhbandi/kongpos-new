@@ -155,6 +155,24 @@ export const getReturPembelian = async (
   return data;
 };
 
+type ExportReturPembelianType = {
+  data: PembelianParams;
+  access_token: string;
+};
+
+export const exportReturPembelian = async (
+  params: ExportReturPembelianType
+) => {
+  const { data } = await api.get("laporan/pembelian_retur", {
+    headers: {
+      Authorization: `Bearer ${params.access_token}`,
+    },
+    params: params.data,
+    responseType: "blob",
+  });
+  return data;
+};
+
 export const getInventori = async (params: InventoriParams, token: string) => {
   const { data } = await api.post("laporan/stok", params, {
     headers: {
