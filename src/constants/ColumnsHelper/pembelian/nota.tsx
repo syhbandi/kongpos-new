@@ -1,5 +1,4 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { useFormatTanggal } from "../../../hooks/userFormat";
 import { PembelianPerNota } from "../../Types/pembelianTypes";
 
 const helper = createColumnHelper<PembelianPerNota>();
@@ -8,7 +7,7 @@ const nota = [
     cell: (data) => data.getValue(),
   }),
   helper.accessor("Tanggal", {
-    cell: (data) => useFormatTanggal(data.getValue()),
+    cell: (data) => data.getValue(),
   }),
   helper.accessor("Divisi", {
     cell: (data) => data.getValue(),

@@ -1,5 +1,5 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { useFormatTanggal, userFormatRupiah } from "../../../hooks/userFormat";
+import { userFormatRupiah } from "../../../hooks/userFormat";
 import { PembelianPerHari } from "../../Types/pembelianTypes";
 
 const helper = createColumnHelper<PembelianPerHari>();
@@ -8,7 +8,7 @@ const hari = [
     cell: (data) => data.getValue(),
   }),
   helper.accessor("Tanggal", {
-    cell: (data) => useFormatTanggal(data.getValue()),
+    cell: (data) => data.getValue(),
   }),
   helper.accessor("Divisi", {
     cell: (data) => data.getValue(),

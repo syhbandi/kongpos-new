@@ -125,6 +125,24 @@ export const getOrderPembelian = async (
   return data;
 };
 
+type ExportOrderPembelianType = {
+  data: PembelianParams;
+  access_token: string;
+};
+
+export const exportOrderPembelian = async (
+  params: ExportOrderPembelianType
+) => {
+  const { data } = await api.get("laporan/pembelian-newBorn", {
+    headers: {
+      Authorization: `Bearer ${params.access_token}`,
+    },
+    params: params.data,
+    responseType: "blob",
+  });
+  return data;
+};
+
 export const getReturPembelian = async (
   params: PembelianParams,
   token: string
