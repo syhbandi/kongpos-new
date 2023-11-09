@@ -7,8 +7,8 @@ import {
 import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../../atom/User";
 import { SortingState } from "@tanstack/react-table";
-import { useQueries } from "@tanstack/react-query";
-import { getHutang } from "../../../../api/laporan";
+import { useMutation, useQueries } from "@tanstack/react-query";
+import { exportHutang, getHutang } from "../../../../api/laporan";
 import DateRange from "../../../../components/Dashboard/DateRange";
 import PageSelect from "../../../../components/Table/PageSelect";
 import Search from "../../../../components/Table/Search";
@@ -19,6 +19,8 @@ import {
   useFormatNumber,
   userFormatRupiah,
 } from "../../../../hooks/userFormat";
+import fileDownload from "js-file-download";
+import { MdDownload } from "react-icons/md";
 const index = () => {
   const company_id = useRecoilValue(companyIdState);
   const user = useRecoilValue(userState);
@@ -38,6 +40,7 @@ const index = () => {
     order_col: "",
     order_type: "",
     periode: new Date().toISOString().split("T")[0],
+    export: 0,
   });
   const [sorting, setSorting] = useState<SortingState>([]);
 
@@ -72,6 +75,19 @@ const index = () => {
     ],
   });
 
+  const exportMutation = useMutation({
+    mutationFn: exportHutang,
+    onSuccess: (data) => fileDownload(data, `Hutang_${params.periode}.xlsx`),
+  });
+
+  const onExport = () =>
+    exportMutation.mutate({
+      data: {
+        ...params,
+        export: 1,
+      },
+      access_token: user.access_token,
+    });
   useEffect(() => {
     if (queries[0].data && queries[1].data) {
       setData(queries[0].data);
@@ -119,12 +135,21 @@ const index = () => {
             }))
           }
         />
-
-        <Search
-          onChange={(cari: string) =>
-            setParams((prev) => ({ ...prev, search: cari, limit: 0 }))
-          }
-        />
+        <div className="flex items-center gap-2">
+          <button
+            className="px-3 py-2 rounded bg-green-600 text-white font-medium flex items-center gap-1 hover:bg-green-700 disabled:bg-opacity-50"
+            disabled={!data.length || exportMutation.isLoading}
+            onClick={onExport}
+          >
+            <MdDownload />
+            <span>Expor</span>
+          </button>
+          <Search
+            onChange={(cari: string) =>
+              setParams((prev) => ({ ...prev, search: cari, limit: 0 }))
+            }
+          />
+        </div>
       </div>
       <Table
         data={data}

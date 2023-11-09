@@ -244,6 +244,23 @@ export const getHutang = async (params: HutangParams, token: string) => {
   return data;
 };
 
+type ExportHutangType = {
+  data: HutangParams;
+  access_token: string;
+};
+
+export const exportHutang = async (params: ExportHutangType) => {
+  const { data } = await api.get("laporan/hutang", {
+    headers: {
+      Authorization: `Bearer ${params.access_token}`,
+    },
+    params: params.data,
+    responseType: "blob",
+  });
+
+  return data;
+};
+
 export const getPiutang = async (params: piutangParams, token: string) => {
   const { data } = await api.post("laporan/piutang", params, {
     headers: {
