@@ -80,7 +80,7 @@ type ExportReturPenjualanType = {
 export const exportReturPenjualan = async (
   params: ExportReturPenjualanType
 ) => {
-  const { data } = await api.get("laporan/penjualan-newBorn", {
+  const { data } = await api.get("laporan/penjualan_retur", {
     headers: { Authorization: `Bearer ${params.access_token}` },
     responseType: "blob",
     params: params.data,
@@ -93,6 +93,22 @@ export const getPembelian = async (params: PembelianParams, token: string) => {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+  });
+  return data;
+};
+
+type ExportPembelianType = {
+  data: PembelianParams;
+  access_token: string;
+};
+
+export const exportPembelian = async (params: ExportPembelianType) => {
+  const { data } = await api.get("laporan/pembelian-newBorn", {
+    headers: {
+      Authorization: `Bearer ${params.access_token}`,
+    },
+    params: params.data,
+    responseType: "blob",
   });
   return data;
 };

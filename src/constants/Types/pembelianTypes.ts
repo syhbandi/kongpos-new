@@ -9,6 +9,7 @@ export type PembelianParams = {
   limit: number;
   length: number;
   count_stats: number;
+  export: number;
 };
 
 export type PembelianDataCount = {
