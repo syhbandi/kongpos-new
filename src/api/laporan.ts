@@ -269,3 +269,19 @@ export const getPiutang = async (params: piutangParams, token: string) => {
   });
   return data;
 };
+
+type ExportPiutangType = {
+  data: piutangParams;
+  access_token: string;
+};
+
+export const exportPiutang = async (params: ExportPiutangType) => {
+  const { data } = await api.get("laporan/piutang", {
+    headers: {
+      Authorization: `Bearer ${params.access_token}`,
+    },
+    params: params.data,
+    responseType: "blob",
+  });
+  return data;
+};
