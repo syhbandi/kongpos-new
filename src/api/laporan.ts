@@ -43,6 +43,24 @@ export const getOrderPenjualan = async (
   return data;
 };
 
+type ExportOrderPenjualanType = {
+  data: PenjualanParams;
+  access_token: string;
+};
+
+export const exportOrderPenjualan = async (
+  params: ExportOrderPenjualanType
+) => {
+  const { data } = await api.get("laporan/penjualan_order", {
+    headers: {
+      Authorization: `Bearer ${params.access_token}`,
+    },
+    params: params.data,
+    responseType: "blob",
+  });
+  return data;
+};
+
 export const getReturPenjualan = async (
   params: PenjualanParams,
   token: string
