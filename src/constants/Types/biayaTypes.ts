@@ -9,6 +9,7 @@ export type biayaParams = {
   limit: number;
   length: number;
   count_stats: number;
+  export: number;
 };
 
 export type biayaCount = {

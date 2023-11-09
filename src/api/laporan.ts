@@ -191,6 +191,22 @@ export const getBiaya = async (params: biayaParams, token: string) => {
   return data;
 };
 
+type ExportBiayaType = {
+  data: biayaParams;
+  access_token: string;
+};
+
+export const exportBiaya = async (params: ExportBiayaType) => {
+  const { data } = await api.get("laporan/biaya-newBorn", {
+    headers: {
+      Authorization: `Bearer ${params.access_token}`,
+    },
+    params: params.data,
+    responseType: "blob",
+  });
+  return data;
+};
+
 export const getPendapatan = async (
   params: pendapatanParams,
   token: string
