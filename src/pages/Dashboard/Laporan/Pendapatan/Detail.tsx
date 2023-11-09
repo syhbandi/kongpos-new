@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../../atom/User";
 import { SortingState } from "@tanstack/react-table";
-import { useQueries } from "@tanstack/react-query";
-import { getPendapatan } from "../../../../api/laporan";
+import { useMutation, useQueries } from "@tanstack/react-query";
+import { exportPendapatan, getPendapatan } from "../../../../api/laporan";
 import PageSelect from "../../../../components/Table/PageSelect";
 import Search from "../../../../components/Table/Search";
 import Table from "../../../../components/Table";
@@ -14,6 +14,8 @@ import {
   pendapatanCount,
   pendapatanParams,
 } from "../../../../constants/Types/pendapatanTypes";
+import fileDownload from "js-file-download";
+import { MdDownload } from "react-icons/md";
 
 type Props = {
   jenis: string;
@@ -42,6 +44,7 @@ const Detail = ({ jenis, awal, akhir }: Props) => {
     order_col: "",
     order_type: "",
     search: "",
+    export: 0,
   });
 
   useEffect(() => {
@@ -82,6 +85,18 @@ const Detail = ({ jenis, awal, akhir }: Props) => {
     ],
   });
 
+  const exportMutation = useMutation({
+    mutationFn: exportPendapatan,
+    onSuccess: (data) =>
+      fileDownload(data, `Pendapatan_${params.awal}_${params.akhir}.xlsx`),
+  });
+
+  const onExport = () =>
+    exportMutation.mutate({
+      data: { ...params, export: 1 },
+      access_token: user.access_token,
+    });
+
   useEffect(() => {
     if (queries[0].data && queries[1].data) {
       setData(queries[0].data);
@@ -109,12 +124,22 @@ const Detail = ({ jenis, awal, akhir }: Props) => {
             }))
           }
         />
+        <div className="flex items-center gap-2">
+          <button
+            className="px-3 py-2 rounded bg-green-600 text-white font-medium flex items-center gap-1 hover:bg-green-700 disabled:bg-opacity-50"
+            disabled={!data.length || exportMutation.isLoading}
+            onClick={onExport}
+          >
+            <MdDownload />
+            <span>Expor</span>
+          </button>
 
-        <Search
-          onChange={(cari: string) =>
-            setParams((prev) => ({ ...prev, search: cari, limit: 0 }))
-          }
-        />
+          <Search
+            onChange={(cari: string) =>
+              setParams((prev) => ({ ...prev, search: cari, limit: 0 }))
+            }
+          />
+        </div>
       </div>
       <Table
         data={data}

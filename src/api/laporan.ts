@@ -219,6 +219,22 @@ export const getPendapatan = async (
   return data;
 };
 
+type ExportPendapatanType = {
+  data: pendapatanParams;
+  access_token: string;
+};
+
+export const exportPendapatan = async (params: ExportPendapatanType) => {
+  const { data } = await api.get("laporan/pendapatan-newBorn", {
+    headers: {
+      Authorization: `Bearer ${params.access_token}`,
+    },
+    params: params.data,
+    responseType: "blob",
+  });
+  return data;
+};
+
 export const getHutang = async (params: HutangParams, token: string) => {
   const { data } = await api.post("laporan/hutang", params, {
     headers: {

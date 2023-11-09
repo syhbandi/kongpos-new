@@ -9,6 +9,7 @@ export type pendapatanParams = {
   limit: number;
   length: number;
   count_stats: number;
+  export: number;
 };
 
 export type pendapatanCount = {
