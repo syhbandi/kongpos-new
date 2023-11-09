@@ -126,12 +126,12 @@ const Detail = ({ awal, akhir, jenis }: Props) => {
         />
         <div className="flex items-center gap-2">
           <button
-            className="px-3 py-2 rounded bg-green-600 text-white flex items-center gap-1 hover:bg-green-700 disabled:bg-opacity-50"
+            className="px-3 py-2 rounded bg-green-600 text-white font-medium flex items-center gap-1 hover:bg-green-700 disabled:bg-opacity-50"
             disabled={!data.length || exportMutation.isLoading}
             onClick={onExport}
           >
             <MdDownload />
-            <span>Expor</span>
+            <span>Ekspor</span>
           </button>
           <Search
             onChange={(cari: string) =>
