@@ -20,6 +20,7 @@ import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../atom/User";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../../../components/Dashboard/Spinner";
+import UploadGambar from "../../../components/Produk/UploadGambar";
 
 const schema = yup.object().shape({
   kd_barang: yup.string().required("harus diisi"),
@@ -112,8 +113,8 @@ const Tambah = () => {
         <h1 className="text-2xl font-semibold font-poppins">Tambah Produk</h1>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-start gap-2">
-        <div className="bg-white p-5 rounded shadow w-full lg:flex-grow">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
+        <div className="bg-white p-5 rounded shadow w-full lg:flex-grow col-span-9">
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
               <Input
@@ -179,7 +180,10 @@ const Tambah = () => {
             </form>
           </FormProvider>
         </div>
-        <Satuan MBS={mbs} setMBS={setMbs} />
+        <div className="flex flex-col gap-5 col-span-3">
+          <Satuan MBS={mbs} setMBS={setMbs} />
+          <UploadGambar />
+        </div>
       </div>
     </>
   );

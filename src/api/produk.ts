@@ -1,3 +1,4 @@
+import { AxiosProgressEvent } from "axios";
 import {
   CreateProdukType,
   GetProdukType,
@@ -31,12 +32,20 @@ export const getProduk = async (
 type UploadGambar = {
   data: UploadGambarType;
   access_token: string;
+  progressFunc?: (event: AxiosProgressEvent, files: any) => void;
 };
-export const uploadGambar = async ({ data, access_token }: UploadGambar) => {
+export const uploadGambar = async ({
+  data,
+  access_token,
+  progressFunc,
+}: UploadGambar) => {
   return await api.post("upload-produk", data, {
     headers: {
       Authorization: `Bearer ${access_token}`,
       "Content-Type": "multipart/form-data",
+    },
+    onUploadProgress: (progressEvent) => {
+      progressFunc && progressFunc(progressEvent, data.file);
     },
   });
 };
