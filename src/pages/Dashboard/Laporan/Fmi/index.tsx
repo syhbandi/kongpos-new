@@ -117,24 +117,24 @@ const index = () => {
         sorting={sorting}
         setSorting={setSorting}
       />
-      {query.isSuccess && (
-        <div className="flex items-center gap-2 my-2">
+      <div className="flex items-center gap-2 my-2">
+        {query.isSuccess && data.length ? (
           <div>
             Menampilkan {params.limit + 1} ke {params.limit + data.length} dari{" "}
             {query.data?.jumlah_record}
           </div>
-          <div className="ml-auto">
-            <Pagination
-              dataCount={query.data?.jumlah_record || 0}
-              dataPerPage={params.length}
-              offset={params.limit}
-              setOffset={(offset) =>
-                setParams((prev) => ({ ...prev, limit: offset }))
-              }
-            />
-          </div>
+        ) : null}
+        <div className="ml-auto">
+          <Pagination
+            dataCount={query.data?.jumlah_record || 0}
+            dataPerPage={params.length}
+            offset={params.limit}
+            setOffset={(offset) =>
+              setParams((prev) => ({ ...prev, limit: offset }))
+            }
+          />
         </div>
-      )}
+      </div>
     </div>
   );
 };
