@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdCloudUpload, MdDelete, MdImage } from "react-icons/md";
 import { uploadGambar } from "../../api/produk";
 import { useRecoilValue } from "recoil";
@@ -22,14 +22,23 @@ type gambar = {
 };
 
 type Props = {
+  gambars?: gambar[];
   setGambars: React.Dispatch<React.SetStateAction<gambar[]>>;
 };
 
-const UploadGambar = ({ setGambars }: Props) => {
+const UploadGambar = ({ setGambars, gambars }: Props) => {
   const company_id = useRecoilValue(companyIdState);
   const { access_token } = useRecoilValue(userState);
   const [files, setFiles] = useState<Files[]>([]);
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFiles[]>([]);
+
+  useEffect(() => {
+    if (gambars) {
+      setUploadedFiles(
+        gambars.map(({ gambar }) => ({ fileName: gambar, size: "-" }))
+      );
+    }
+  }, [gambars]);
 
   const mutation = useMutation({
     mutationFn: uploadGambar,
