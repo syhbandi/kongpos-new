@@ -135,9 +135,12 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
       <div className="flex flex-col gap-2 mt-4 max-h-56 overflow-auto scrollbar-custom">
         {uploadedFiles.map((file, index) => (
           <div className="py-3 rounded flex items-center gap-3" key={index}>
-            <span className="text-5xl text-blue-600">
-              <MdImage />
-            </span>
+            <img
+              src={`https://misterkong.com/back_end_mp/${company_id}_config/images/${file.fileName}`}
+              alt={file.fileName}
+              width={45}
+              height={45}
+            />
             <div className="flex-grow">
               <h5 className="font-semibold text-sm">
                 {file.fileName.length > 15
