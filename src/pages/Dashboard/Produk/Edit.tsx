@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SingleProdukType } from "../../../constants/Types/produkTypes";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getProduk, updateProduk, uploadGambar } from "../../../api/produk";
+import { getProduk, updateProduk } from "../../../api/produk";
 import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../atom/User";
 import { object, string } from "yup";
@@ -17,10 +17,10 @@ import Model from "../../../components/Produk/Model";
 import JenisBahan from "../../../components/Produk/JenisBahan";
 import Warna from "../../../components/Produk/Warna";
 import InputTag from "../../../components/Form/InputTag";
-import InputGambar from "../../../components/Form/InputGambar";
 import Select from "../../../components/Form/Select";
 import Spinner from "../../../components/Dashboard/Spinner";
 import Satuan from "../../../components/Produk/Satuan";
+import UploadGambar from "../../../components/Produk/UploadGambar";
 
 const schema = object().shape({
   kd_barang: string().required("harus diisi"),
@@ -44,13 +44,18 @@ type MBSType = {
   margin: string;
 };
 
+type gambars = {
+  gambar: string;
+  nomor: number | string;
+};
+
 const Edit = () => {
   const params = useParams();
   const companyId = useRecoilValue(companyIdState);
   const { access_token } = useRecoilValue(userState);
   const [produk, setProduk] = useState<SingleProdukType>();
   const methods = useForm({ resolver: yupResolver(schema) });
-  const [gambar, setGambar] = useState<File>();
+  const [gambar, setGambar] = useState<gambars[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [mbs, setMbs] = useState<MBSType[]>([]);
   const navigate = useNavigate();
@@ -65,59 +70,33 @@ const Edit = () => {
   });
 
   const queryClient = useQueryClient();
-  const uploadGambarMutation = useMutation({
-    mutationFn: uploadGambar,
-  });
 
   const mutation = useMutation({
     mutationFn: updateProduk,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["produk"] });
-      toast.success("Berhasil menambah produk baru!");
+      toast.success("Berhasil perbarui produk!");
       navigate("/dashboard/produk", { replace: true });
     },
   });
 
   const onSubmit = async (form: any) => {
-    if (gambar) {
-      try {
-        const gambarRes = await uploadGambarMutation.mutateAsync({
-          data: { company_id: companyId, file: gambar },
-          access_token,
-        });
-        await mutation.mutateAsync({
-          data: {
-            company_id: companyId,
-            img: gambarRes?.data?.data?.path?.map(
-              (res: any, index: number) => ({
-                gambar: res,
-                nomor: index + 1,
-              })
-            ),
-            ...form,
-            mbs,
-            tag: tags.join(","),
-          },
-          access_token,
-        });
-      } catch {
-        toast.error("Gagal Menambah produk!");
-        uploadGambarMutation.reset();
-        mutation.reset();
-      }
-      return;
-    } else {
+    try {
       await mutation.mutateAsync({
         data: {
           company_id: companyId,
-          img: [],
+          img: gambar,
           ...form,
           mbs,
           tag: tags.join(","),
         },
         access_token,
       });
+    } catch {
+      toast.error("Gagal perbarui produk!");
+      mutation.reset();
     }
+    return;
   };
 
   useEffect(() => {
@@ -132,6 +111,12 @@ const Edit = () => {
       setTags(produk.m_barang.tag ? produk.m_barang.tag.split(",") : []);
       setMbs(
         produk.m_barang_satuan.map((mbs) => ({ ...mbs, harga: mbs.harga_jual }))
+      );
+      setGambar(
+        produk.m_barang_gambar.map(({ gambar, nomor }) => ({
+          gambar,
+          nomor,
+        }))
       );
     }
   }, [produk]);
@@ -154,8 +139,8 @@ const Edit = () => {
         <h1 className="text-2xl font-semibold font-poppins">Edit Produk</h1>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-start gap-2">
-        <div className="bg-white p-5 rounded shadow w-full lg:flex-grow">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
+        <div className="bg-white p-5 rounded shadow col-span-9">
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
               <Input
@@ -184,13 +169,6 @@ const Edit = () => {
               />
               <Input name="pabrik" label="Pajak" placeholder="Pajak" />
               <InputTag id="tag" label="Tag" tags={tags} setTags={setTags} />
-              <InputGambar
-                label="Gambar"
-                name="gambar"
-                state={gambar}
-                setState={setGambar}
-                multiple
-              />
               <Select
                 name="status"
                 label="Status"
@@ -204,11 +182,9 @@ const Edit = () => {
                 <button
                   type="submit"
                   className="bg-black text-white rounded font-medium py-2 px-3 ml-auto disabled:bg-opacity-70"
-                  disabled={
-                    uploadGambarMutation.isLoading || mutation.isLoading
-                  }
+                  disabled={mutation.isLoading}
                 >
-                  {uploadGambarMutation.isLoading || mutation.isLoading ? (
+                  {mutation.isLoading ? (
                     <Spinner color="text-white" />
                   ) : (
                     "Simpan"
@@ -218,7 +194,10 @@ const Edit = () => {
             </form>
           </FormProvider>
         </div>
-        <Satuan MBS={mbs} setMBS={setMbs} />
+        <div className="col-span-3 flex flex-col gap-5">
+          <Satuan MBS={mbs} setMBS={setMbs} />
+          <UploadGambar setGambars={setGambar} gambars={gambar} />
+        </div>
       </div>
     </>
   );
