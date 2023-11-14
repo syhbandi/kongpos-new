@@ -16,7 +16,16 @@ type UploadedFiles = {
   size: string;
 };
 
-const UploadGambar = () => {
+type gambar = {
+  gambar: string;
+  nomor: number | string;
+};
+
+type Props = {
+  setGambars: React.Dispatch<React.SetStateAction<gambar[]>>;
+};
+
+const UploadGambar = ({ setGambars }: Props) => {
   const company_id = useRecoilValue(companyIdState);
   const { access_token } = useRecoilValue(userState);
   const [files, setFiles] = useState<Files[]>([]);
@@ -60,6 +69,10 @@ const UploadGambar = () => {
       setUploadedFiles((prev) => [
         ...prev,
         { fileName: file[0].name, size: fileSize },
+      ]);
+      setGambars((prev) => [
+        ...prev,
+        { gambar: file[0].name, nomor: prev.length + 1 },
       ]);
       setFiles([]);
     }
@@ -116,14 +129,6 @@ const UploadGambar = () => {
             <span className="text-5xl text-blue-600">
               <MdImage />
             </span>
-            {/* <img
-              src={`https://misterkong.com/back_end_mp/${company_id}_config/images/${file.fileName}`}
-              alt={file.fileName}
-              width={50}
-              height={50}
-              className="object-cover"
-              loading="lazy"
-            /> */}
             <div className="flex-grow">
               <h5 className="font-semibold text-sm">
                 {file.fileName.length > 15

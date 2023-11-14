@@ -7,14 +7,13 @@ import Select from "../../../components/Form/Select";
 import Kategori from "../../../components/Produk/Kategori";
 import Model from "../../../components/Produk/Model";
 import JenisBahan from "../../../components/Produk/JenisBahan";
-import InputGambar from "../../../components/Form/InputGambar";
 import { useState } from "react";
 import Merk from "../../../components/Produk/Merk";
 import Warna from "../../../components/Produk/Warna";
 import InputTag from "../../../components/Form/InputTag";
 import Satuan from "../../../components/Produk/Satuan";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createProduk, uploadGambar } from "../../../api/produk";
+import { createProduk } from "../../../api/produk";
 import { toast } from "react-toastify";
 import { useRecoilValue } from "recoil";
 import { companyIdState, userState } from "../../../atom/User";
@@ -39,20 +38,21 @@ type MBSType = {
   margin: string;
 };
 
+type gambars = {
+  gambar: string;
+  nomor: number | string;
+};
+
 const Tambah = () => {
   const companyId = useRecoilValue(companyIdState);
   const { access_token } = useRecoilValue(userState);
   const methods = useForm({ resolver: yupResolver(schema) });
-  const [gambar, setGambar] = useState<File>();
+  const [gambar, setGambar] = useState<gambars[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [mbs, setMbs] = useState<MBSType[]>([]);
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
-  const uploadGambarMutation = useMutation({
-    mutationFn: uploadGambar,
-  });
-
   const mutation = useMutation({
     mutationFn: createProduk,
     onSuccess: () => {
@@ -64,41 +64,18 @@ const Tambah = () => {
 
   const onSubmit = async (form: any) => {
     try {
-      if (gambar) {
-        const gambarRes = await uploadGambarMutation.mutateAsync({
-          data: { company_id: companyId, file: gambar },
-          access_token,
-        });
-        await mutation.mutateAsync({
-          data: {
-            company_id: companyId,
-            img: gambarRes?.data?.data?.path?.map(
-              (res: any, index: number) => ({
-                gambar: res,
-                nomor: index + 1,
-              })
-            ),
-            ...form,
-            mbs,
-            tag: tags.join(","),
-          },
-          access_token,
-        });
-      } else {
-        await mutation.mutateAsync({
-          data: {
-            company_id: companyId,
-            img: [],
-            ...form,
-            mbs,
-            tag: tags.join(","),
-          },
-          access_token,
-        });
-      }
+      await mutation.mutateAsync({
+        data: {
+          company_id: companyId,
+          img: gambar,
+          ...form,
+          mbs,
+          tag: tags.join(","),
+        },
+        access_token,
+      });
     } catch {
       toast.error("Gagal Menambah produk!");
-      uploadGambarMutation.reset();
       mutation.reset();
     }
   };
@@ -143,13 +120,6 @@ const Tambah = () => {
               />
               <Input name="pabrik" label="Pajak" placeholder="Pajak" />
               <InputTag id="tag" label="Tag" tags={tags} setTags={setTags} />
-              <InputGambar
-                label="Gambar"
-                name="gambar"
-                state={gambar}
-                setState={setGambar}
-                multiple
-              />
               <Select
                 name="status"
                 label="Status"
@@ -163,11 +133,9 @@ const Tambah = () => {
                 <button
                   type="submit"
                   className="bg-black text-white rounded font-medium flex items-center gap-1 py-2 px-3 ml-auto disabled:bg-opacity-70"
-                  disabled={
-                    uploadGambarMutation.isLoading || mutation.isLoading
-                  }
+                  disabled={mutation.isLoading}
                 >
-                  {uploadGambarMutation.isLoading || mutation.isLoading ? (
+                  {mutation.isLoading ? (
                     <Spinner color="text-white" />
                   ) : (
                     <>
@@ -182,7 +150,7 @@ const Tambah = () => {
         </div>
         <div className="flex flex-col gap-5 col-span-3">
           <Satuan MBS={mbs} setMBS={setMbs} />
-          <UploadGambar />
+          <UploadGambar setGambars={setGambar} />
         </div>
       </div>
     </>
