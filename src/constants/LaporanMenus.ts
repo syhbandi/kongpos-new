@@ -57,6 +57,10 @@ export const laporanMenus: Menus[] = [
     title: "laba rugi",
     link: "laba-rugi",
   },
+  {
+    title: "SMI  & FMI",
+    link: "fmi-smi",
+  },
 ];
 
 export const penjualanSubs: Menus[] = [

@@ -6,6 +6,7 @@ import { biayaParams } from "../constants/Types/biayaTypes";
 import { pendapatanParams } from "../constants/Types/pendapatanTypes";
 import { HutangParams } from "../constants/Types/hutangTypes";
 import { piutangParams } from "../constants/Types/piutangTypes";
+import { GetFmisType } from "../constants/Types/fmiTypes";
 
 export const getPenjualan = async (params: PenjualanParams, token: string) => {
   const { data } = await api.post("laporan/penjualan", params, {
@@ -282,6 +283,16 @@ export const exportPiutang = async (params: ExportPiutangType) => {
     },
     params: params.data,
     responseType: "blob",
+  });
+  return data;
+};
+
+export const getFmi = async (params: GetFmisType, access_token: string) => {
+  const { data } = await api.get("laporan/get-fmi-smi-stock", {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+    params,
   });
   return data;
 };
