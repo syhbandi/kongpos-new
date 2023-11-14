@@ -21,7 +21,7 @@ type ExportPenjualanType = {
   access_token: string;
 };
 export const exportPenjualan = async (params: ExportPenjualanType) => {
-  const { data } = await api.get("laporan/penjualan-newBorn", {
+  const { data } = await api.get("laporan/penjualan", {
     headers: {
       Authorization: `Bearer ${params.access_token}`,
     },
@@ -103,7 +103,7 @@ type ExportPembelianType = {
 };
 
 export const exportPembelian = async (params: ExportPembelianType) => {
-  const { data } = await api.get("laporan/pembelian-newBorn", {
+  const { data } = await api.get("laporan/pembelian", {
     headers: {
       Authorization: `Bearer ${params.access_token}`,
     },
@@ -197,7 +197,7 @@ type ExportBiayaType = {
 };
 
 export const exportBiaya = async (params: ExportBiayaType) => {
-  const { data } = await api.get("laporan/biaya-newBorn", {
+  const { data } = await api.get("laporan/biaya", {
     headers: {
       Authorization: `Bearer ${params.access_token}`,
     },
@@ -225,7 +225,7 @@ type ExportPendapatanType = {
 };
 
 export const exportPendapatan = async (params: ExportPendapatanType) => {
-  const { data } = await api.get("laporan/pendapatan-newBorn", {
+  const { data } = await api.get("laporan/pendapatan", {
     headers: {
       Authorization: `Bearer ${params.access_token}`,
     },
