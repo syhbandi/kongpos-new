@@ -7,6 +7,7 @@ import { pendapatanParams } from "../constants/Types/pendapatanTypes";
 import { HutangParams } from "../constants/Types/hutangTypes";
 import { piutangParams } from "../constants/Types/piutangTypes";
 import { GetFmisType } from "../constants/Types/fmiTypes";
+import { GetPersediaanType } from "../constants/Types/persediaanTypes";
 
 export const getPenjualan = async (params: PenjualanParams, token: string) => {
   const { data } = await api.post("laporan/penjualan", params, {
@@ -183,6 +184,26 @@ export const getInventori = async (params: InventoriParams, token: string) => {
   return data;
 };
 
+type ExportInventoriType = {
+  data: InventoriParams;
+  access_token: string;
+};
+
+export const exportInventori = async ({
+  data,
+  access_token,
+}: ExportInventoriType) => {
+  const get = await api.get("laporan/stok", {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+    responseType: "blob",
+    params: data,
+  });
+
+  return get.data;
+};
+
 export const getBiaya = async (params: biayaParams, token: string) => {
   const { data } = await api.post("laporan/biaya", params, {
     headers: {
@@ -293,6 +314,18 @@ export const getFmi = async (params: GetFmisType, access_token: string) => {
       Authorization: `Bearer ${access_token}`,
     },
     params,
+  });
+  return data;
+};
+
+export const getPersediaan = async (
+  params: GetPersediaanType,
+  access_token: string
+) => {
+  const { data } = await api.post("laporan/produk", params, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
   });
   return data;
 };

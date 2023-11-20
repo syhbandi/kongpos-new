@@ -28,6 +28,7 @@ const Pendapatan = lazy(() => import("./pages/Dashboard/Laporan/Pendapatan"));
 const Hutang = lazy(() => import("./pages/Dashboard/Laporan/Hutang"));
 const Piutang = lazy(() => import("./pages/Dashboard/Laporan/Piutang"));
 const Fmi = lazy(() => import("./pages/Dashboard/Laporan/Fmi"));
+const Persediaan = lazy(() => import("./pages/Dashboard/Laporan/Persediaan"));
 const Kontrak = lazy(() => import("./pages/Dashboard/Kontrak"));
 const BuatKontrak = lazy(() => import("./pages/Dashboard/Kontrak/BuatKontrak"));
 const PengajuanKontrak = lazy(
@@ -88,6 +89,7 @@ export const router = createBrowserRouter([
           { path: "piutang", element: <Piutang /> },
           { path: "laba-rugi", element: "" },
           { path: "fmi-smi", element: <Fmi /> },
+          { path: "persediaan", element: <Persediaan /> },
         ],
       },
       {

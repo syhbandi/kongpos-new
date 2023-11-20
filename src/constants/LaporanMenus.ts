@@ -58,58 +58,11 @@ export const laporanMenus: Menus[] = [
     link: "laba-rugi",
   },
   {
-    title: "SMI  & FMI",
+    title: "FMI & SMI",
     link: "fmi-smi",
   },
-];
-
-export const penjualanSubs: Menus[] = [
   {
-    title: "per nota",
-    link: "nota",
-  },
-  {
-    title: "per customer",
-    link: "customer",
-  },
-  {
-    title: "per divisi",
-    link: "divisi",
-  },
-  {
-    title: "per kas",
-    link: "kas",
-  },
-  {
-    title: "per user",
-    link: "user",
-  },
-  {
-    title: "per jenis bayar",
-    link: "jenis-bayar",
-  },
-  {
-    title: "per voucher",
-    link: "voucher",
-  },
-  {
-    title: "per hari",
-    link: "hari",
-  },
-  {
-    title: "per bulan",
-    link: "bulan",
-  },
-  {
-    title: "per tahun",
-    link: "tahun",
-  },
-  {
-    title: "per barang",
-    link: "barang",
-  },
-  {
-    title: "per pegawai",
-    link: "pegawai",
+    title: "Persediaan",
+    link: "persediaan",
   },
 ];

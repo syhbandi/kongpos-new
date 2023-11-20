@@ -10,6 +10,7 @@ export type InventoriParams = {
   limit: number;
   length: number;
   count_stats: number;
+  export: number;
 };
 
 export type InventoriCount = { jumlah_record: string };
