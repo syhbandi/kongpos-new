@@ -95,7 +95,10 @@ const Detail = ({ awal, akhir, jenis }: Props) => {
   });
 
   const onExport = () =>
-    exportMutation.mutate({ data: { ...params, export: 1 }, access_token });
+    exportMutation.mutate({
+      data: { ...params, export: 1, limit: 0, length: 0 },
+      access_token,
+    });
 
   useEffect(() => {
     if (queries[0].data && queries[1].data) {

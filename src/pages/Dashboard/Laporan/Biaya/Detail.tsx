@@ -97,6 +97,8 @@ const Detail = ({ jenis, awal, akhir }: Props) => {
       data: {
         ...params,
         export: 1,
+        limit: 0,
+        length: 0,
       },
       access_token: user.access_token,
     });
