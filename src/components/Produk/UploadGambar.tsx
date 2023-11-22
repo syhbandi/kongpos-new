@@ -112,7 +112,13 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
               </span>
               <div className="w-full">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm font-semibold">{file.fileName}</span>
+                  <span className="text-sm font-semibold">
+                    {file.fileName.length > 15
+                      ? file.fileName.slice(0, 15) +
+                        "...." +
+                        file.fileName.split(".")[1]
+                      : file.fileName}
+                  </span>
                   <span className="text-sm font-semibold">
                     {file.progress}%
                   </span>
