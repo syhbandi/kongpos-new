@@ -6,7 +6,7 @@ const nota = [
   helper.display({
     header: "No. Transaksi",
     cell: ({ row: { original } }) => {
-      return original["No. Transaksi"];
+      return original["No. Transaksi"] || original["No Transaksi"];
     },
   }),
   helper.accessor("Tanggal", {

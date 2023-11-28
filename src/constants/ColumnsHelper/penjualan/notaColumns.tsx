@@ -4,8 +4,11 @@ import { useFormatTanggal } from "../../../hooks/userFormat";
 
 const helper = createColumnHelper<PenjualanPerNota>();
 const notaColumns = [
-  helper.accessor("No Transaksi", {
-    cell: (data) => data.getValue(),
+  helper.display({
+    header: "no. transaksi",
+    cell: ({ row: { original } }) => {
+      return original["No. Transaksi"] || original["No Transaksi"];
+    },
   }),
   helper.accessor("Tanggal", {
     cell: (data) => useFormatTanggal(data.getValue()),
@@ -28,6 +31,7 @@ const notaColumns = [
         }).format(parseFloat(data.getValue()))}
       </div>
     ),
+    header: () => <div className="text-right">total</div>,
   }),
 ];
 

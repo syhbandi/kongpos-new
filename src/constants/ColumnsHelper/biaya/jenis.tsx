@@ -12,6 +12,7 @@ const jenis = [
         {userFormatRupiah(parseFloat(data.getValue()))}
       </div>
     ),
+    header: () => <div className="text-right">Total</div>,
   }),
 ];
 export default jenis;

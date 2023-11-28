@@ -199,12 +199,13 @@ const Info = ({ data, count }: InfoTypes) => {
     "Sisa Hutang": userFormatRupiah(parseFloat(count["Sisa Hutang"])),
   };
 
+  if (!data.length) return null;
   return (
     <table className="w-full">
       <thead>
         <tr>
           {Object.keys(all).map((a) => (
-            <td className="p-2 border border-gray-400 text-center" key={a}>
+            <td className="p-2 border border-gray-400 text-right" key={a}>
               {a}
             </td>
           ))}

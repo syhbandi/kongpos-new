@@ -43,12 +43,12 @@ const Table = <TData extends Object>({
             {headerGroup.headers.map((header) => (
               <th
                 key={header.id}
-                className="border border-gray-400 p-2 uppercase"
+                className="border-y border-gray-400 p-3 uppercase text-left"
               >
                 <div
                   {...{
                     className: header.column.getCanSort()
-                      ? "cursor-pointer select-none relative"
+                      ? "cursor-pointer select-none relative text-left"
                       : "",
                     onClick: header.column.getToggleSortingHandler(),
                   }}
@@ -79,7 +79,7 @@ const Table = <TData extends Object>({
         {isLoading ? (
           <tr>
             <td
-              className="border border-gray-400 p-2 text-center"
+              className="border-b border-gray-400 p-3 text-center"
               colSpan={table.getHeaderGroups()[0].headers.length}
             >
               <Spinner />
@@ -89,13 +89,10 @@ const Table = <TData extends Object>({
           table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
-              className="hover:bg-gray-100 odd:bg-gray-100 even:bg-white"
+              className="hover:bg-gray-100 odd:bg-gray-100 even:bg-white last:border-b last:border-gray-400"
             >
               {row.getVisibleCells().map((cell) => (
-                <td
-                  key={cell.id}
-                  className="border border-gray-400 p-2 text-center"
-                >
+                <td key={cell.id} className="p-3">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -104,7 +101,7 @@ const Table = <TData extends Object>({
         ) : (
           <tr>
             <td
-              className="border border-gray-400 p-2 text-center"
+              className="p-3 text-center border-b border-gray-400"
               colSpan={table.getHeaderGroups()[0].headers.length}
             >
               Tidak menemukan data

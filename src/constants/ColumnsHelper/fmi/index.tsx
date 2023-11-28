@@ -13,17 +13,36 @@ const fmiColumns = [
   helper.accessor("jenis", { cell: (data) => data.getValue() }),
   helper.accessor("nomor", { cell: (data) => data.getValue() }),
   helper.accessor("jumlah", {
-    cell: (data) => useFormatNumber(parseFloat(data.getValue())),
+    header: () => <div className="text-right">jumlah</div>,
+    cell: (data) => (
+      <div className="text-right">
+        {useFormatNumber(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
   helper.accessor("saldo", {
-    cell: (data) => useFormatNumber(parseFloat(data.getValue())),
+    header: () => <div className="text-right">saldo</div>,
+    cell: (data) => (
+      <div className="text-right">
+        {useFormatNumber(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
   helper.accessor("sisa_stok", {
-    cell: (data) => useFormatNumber(parseFloat(data.getValue())),
-    header: "sisa stok",
+    header: () => <div className="text-right">sisa stok</div>,
+    cell: (data) => (
+      <div className="text-right">
+        {useFormatNumber(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
   helper.accessor("total", {
-    cell: (data) => useFormatNumber(parseFloat(data.getValue())),
+    header: () => <div className="text-right">total</div>,
+    cell: (data) => (
+      <div className="text-right">
+        {useFormatNumber(parseFloat(data.getValue()))}
+      </div>
+    ),
   }),
 ];
 

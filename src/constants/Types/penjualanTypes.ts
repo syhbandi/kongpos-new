@@ -18,7 +18,8 @@ export type PenjualanDataCount = {
 };
 
 export type PenjualanPerNota = {
-  "No Transaksi": string;
+  "No. Transaksi": string;
+  "No Transaksi"?: string;
   Tanggal: string;
   Divisi: string;
   Customer: string;
