@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { logo } from "../../constants/Images";
 import SidebarMenu from "./SidebarMenu";
 import { MdSearch } from "react-icons/md";
@@ -7,7 +7,21 @@ import { sidebarState } from "../../atom/sidebar";
 
 const Sidebar = () => {
   const [cari, setCari] = useState("");
-  const [isAktif] = useRecoilState(sidebarState);
+  const [isAktif, setIsAktif] = useRecoilState(sidebarState);
+
+  const onResize = () => {
+    if (window.innerWidth <= 768) {
+      setIsAktif(false);
+    } else {
+      setIsAktif(true);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", onResize);
+
+    return () => window.removeEventListener("resize", onResize);
+  });
 
   return (
     <div
