@@ -12,6 +12,39 @@ export type GetPersediaanType = {
   kd_barang?: string;
 };
 
+export type GetMutasiStokType = {
+  company_id: string;
+  awal: string;
+  akhir: string;
+  search: string;
+  order_col: string;
+  order_type: string;
+  limit: number;
+  length: number;
+};
+
+export type MutasiStokType = {
+  kd_barang: string;
+  barang: string;
+  satuan_terkecil: string;
+  saldo_awal_qty: number;
+  saldo_awal_rp: number;
+  pembelian_qty: number;
+  pembelian_rp: number;
+  penjualan_qty: number;
+  penjualan_rp: number;
+  opname_masuk_qty: number;
+  opname_masuk_rp: number;
+  opname_keluar_qty: number;
+  opname_keluar_rp: number;
+  retur_pembelian_qty: number;
+  retur_pembelian_rp: number;
+  retur_penjualan_qty: number;
+  retur_penjualan_rp: number;
+  saldo_akhir_qty: number;
+  saldo_akhir_rp: number;
+};
+
 export type SisaStokType = {
   kd_barang: string;
   nama_barang: string;

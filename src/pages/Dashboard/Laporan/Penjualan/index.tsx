@@ -8,7 +8,7 @@ const index = () => {
   const [akhir, setAkhir] = useState(new Date().toISOString().split("T")[0]);
   const [jenis, setJenis] = useState("1");
   return (
-    <div className="bg-white p-5 rounded shadow">
+    <div className="bg-white p-5 rounded shadow overflow-auto">
       <div className="flex items-center gap-3 mb-5">
         <div className="flex items-center gap-3">
           <label htmlFor="awal">Awal</label>

@@ -7,7 +7,10 @@ import { pendapatanParams } from "../constants/Types/pendapatanTypes";
 import { HutangParams } from "../constants/Types/hutangTypes";
 import { piutangParams } from "../constants/Types/piutangTypes";
 import { GetFmisType } from "../constants/Types/fmiTypes";
-import { GetPersediaanType } from "../constants/Types/persediaanTypes";
+import {
+  GetMutasiStokType,
+  GetPersediaanType,
+} from "../constants/Types/persediaanTypes";
 
 export const getPenjualan = async (params: PenjualanParams, token: string) => {
   const { data } = await api.post("laporan/penjualan", params, {
@@ -323,6 +326,19 @@ export const getPersediaan = async (
   access_token: string
 ) => {
   const { data } = await api.post("laporan/produk", params, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+  return data;
+};
+
+export const getMutasiStok = async (
+  params: GetMutasiStokType,
+  access_token: string
+) => {
+  const { data } = await api.get("laporan/mutasi-stock", {
+    params,
     headers: {
       Authorization: `Bearer ${access_token}`,
     },

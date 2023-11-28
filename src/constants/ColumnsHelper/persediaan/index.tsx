@@ -3,6 +3,7 @@ import pergerakanStokColumns from "./PergerakanStok";
 import sisaStokColumns from "./SisaStok";
 import tingkatLakuProdukColumns from "./TingkatLakuProduk";
 import usiaStokColumns from "./UsiaStok";
+import mutasiStokColumns from "./mutasiStok";
 
 type PersediaanColumnType = {
   jenis: string | number;
@@ -13,8 +14,8 @@ type PersediaanColumnType = {
 const PersediaanColumn: PersediaanColumnType[] = [
   {
     jenis: 1,
-    nama: "Sisa Stok",
-    columns: sisaStokColumns,
+    nama: "Mutasi Stok",
+    columns: mutasiStokColumns,
   },
   {
     jenis: 3,

@@ -112,7 +112,7 @@ const Detail = ({ awal, akhir, jenis }: Props) => {
   };
 
   return (
-    <div>
+    <>
       <div className="flex items-center mb-2 justify-between">
         <PageSelect
           id="length"
@@ -169,7 +169,7 @@ const Detail = ({ awal, akhir, jenis }: Props) => {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

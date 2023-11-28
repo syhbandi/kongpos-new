@@ -87,7 +87,10 @@ const Table = <TData extends Object>({
           </tr>
         ) : table.getRowModel().rows.length ? (
           table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="hover:bg-gray-100">
+            <tr
+              key={row.id}
+              className="hover:bg-gray-100 odd:bg-gray-100 even:bg-white"
+            >
               {row.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
