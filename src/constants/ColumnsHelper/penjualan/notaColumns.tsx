@@ -31,7 +31,7 @@ const notaColumns = [
         }).format(parseFloat(data.getValue()))}
       </div>
     ),
-    header: () => <div className="text-right">total</div>,
+    header: () => <div className="ml-auto">total</div>,
   }),
 ];
 

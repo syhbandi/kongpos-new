@@ -25,7 +25,7 @@ const Gambar = ({ produk }: Props) => {
 
   return (
     <>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center">
         <button
           className="py-2 px-3 rounded bg-sky-100 text-sky-700 text-sm font-medium hover:bg-sky-200 flex items-center gap-1"
           onClick={() => setOpen(true)}

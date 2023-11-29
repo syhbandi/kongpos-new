@@ -30,6 +30,7 @@ const nota = [
         }).format(parseFloat(data.getValue()))}
       </div>
     ),
+    header: () => <div className="ml-auto">total</div>,
   }),
 ];
 

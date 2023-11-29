@@ -34,7 +34,7 @@ const nota = [
         {userFormatRupiah(parseFloat(data.getValue()))}
       </div>
     ),
-    header: () => <div className="text-right">Total</div>,
+    header: () => <div className="ml-auto">Total</div>,
   }),
 ];
 export default nota;

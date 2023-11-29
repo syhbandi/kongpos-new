@@ -6,7 +6,10 @@ import {
   SortingState,
   OnChangeFn,
 } from "@tanstack/react-table";
-import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
+import {
+  MdOutlineKeyboardArrowDown,
+  MdOutlineKeyboardArrowUp,
+} from "react-icons/md";
 import Spinner from "../Dashboard/Spinner";
 
 type Props<TData> = {
@@ -36,7 +39,7 @@ const Table = <TData extends Object>({
   });
 
   return (
-    <table className="w-full overflow-auto">
+    <table className="w-full overflow-auto border border-gray-400">
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
@@ -45,10 +48,10 @@ const Table = <TData extends Object>({
                 key={header.id}
                 className="border-y border-gray-400 p-3 uppercase text-left"
               >
-                <div
+                <span
                   {...{
                     className: header.column.getCanSort()
-                      ? "cursor-pointer select-none relative text-left"
+                      ? "cursor-pointer select-none relative flex items-center gap-1"
                       : "",
                     onClick: header.column.getToggleSortingHandler(),
                   }}
@@ -58,18 +61,10 @@ const Table = <TData extends Object>({
                     header.getContext()
                   )}
                   {{
-                    asc: (
-                      <div className="absolute right-0 top-0 h-full flex items-center justify-center">
-                        <MdArrowDropUp />
-                      </div>
-                    ),
-                    desc: (
-                      <div className="absolute right-0 top-0 h-full flex items-center justify-center">
-                        <MdArrowDropDown />
-                      </div>
-                    ),
+                    asc: <MdOutlineKeyboardArrowUp className="text-xl" />,
+                    desc: <MdOutlineKeyboardArrowDown className="text-xl" />,
                   }[header.column.getIsSorted() as string] ?? null}
-                </div>
+                </span>
               </th>
             ))}
           </tr>
@@ -79,7 +74,7 @@ const Table = <TData extends Object>({
         {isLoading ? (
           <tr>
             <td
-              className="border-b border-gray-400 p-3 text-center"
+              className=" p-3 text-center"
               colSpan={table.getHeaderGroups()[0].headers.length}
             >
               <Spinner />
@@ -89,7 +84,7 @@ const Table = <TData extends Object>({
           table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
-              className="hover:bg-gray-100 odd:bg-gray-100 even:bg-white last:border-b last:border-gray-400"
+              className="hover:bg-gray-200 even:bg-gray-100 odd:bg-white"
             >
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="p-3">
@@ -101,7 +96,7 @@ const Table = <TData extends Object>({
         ) : (
           <tr>
             <td
-              className="p-3 text-center border-b border-gray-400"
+              className="p-3 text-center"
               colSpan={table.getHeaderGroups()[0].headers.length}
             >
               Tidak menemukan data

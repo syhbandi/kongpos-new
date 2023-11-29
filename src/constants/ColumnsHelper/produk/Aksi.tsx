@@ -7,7 +7,7 @@ type Props = {
 };
 const Aksi = ({ produk }: Props) => {
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className="flex items-center gap-2">
       <Link to={"edit/" + produk.kd_barang}>
         <button className="rounded p-2 bg-black text-white text-sm font-medium hover:bg-gray-800">
           <MdEdit />

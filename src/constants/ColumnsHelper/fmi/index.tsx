@@ -13,7 +13,7 @@ const fmiColumns = [
   helper.accessor("jenis", { cell: (data) => data.getValue() }),
   helper.accessor("nomor", { cell: (data) => data.getValue() }),
   helper.accessor("jumlah", {
-    header: () => <div className="text-right">jumlah</div>,
+    header: () => <div className="ml-auto">jumlah</div>,
     cell: (data) => (
       <div className="text-right">
         {useFormatNumber(parseFloat(data.getValue()))}
@@ -21,7 +21,7 @@ const fmiColumns = [
     ),
   }),
   helper.accessor("saldo", {
-    header: () => <div className="text-right">saldo</div>,
+    header: () => <div className="ml-auto">saldo</div>,
     cell: (data) => (
       <div className="text-right">
         {useFormatNumber(parseFloat(data.getValue()))}
@@ -29,7 +29,7 @@ const fmiColumns = [
     ),
   }),
   helper.accessor("sisa_stok", {
-    header: () => <div className="text-right">sisa stok</div>,
+    header: () => <div className="ml-auto">sisa stok</div>,
     cell: (data) => (
       <div className="text-right">
         {useFormatNumber(parseFloat(data.getValue()))}
@@ -37,7 +37,7 @@ const fmiColumns = [
     ),
   }),
   helper.accessor("total", {
-    header: () => <div className="text-right">total</div>,
+    header: () => <div className="ml-auto">total</div>,
     cell: (data) => (
       <div className="text-right">
         {useFormatNumber(parseFloat(data.getValue()))}

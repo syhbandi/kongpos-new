@@ -26,7 +26,7 @@ const style: styleType[] = [
 
 const Status = ({ produk }: Props) => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center">
       <span
         className={`text-sm rounded py-2 px-3 font-medium ${
           style.find((s) => produk.status === s.status)?.className

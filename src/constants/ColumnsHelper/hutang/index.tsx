@@ -16,7 +16,7 @@ const hutangColumns = [
         {userFormatRupiah(parseFloat(data.getValue()))}
       </div>
     ),
-    header: () => <div className="text-right">Total pembelian</div>,
+    header: () => <div className="ml-auto">Total pembelian</div>,
   }),
   helper.accessor("Total Cicilan", {
     cell: (data) => (
@@ -24,7 +24,7 @@ const hutangColumns = [
         {userFormatRupiah(parseFloat(data.getValue()))}
       </div>
     ),
-    header: () => <div className="text-right">Total cicilan</div>,
+    header: () => <div className="ml-auto">Total cicilan</div>,
   }),
   helper.accessor("Sisa Hutang", {
     cell: (data) => (
@@ -32,7 +32,7 @@ const hutangColumns = [
         {userFormatRupiah(parseFloat(data.getValue()))}
       </div>
     ),
-    header: () => <div className="text-right">sisa hutang</div>,
+    header: () => <div className="ml-auto">sisa hutang</div>,
   }),
 ];
 
