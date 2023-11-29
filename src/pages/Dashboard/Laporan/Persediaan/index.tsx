@@ -19,26 +19,24 @@ const index = () => {
   const [jenis, setJenis] = useState<string>("1");
 
   return (
-    <div className="bg-white rounded shadow">
-      <div className="border-b border-gray-100">
-        {persediaanPages.map((page) => (
-          <button
-            className={`p-5  bg-white rounded-t ${
-              jenis === page.jenis ? "border-b-2 border-kong" : ""
-            }`}
-            onClick={() => setJenis(page.jenis)}
-            key={page.jenis}
-          >
-            <span className={jenis === page.jenis ? "font-semibold" : ""}>
-              {page.nama}
-            </span>
-          </button>
-        ))}
-      </div>
-      <div className="p-5">
+    <>
+      {persediaanPages.map((page) => (
+        <button
+          className={`px-8 py-3  rounded-t ${
+            jenis === page.jenis ? "bg-white" : "bg-gray-300"
+          }`}
+          onClick={() => setJenis(page.jenis)}
+          key={page.jenis}
+        >
+          <span className={jenis === page.jenis ? "font-semibold " : ""}>
+            {page.nama}
+          </span>
+        </button>
+      ))}
+      <div className="bg-white rounded-b shadow p-5">
         {persediaanPages.find((page) => page.jenis === jenis)?.halaman}
       </div>
-    </div>
+    </>
   );
 };
 

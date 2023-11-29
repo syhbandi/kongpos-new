@@ -7,9 +7,18 @@ type Props = {
   setOpen: (open: boolean) => void;
   children: ReactNode;
   title: string;
+  variant?:
+    | "max-w-xl"
+    | "max-w-2xl"
+    | "max-w-3xl"
+    | "max-w-4xl"
+    | "max-w-5xl"
+    | "max-w-6xl"
+    | "max-w-7xl"
+    | "max-w-full";
 };
 
-const Modal = ({ open, setOpen, children, title }: Props) => {
+const Modal = ({ open, setOpen, children, title, variant }: Props) => {
   return (
     <Transition appear show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={() => setOpen(false)}>
@@ -36,7 +45,11 @@ const Modal = ({ open, setOpen, children, title }: Props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded bg-white p-4 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel
+                className={`w-full ${
+                  variant || "max-w-lg"
+                } transform overflow-hidden rounded bg-white p-4 text-left align-middle shadow-xl transition-all`}
+              >
                 <div className="flex items-center justify-between mb-3">
                   <h1 className="text-xl font-semibold font-poppins">
                     {title}

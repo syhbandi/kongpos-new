@@ -47,7 +47,7 @@ const MutasiStok = () => {
   return (
     <>
       {/* periode */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col md:flex-row items-center gap-3">
         <div className="flex items-center gap-3 mb-5">
           <label htmlFor="awal">Awal </label>
           <DateRange
@@ -79,7 +79,7 @@ const MutasiStok = () => {
           />
         </div>
       </div>
-      <div className="flex items-center mb-2 justify-between">
+      <div className="flex flex-col md:flex-row gap-2 items-center mb-2 justify-between">
         <PageSelect
           id="length"
           name="length"
@@ -116,7 +116,7 @@ const MutasiStok = () => {
         sorting={sorting}
         setSorting={setSorting}
       />
-      <div className="mt-2 flex items-center">
+      <div className="mt-2 flex flex-col md:flex-row items-center gap-2">
         <span>
           Menampilkan {params.limit + 1} ke {params.length + params.limit} dari{" "}
           {query?.data?.jumlah_record}
