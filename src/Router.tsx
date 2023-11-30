@@ -56,6 +56,7 @@ const Mapping = lazy(
 const Produk = lazy(() => import("./pages/Dashboard/Produk"));
 const TambahProduk = lazy(() => import("./pages/Dashboard/Produk/Tambah"));
 const EditProduk = lazy(() => import("./pages/Dashboard/Produk/Edit"));
+const Mapper = lazy(() => import("./pages/mapper"));
 
 export const router = createBrowserRouter([
   {
@@ -130,5 +131,13 @@ export const router = createBrowserRouter([
       </Suspense>
     ),
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "mapper",
+    element: (
+      <Suspense fallback={<TopbarProgress />}>
+        <Mapper />
+      </Suspense>
+    ),
   },
 ]);
