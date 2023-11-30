@@ -31,7 +31,7 @@ function index() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
-    <>
+    <div className="font-poppins bg-gray-200">
       <nav
         className={`fixed top-0 w-full z-10 ease-in-out duration-300 ${
           scrolled ? "bg-gray-800" : null
@@ -70,7 +70,7 @@ function index() {
             </h1>
             <div className="mt-5 flex items-center justify-center gap-3">
               <button
-                className="rounded-md bg-[#ffc90d] py-3 px-8 font-semibold text-base hover:bg-opacity-80 text-gray-200"
+                className="rounded-md bg-[#ffc90d] py-3 px-8 font-semibold text-base hover:bg-opacity-80 "
                 onClick={() => onGoTo(pricingRef)}
               >
                 Mulai
@@ -86,7 +86,7 @@ function index() {
         </div>
       </div>
       <section id="pricing" ref={pricingRef}>
-        <div className="lg:container mx-auto px-5 py-10">
+        <div className="lg:container mx-auto px-5 py-10 font-poppins">
           <div className="flex flex-col items-center justify-center gap-3">
             <h1 className="text-3xl font-bold text-center">Pricing</h1>
             <div className="w-7 h-1 rounded-full bg-[#ffc90d]"></div>
@@ -129,7 +129,7 @@ function index() {
               </div>
             </div>
           </div>
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
             {paket.map((paket) => (
               <div
                 className={` rounded-md px-6 py-10  hover:shadow-lg hover:scale-[1.02] ease-in-out duration-500 relative ${
@@ -212,11 +212,26 @@ function index() {
                 </ul>
               </div>
             ))}
+            <div
+              className={` rounded-md px-6 py-10  hover:shadow-lg hover:scale-[1.02] ease-in-out duration-500 relative 
+                  bg-white text-gray-gray-800 shadow`}
+            >
+              <h3 className="text-xl font-medium text-center mb-5 capitalize">
+                Enterprise
+              </h3>
+              <h1 className="font-semibold text-3xl text-center mb-10 flex justify-center flex-wrap items-end">
+                *Call for Price
+              </h1>
+              <p className="font-medium text-center">*Call for Feature</p>
+            </div>
           </div>
+          <p className="text-center text-gray-500 font-medium text-xl mt-10">
+            *Untuk aplikator lain hubungi kami untuk open API
+          </p>
         </div>
       </section>
       <section id="hubungi-kami" ref={hubKamiRef}>
-        <div className="lg:container mx-auto px-5 py-10">
+        <div className="lg:container mx-auto px-5 py-10 font-poppins">
           <div className="flex flex-col items-center justify-center gap-3">
             <h1 className="text-3xl font-bold text-center">Hubungi Kami</h1>
             <p className="text-base font-medium text-gray-800 text-center">
@@ -290,7 +305,7 @@ function index() {
           </p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 
