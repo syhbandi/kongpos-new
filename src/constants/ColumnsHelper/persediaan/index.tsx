@@ -1,6 +1,6 @@
 import daftarHargaColumns from "./DaftarHarga";
 import pergerakanStokColumns from "./PergerakanStok";
-import sisaStokColumns from "./SisaStok";
+// import sisaStokColumns from "./SisaStok";
 import tingkatLakuProdukColumns from "./TingkatLakuProduk";
 import usiaStokColumns from "./UsiaStok";
 import mutasiStokColumns from "./mutasiStok";
