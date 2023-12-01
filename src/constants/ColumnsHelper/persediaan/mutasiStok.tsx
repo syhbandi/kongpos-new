@@ -128,7 +128,7 @@ const Aksi = ({ data }: Props) => {
         title={`Kartu Stok - ${data?.barang}`}
         open={modalOpen}
         setOpen={setModalOpen}
-        variant="max-w-4xl"
+        variant="max-w-5xl"
       >
         <KartuStok kdBarang={data?.kd_barang} />
       </Modal>
