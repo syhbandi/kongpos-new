@@ -26,7 +26,7 @@ const kartuStokColumns = [
         <span className="text-green-600">
           {userFormatRupiah(original.rupiah_masuk)}
         </span>
-        <span>/</span>
+        <span> / </span>
         <span className="text-green-600">
           {useFormatNumber(original.qty_masuk)}
         </span>
@@ -40,7 +40,7 @@ const kartuStokColumns = [
         <span className="text-red-600">
           {userFormatRupiah(original.rupiah_keluar)}
         </span>
-        <span>/</span>
+        <span> / </span>
         <span className="text-red-600">
           {useFormatNumber(original.qty_keluar)}
         </span>
@@ -56,7 +56,7 @@ const kartuStokColumns = [
         >
           {userFormatRupiah(original.saldo_rp)}
         </span>
-        <span>/</span>
+        <span> / </span>
         <span
           className={original.saldo_qty < 0 ? "text-red-600" : "text-green-600"}
         >
