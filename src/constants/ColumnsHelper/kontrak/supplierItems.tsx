@@ -34,11 +34,11 @@ const supplierItemsColumns = [
     cell: ({ row: { original } }) => {
       const status = original.stats.split(",");
       return (
-        <div className="flex flex-col items-center justify-center gap-2">
+        <div className="flex flex-col gap-2">
           {status.map((s, index) => (
             <span
               key={"status" + original.kd_barang + s + index}
-              className="flex items-center gap-2 justify-center"
+              className="flex items-center gap-2"
             >
               <div
                 className={`p-2 text-sm font-medium  rounded capitalize ${
@@ -72,7 +72,7 @@ const supplierItemsColumns = [
           {satuan.map((s, index) => (
             <div
               key={"aksi" + original.kd_barang + s + index}
-              className="flex items-center gap-2 justify-center"
+              className="flex items-center gap-2"
             >
               <button
                 className="bg-black rounded py-2 px-3 text-white text-sm font-medium hover:bg-gray-800 flex items-center gap-2"

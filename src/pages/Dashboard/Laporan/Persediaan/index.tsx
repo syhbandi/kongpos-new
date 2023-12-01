@@ -1,3 +1,4 @@
+import KartuStokAll from "./KartuStokAll";
 import MutasiStok from "./MutasiStok";
 import { useState } from "react";
 
@@ -12,6 +13,11 @@ const persediaanPages: PersediaanPages[] = [
     jenis: "1",
     nama: "Mutasi Stok",
     halaman: <MutasiStok />,
+  },
+  {
+    jenis: "2",
+    nama: "Kartu Stok",
+    halaman: <KartuStokAll />,
   },
 ];
 
