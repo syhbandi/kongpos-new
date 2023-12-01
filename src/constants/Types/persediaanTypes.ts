@@ -43,6 +43,30 @@ export type MutasiStokType = {
   retur_penjualan_rp: number;
   saldo_akhir_qty: number;
   saldo_akhir_rp: number;
+  awal: string;
+  akhir: string;
+};
+
+export type GetKartuStokType = {
+  company_id: string;
+  kd_barang: string;
+  awal: string;
+  akhir: string;
+  limit: number;
+  length: number;
+};
+
+export type KartuStokType = {
+  no_transaksi: string;
+  jenis_transaksi: string;
+  qty_masuk: number;
+  rupiah_masuk: number;
+  qty_keluar: number;
+  rupiah_keluar: number;
+  saldo_qty: number;
+  saldo_rp: number;
+  average: string;
+  tanggal: string;
 };
 
 export type SisaStokType = {
@@ -50,13 +74,6 @@ export type SisaStokType = {
   nama_barang: string;
   sisa_stok: string;
   stok_min: string;
-};
-
-export type KartuStokType = {
-  kd_barang: string;
-  nama_barang: string;
-  tanggal: string;
-  sisa_stok: string;
 };
 
 export type TingkatLakuStok = {

@@ -22,9 +22,22 @@ const mutasiStokColumns = [
   helper.display({
     header: "saldo Awal",
     cell: ({ row: { original } }) => (
-      <div className="text-right">
-        {userFormatRupiah(original.saldo_awal_rp)}/
-        <strong>{useFormatNumber(original.saldo_awal_qty)}</strong>
+      <div className="font-medium">
+        <span
+          className={`${
+            original.saldo_awal_rp < 0 ? "text-red-600" : "text-green-600"
+          }`}
+        >
+          {userFormatRupiah(original.saldo_awal_rp)}
+        </span>
+        /
+        <span
+          className={
+            original.saldo_awal_qty < 0 ? "text-red-600" : "text-green-600"
+          }
+        >
+          {useFormatNumber(original.saldo_awal_qty)}
+        </span>
       </div>
     ),
   }),
@@ -93,14 +106,14 @@ const mutasiStokColumns = [
   }),
   helper.display({
     header: "aksi",
-    cell: ({ row: { original } }) => <Aksi kd_barang={original.kd_barang} />,
+    cell: ({ row: { original } }) => <Aksi data={original} />,
   }),
 ];
 
 type Props = {
-  kd_barang: string;
+  data: MutasiStokType;
 };
-const Aksi = ({ kd_barang }: Props) => {
+const Aksi = ({ data }: Props) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -112,12 +125,12 @@ const Aksi = ({ kd_barang }: Props) => {
         <MdRemoveRedEye />
       </button>
       <Modal
-        title="Kartu Stok"
+        title={`Kartu Stok - ${data?.barang}`}
         open={modalOpen}
         setOpen={setModalOpen}
-        variant="max-w-3xl"
+        variant="max-w-4xl"
       >
-        <KartuStok kdBarang={kd_barang} />
+        <KartuStok kdBarang={data?.kd_barang} />
       </Modal>
     </>
   );

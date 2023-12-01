@@ -11,8 +11,10 @@ import Table from "../../../../components/Table";
 import mutasiStokColumns from "../../../../constants/ColumnsHelper/persediaan/mutasiStok";
 import { SortingState } from "@tanstack/react-table";
 import Pagination from "../../../../components/Table/Pagination";
+import { useSearchParams } from "react-router-dom";
 
 const MutasiStok = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const company_id = useRecoilValue(companyIdState);
   const { access_token } = useRecoilValue(userState);
   const [params, setParams] = useState<GetMutasiStokType>({
@@ -43,6 +45,11 @@ const MutasiStok = () => {
     queryKey: ["mutasiStok", params],
     queryFn: () => getMutasiStok(params, access_token),
   });
+
+  useEffect(() => {
+    setSearchParams({ awal: params.awal, akhir: params.akhir });
+    console.log(searchParams);
+  }, [params.awal, params.akhir]);
 
   return (
     <>

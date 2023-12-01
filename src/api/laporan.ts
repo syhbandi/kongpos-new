@@ -8,6 +8,7 @@ import { HutangParams } from "../constants/Types/hutangTypes";
 import { piutangParams } from "../constants/Types/piutangTypes";
 import { GetFmisType } from "../constants/Types/fmiTypes";
 import {
+  GetKartuStokType,
   GetMutasiStokType,
   GetPersediaanType,
 } from "../constants/Types/persediaanTypes";
@@ -342,6 +343,20 @@ export const getMutasiStok = async (
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
+  });
+
+  return { ...data, awal: params.awal, akhir: params.akhir };
+};
+
+export const getKartuStok = async (
+  params: GetKartuStokType,
+  access_token: string
+) => {
+  const { data } = await api.get("laporan/kartu-stock", {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+    params,
   });
   return data;
 };
