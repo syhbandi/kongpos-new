@@ -64,7 +64,12 @@ const CariBarang = ({ setBarang, setModal }: Props) => {
                 className="cursor-pointer py-2 hover:rounded hover:font-medium"
                 onClick={() => onSelect(barang)}
               >
-                {barang.nama}
+                <div className="flex flex-col gap-1">
+                  {barang.nama}
+                  <span className="text-sm text-gray-400">
+                    {barang.kd_barang}
+                  </span>
+                </div>
               </li>
             ))}
             {!query.isLoading && (
