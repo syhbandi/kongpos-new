@@ -7,10 +7,10 @@ const bulan = [
   helper.accessor("Kode Divisi", {
     cell: (data) => data.getValue(),
   }),
-  helper.accessor("Periode", {
+  helper.accessor("Divisi", {
     cell: (data) => data.getValue(),
   }),
-  helper.accessor("Divisi", {
+  helper.accessor("Periode", {
     cell: (data) => data.getValue(),
   }),
   helper.accessor("Total", {

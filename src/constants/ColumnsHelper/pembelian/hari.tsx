@@ -7,13 +7,12 @@ const hari = [
   helper.accessor("Kode Divisi", {
     cell: (data) => data.getValue(),
   }),
-  helper.accessor("Tanggal", {
-    cell: (data) => data.getValue(),
-  }),
   helper.accessor("Divisi", {
     cell: (data) => data.getValue(),
   }),
-
+  helper.accessor("Tanggal", {
+    cell: (data) => data.getValue(),
+  }),
   helper.accessor("Total", {
     cell: (data) => (
       <div className="text-right">
