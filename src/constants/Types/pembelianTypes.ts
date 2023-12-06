@@ -90,4 +90,5 @@ export type PembelianPerBarang = {
   Divisi: string;
   Total: string;
   satuan: string;
+  jumlah: number;
 };

@@ -1,5 +1,5 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { userFormatRupiah } from "../../../hooks/userFormat";
+import { useFormatNumber, userFormatRupiah } from "../../../hooks/userFormat";
 import { PembelianPerBarang } from "../../Types/pembelianTypes";
 
 const helper = createColumnHelper<PembelianPerBarang>();
@@ -18,6 +18,9 @@ const barang = [
   }),
   helper.accessor("Divisi", {
     cell: (data) => data.getValue(),
+  }),
+  helper.accessor("jumlah", {
+    cell: (data) => useFormatNumber(data.getValue()),
   }),
   helper.accessor("Total", {
     cell: (data) => (
