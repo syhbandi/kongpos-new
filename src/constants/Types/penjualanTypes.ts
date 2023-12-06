@@ -96,6 +96,7 @@ export type PenjualanPerBarang = {
   Divisi: string;
   Total: string;
   jumlah: string;
+  satuan: string;
 };
 
 export type PenjualanPerPegawai = {

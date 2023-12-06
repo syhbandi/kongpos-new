@@ -7,13 +7,16 @@ const penjualanPerBarangColumns = [
   helper.accessor("Kode Barang", {
     cell: (data) => data.getValue(),
   }),
+  helper.accessor("Produk", {
+    cell: (data) => data.getValue(),
+  }),
+  helper.accessor("satuan", {
+    cell: (data) => data.getValue(),
+  }),
   helper.accessor("Kode Divisi", {
     cell: (data) => data.getValue(),
   }),
   helper.accessor("Divisi", {
-    cell: (data) => data.getValue(),
-  }),
-  helper.accessor("Produk", {
     cell: (data) => data.getValue(),
   }),
   helper.accessor("jumlah", {

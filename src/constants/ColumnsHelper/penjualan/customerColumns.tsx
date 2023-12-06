@@ -7,16 +7,16 @@ const penjualanCustomerColumns = [
   helper.accessor("Kode Customer", {
     cell: (data) => data.getValue(),
   }),
-  helper.accessor("Kode Divisi", {
+  helper.accessor("Customer", {
     cell: (data) => data.getValue(),
   }),
-  helper.accessor("Jumlah Nota", {
+  helper.accessor("Kode Divisi", {
     cell: (data) => data.getValue(),
   }),
   helper.accessor("Divisi", {
     cell: (data) => data.getValue(),
   }),
-  helper.accessor("Customer", {
+  helper.accessor("Jumlah Nota", {
     cell: (data) => data.getValue(),
   }),
   helper.accessor("Total", {

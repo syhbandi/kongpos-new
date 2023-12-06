@@ -7,11 +7,11 @@ const penjualanPerHariColumns = [
   helper.accessor("Kode Divisi", {
     cell: (data) => data.getValue(),
   }),
-  helper.accessor("Tanggal", {
-    cell: (data) => useFormatTanggal(data.getValue()),
-  }),
   helper.accessor("Divisi", {
     cell: (data) => data.getValue(),
+  }),
+  helper.accessor("Tanggal", {
+    cell: (data) => useFormatTanggal(data.getValue()),
   }),
 
   helper.accessor("Total", {

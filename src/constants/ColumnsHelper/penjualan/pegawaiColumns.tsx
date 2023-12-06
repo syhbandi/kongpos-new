@@ -7,10 +7,10 @@ const PenjualanPerPegawaiColumns = [
   helper.accessor("Kode Pegawai", {
     cell: (data) => data.getValue(),
   }),
-  helper.accessor("Kode Divisi", {
+  helper.accessor("pegawai", {
     cell: (data) => data.getValue(),
   }),
-  helper.accessor("pegawai", {
+  helper.accessor("Kode Divisi", {
     cell: (data) => data.getValue(),
   }),
   helper.accessor("Divisi", {
