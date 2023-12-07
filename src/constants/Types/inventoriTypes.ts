@@ -21,10 +21,12 @@ export type StokPerPeriode = {
   Barang: string;
   Divisi: string;
   Stok: string;
+  harga_jual: number;
 };
 
 export type StokPerBarang = {
   "Kode Barang": string;
   Barang: string;
+  harga_jual: number;
   Stok: string;
 };
