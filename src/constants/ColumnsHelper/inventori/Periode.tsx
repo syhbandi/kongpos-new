@@ -10,10 +10,6 @@ const periode = [
   helper.accessor("Barang", {
     cell: (data) => data.getValue(),
   }),
-  helper.accessor("harga_jual", {
-    cell: (data) => userFormatRupiah(data.getValue()),
-    header: "Harga",
-  }),
   helper.accessor("Kode Divisi", {
     cell: (data) => data.getValue(),
   }),
@@ -22,6 +18,12 @@ const periode = [
   }),
   helper.accessor("Stok", {
     cell: (data) => data.getValue(),
+  }),
+  helper.accessor("harga_jual", {
+    cell: (data) => (
+      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+    ),
+    header: () => <div className="ml-auto">harga</div>,
   }),
 ];
 
