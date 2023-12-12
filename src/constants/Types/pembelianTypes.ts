@@ -25,6 +25,9 @@ export type PembelianPerNota = {
   Supplier: string;
   "Jumlah Item": string;
   Total: string;
+  pajak: number;
+  potongan: number;
+  total_kotor: number;
 };
 
 export type PembelianPerSupplier = {
@@ -34,6 +37,9 @@ export type PembelianPerSupplier = {
   Divisi: string;
   Supplier: string;
   Total: string;
+  pajak: number;
+  potongan: number;
+  total_kotor: number;
 };
 
 export type PembelianPerDivisi = {
@@ -42,24 +48,36 @@ export type PembelianPerDivisi = {
   Divisi: string;
   "Kepala Nota": string;
   Total: string;
+  pajak: number;
+  potongan: number;
+  total_kotor: number;
 };
 
 export type PembelianPerKas = {
   "Kode Kas": string;
   "No Rekening": string;
   Total: string;
+  pajak: number;
+  potongan: number;
+  total_kotor: number;
 };
 
 export type PembelianPerUser = {
   "Kode User": string;
   User: string;
   Total: string;
+  pajak: number;
+  potongan: number;
+  total_kotor: number;
 };
 
 export type PembelianPerJenisBayar = {
   "Kode Jenis": string;
   "Jenis Bayar": string;
   Total: string;
+  pajak: number;
+  potongan: number;
+  total_kotor: number;
 };
 
 export type PembelianPerHari = {
@@ -67,6 +85,9 @@ export type PembelianPerHari = {
   Tanggal: string;
   Divisi: string;
   Total: string;
+  pajak: number;
+  potongan: number;
+  total_kotor: number;
 };
 
 export type PembelianPerBulan = {
@@ -74,6 +95,9 @@ export type PembelianPerBulan = {
   Periode: string;
   Divisi: string;
   Total: string;
+  pajak: number;
+  potongan: number;
+  total_kotor: number;
 };
 
 export type PembelianPerTahun = {
@@ -81,6 +105,9 @@ export type PembelianPerTahun = {
   Periode: string;
   Divisi: string;
   Total: string;
+  pajak: number;
+  potongan: number;
+  total_kotor: number;
 };
 
 export type PembelianPerBarang = {
@@ -91,4 +118,7 @@ export type PembelianPerBarang = {
   Total: string;
   satuan: string;
   jumlah: number;
+  pajak: number;
+  potongan: number;
+  total_kotor: number;
 };

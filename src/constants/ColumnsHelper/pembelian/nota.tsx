@@ -1,5 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { PembelianPerNota } from "../../Types/pembelianTypes";
+import { userFormatRupiah } from "../../../hooks/userFormat";
 
 const helper = createColumnHelper<PembelianPerNota>();
 const nota = [
@@ -20,6 +21,24 @@ const nota = [
   }),
   helper.accessor("Jumlah Item", {
     cell: (data) => data.getValue(),
+  }),
+  helper.accessor("total_kotor", {
+    cell: (data) => (
+      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+    ),
+    header: () => <div className="ml-auto">total kotor</div>,
+  }),
+  helper.accessor("potongan", {
+    cell: (data) => (
+      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+    ),
+    header: () => <div className="ml-auto">potongan</div>,
+  }),
+  helper.accessor("pajak", {
+    cell: (data) => (
+      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+    ),
+    header: () => <div className="ml-auto">pajak</div>,
   }),
   helper.accessor("Total", {
     cell: (data) => (
