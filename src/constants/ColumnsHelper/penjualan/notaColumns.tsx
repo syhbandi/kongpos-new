@@ -1,6 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { PenjualanPerNota } from "../../Types/penjualanTypes";
-import { useFormatTanggal } from "../../../hooks/userFormat";
+import { useFormatTanggal, userFormatRupiah } from "../../../hooks/userFormat";
 
 const helper = createColumnHelper<PenjualanPerNota>();
 const notaColumns = [
@@ -21,6 +21,30 @@ const notaColumns = [
   }),
   helper.accessor("Jumlah Item", {
     cell: (data) => data.getValue(),
+  }),
+  helper.accessor("total_kotor", {
+    cell: (data) => (
+      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+    ),
+    header: () => <div className="ml-auto">total kotor</div>,
+  }),
+  helper.accessor("potongan", {
+    cell: (data) => (
+      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+    ),
+    header: () => <div className="ml-auto">potongan</div>,
+  }),
+  helper.accessor("diskon_uang", {
+    cell: (data) => (
+      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+    ),
+    header: () => <div className="ml-auto">diskon</div>,
+  }),
+  helper.accessor("pajak", {
+    cell: (data) => (
+      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+    ),
+    header: () => <div className="ml-auto">pajak</div>,
   }),
   helper.accessor("Total", {
     cell: (data) => (
