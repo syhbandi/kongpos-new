@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MdCloudUpload, MdDelete, MdImage } from "react-icons/md";
 import { uploadGambar } from "../../api/produk";
 import { useRecoilValue } from "recoil";
@@ -9,11 +9,6 @@ import { AxiosProgressEvent } from "axios";
 type Files = {
   fileName: string;
   progress: number;
-};
-
-type UploadedFiles = {
-  fileName: string;
-  size: string;
 };
 
 type gambar = {
@@ -30,15 +25,6 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
   const company_id = useRecoilValue(companyIdState);
   const { access_token } = useRecoilValue(userState);
   const [files, setFiles] = useState<Files[]>([]);
-  const [uploadedFiles, setUploadedFiles] = useState<UploadedFiles[]>([]);
-
-  useEffect(() => {
-    if (gambars) {
-      setUploadedFiles(
-        gambars.map(({ gambar }) => ({ fileName: gambar, size: "-" }))
-      );
-    }
-  }, [gambars]);
 
   const mutation = useMutation({
     mutationFn: uploadGambar,
@@ -62,6 +48,10 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
     });
   };
 
+  const onDelete = (nomor: string | number) => {
+    setGambars((prev) => prev.filter((gambar) => gambar.nomor !== nomor));
+  };
+
   const progressFunc = ({ loaded, total }: AxiosProgressEvent, file: any) => {
     setFiles((prev) => {
       const newData = [...prev];
@@ -71,14 +61,6 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
       return newData;
     });
     if (loaded === total) {
-      const fileSize =
-        total < 1024
-          ? `${total} KB`
-          : `${(total / (1024 * 1024)).toFixed(2)} MB`;
-      setUploadedFiles((prev) => [
-        ...prev,
-        { fileName: file[0].name, size: fileSize },
-      ]);
       setGambars((prev) => [
         ...prev,
         { gambar: file[0].name, nomor: prev.length + 1 },
@@ -139,25 +121,30 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
         )}
       </div>
       <div className="flex flex-col gap-2 mt-4 max-h-56 overflow-auto scrollbar-custom">
-        {uploadedFiles.map((file, index) => (
+        {gambars?.map((file, index) => (
           <div className="py-3 rounded flex items-center gap-3" key={index}>
             <img
-              src={`https://misterkong.com/back_end_mp/${company_id}_config/images/${file.fileName}`}
-              alt={file.fileName}
+              src={`https://misterkong.com/back_end_mp/${company_id}_config/images/${
+                file.gambar
+              }?${new Date()}`}
+              alt={file.gambar}
               width={45}
               height={45}
             />
             <div className="flex-grow">
               <h5 className="font-semibold text-sm">
-                {file.fileName.length > 15
-                  ? file.fileName.slice(0, 15) +
+                {file.gambar.length > 15
+                  ? file.gambar.slice(0, 15) +
                     "...." +
-                    file.fileName.split(".")[1]
-                  : file.fileName}
+                    file.gambar.split(".")[1]
+                  : file.gambar}
               </h5>
-              <h6 className=" text-sm">{file.size}</h6>
+              {/* <h6 className=" text-sm">{file.size}</h6> */}
             </div>
-            <button className="outline-none text-red-600 text-lg">
+            <button
+              className="outline-none text-red-600 text-lg"
+              onClick={() => onDelete(file.nomor)}
+            >
               <MdDelete />
             </button>
           </div>

@@ -150,7 +150,7 @@ const Tambah = () => {
         </div>
         <div className="flex flex-col gap-5 col-span-3">
           <Satuan MBS={mbs} setMBS={setMbs} />
-          <UploadGambar setGambars={setGambar} />
+          <UploadGambar setGambars={setGambar} gambars={gambar} />
         </div>
       </div>
     </>
