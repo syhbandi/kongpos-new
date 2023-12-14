@@ -4,8 +4,8 @@ import ReactPaginate from "react-paginate";
 
 type Props = {
   dataCount: number | any;
-  dataPerPage: number;
-  offset: number;
+  dataPerPage: number | any;
+  offset: number | any;
   setOffset: (e: number) => void;
 };
 
