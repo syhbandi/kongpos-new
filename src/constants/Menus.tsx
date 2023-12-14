@@ -1,7 +1,10 @@
 import { ReactElement } from "react";
 import {
+  MdCategory,
   MdDashboard,
+  MdDns,
   MdFileOpen,
+  MdLabel,
   MdOutlineHandshake,
   MdOutlineLogout,
   MdQrCode,
@@ -12,6 +15,7 @@ type Menus = {
   link: string;
   icon: ReactElement;
   isEnd?: boolean;
+  subMenu?: Menus[];
 };
 const menus: Menus[] = [
   {
@@ -21,9 +25,15 @@ const menus: Menus[] = [
     isEnd: true,
   },
   {
-    title: "Produk",
-    link: "produk",
-    icon: <MdQrCode />,
+    title: "Data Master",
+    icon: <MdDns />,
+    link: "",
+    subMenu: [
+      { title: "produk", icon: <MdQrCode />, link: "produk" },
+      { title: "kategori", icon: <MdCategory />, link: "kategori" },
+      { title: "satuan", icon: <MdLabel />, link: "satuan" },
+      { title: "merk", icon: <MdLabel />, link: "merk" },
+    ],
   },
   {
     title: "Laporan",
