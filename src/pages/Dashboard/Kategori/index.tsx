@@ -84,8 +84,12 @@ const index = () => {
         />
         <div className="flex items-center justify-between mt-2">
           <div>
-            Menampilkan {params.limit + 1} ke {params.limit + data?.data.length}{" "}
-            dari {data?.jumlah_record}
+            {data?.data ? (
+              <>
+                Menampilkan {params.limit + 1} ke{" "}
+                {params.limit + data?.data.length} dari {data?.jumlah_record}
+              </>
+            ) : null}
           </div>
           <Pagination
             dataCount={data?.jumlah_record}
