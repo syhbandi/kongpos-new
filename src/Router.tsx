@@ -58,6 +58,8 @@ const TambahProduk = lazy(() => import("./pages/Dashboard/Produk/Tambah"));
 const EditProduk = lazy(() => import("./pages/Dashboard/Produk/Edit"));
 const Mapper = lazy(() => import("./pages/mapper"));
 const Kategori = lazy(() => import("./pages/Dashboard/Kategori"));
+const TambahKategori = lazy(() => import("./pages/Dashboard/Kategori/Tambah"));
+const EditKategori = lazy(() => import("./pages/Dashboard/Kategori/Edit"));
 const Satuan = lazy(() => import("./pages/Dashboard/Satuan"));
 const Merk = lazy(() => import("./pages/Dashboard/Merk"));
 
@@ -115,6 +117,8 @@ export const router = createBrowserRouter([
       { path: "produk/tambah", element: <TambahProduk /> },
       { path: "produk/edit/:kd_barang", element: <EditProduk /> },
       { path: "kategori", element: <Kategori /> },
+      { path: "kategori/tambah", element: <TambahKategori /> },
+      { path: "kategori/edit/:kd_kategori", element: <EditKategori /> },
       { path: "satuan", element: <Satuan /> },
       { path: "merk", element: <Merk /> },
     ],

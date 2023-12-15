@@ -39,3 +39,17 @@ export const createKategori = async ({
   });
   return data;
 };
+
+export const updateKategori = async ({
+  body,
+  access_token,
+}: {
+  body: CreateKategoriType;
+  access_token: string;
+}) => {
+  return await api.put("kategori", body, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+};

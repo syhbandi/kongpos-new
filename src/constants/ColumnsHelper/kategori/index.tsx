@@ -1,6 +1,7 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { KategoriType } from "../../Types/kategoriTypes";
 import Status from "./Status";
+import Aksi from "./Aksi";
 
 const helper = createColumnHelper<KategoriType>();
 const kategoriColumns = [
@@ -16,6 +17,10 @@ const kategoriColumns = [
   }),
   helper.accessor("status", {
     cell: (data) => <Status status={data.getValue()} />,
+  }),
+  helper.display({
+    header: "aksi",
+    cell: ({ row: { original } }) => <Aksi kode={original.kd_kategori} />,
   }),
 ];
 

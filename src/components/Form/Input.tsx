@@ -8,6 +8,7 @@ type Props = {
   autoFocus?: boolean;
   multiline?: boolean;
   placeholder?: string;
+  disabled?: boolean;
 };
 
 const Input = ({
@@ -17,6 +18,7 @@ const Input = ({
   autoFocus,
   multiline,
   placeholder,
+  disabled,
 }: Props) => {
   const {
     register,
@@ -38,6 +40,7 @@ const Input = ({
             className={`p-2 outline-none border border-gray-300 rounded-md focus:border-gray-500 w-full`}
             autoFocus={autoFocus}
             placeholder={placeholder}
+            disabled={disabled}
           ></textarea>
         ) : (
           <input
@@ -47,6 +50,7 @@ const Input = ({
             className={`p-2 outline-none border border-gray-300 rounded-md focus:border-gray-500 w-full`}
             autoFocus={autoFocus}
             placeholder={placeholder}
+            disabled={disabled}
           />
         )}
         {errors[name] && (
