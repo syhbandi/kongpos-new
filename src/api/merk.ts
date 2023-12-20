@@ -33,3 +33,15 @@ export const createMerk = async ({
   });
   return data;
 };
+export const updateMerk = async ({
+  body,
+  access_token,
+}: {
+  body: CreateMerkType;
+  access_token: string;
+}) => {
+  const { data } = await api.put("merk", body, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
+  return data;
+};
