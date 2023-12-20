@@ -37,3 +37,11 @@ export const createSatuan = async ({ data, access_token }: CreateSatuan) => {
     headers: { Authorization: `Bearer ${access_token}` },
   });
 };
+
+export const updateSatuan = async ({ data, access_token }: CreateSatuan) => {
+  return await api.put("satuan", data, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+};

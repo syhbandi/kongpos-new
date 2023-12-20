@@ -3,8 +3,8 @@ export type GetSatuansType = {
   order_col: string;
   order_type: string;
   search: string;
-  limit: string;
-  length: string;
+  limit: any;
+  length: any;
 };
 
 export type GetSatuanType = {

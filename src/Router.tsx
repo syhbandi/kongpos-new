@@ -61,6 +61,8 @@ const Kategori = lazy(() => import("./pages/Dashboard/Kategori"));
 const TambahKategori = lazy(() => import("./pages/Dashboard/Kategori/Tambah"));
 const EditKategori = lazy(() => import("./pages/Dashboard/Kategori/Edit"));
 const Satuan = lazy(() => import("./pages/Dashboard/Satuan"));
+const TambahSatuan = lazy(() => import("./pages/Dashboard/Satuan/Tambah"));
+const EditSatuan = lazy(() => import("./pages/Dashboard/Satuan/Edit"));
 const Merk = lazy(() => import("./pages/Dashboard/Merk"));
 
 export const router = createBrowserRouter([
@@ -120,6 +122,8 @@ export const router = createBrowserRouter([
       { path: "kategori/tambah", element: <TambahKategori /> },
       { path: "kategori/edit/:kd_kategori", element: <EditKategori /> },
       { path: "satuan", element: <Satuan /> },
+      { path: "satuan/tambah", element: <TambahSatuan /> },
+      { path: "satuan/edit/:kd_satuan", element: <EditSatuan /> },
       { path: "merk", element: <Merk /> },
     ],
     errorElement: <ErrorPage />,
