@@ -35,3 +35,14 @@ export const createModel = async ({
     headers: { Authorization: `Bearer ${access_token}` },
   });
 };
+export const updateModel = async ({
+  body,
+  access_token,
+}: {
+  body: CreateModelType;
+  access_token: string;
+}) => {
+  return await api.put("model", body, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
+};

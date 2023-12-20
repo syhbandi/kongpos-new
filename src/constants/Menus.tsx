@@ -32,7 +32,8 @@ const menus: Menus[] = [
       { title: "produk", icon: <MdQrCode />, link: "produk" },
       { title: "kategori", icon: <MdCategory />, link: "kategori" },
       { title: "satuan", icon: <MdLabel />, link: "satuan" },
-      { title: "merk", icon: <MdLabel />, link: "merk" },
+      { title: "merk", icon: <MdCategory />, link: "merk" },
+      { title: "model", icon: <MdCategory />, link: "model" },
     ],
   },
   {

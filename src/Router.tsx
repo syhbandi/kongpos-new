@@ -66,6 +66,9 @@ const EditSatuan = lazy(() => import("./pages/Dashboard/Satuan/Edit"));
 const Merk = lazy(() => import("./pages/Dashboard/Merk"));
 const TambahMerk = lazy(() => import("./pages/Dashboard/Merk/Tambah"));
 const EditMerk = lazy(() => import("./pages/Dashboard/Merk/Edit"));
+const Model = lazy(() => import("./pages/Dashboard/model"));
+const TambahModel = lazy(() => import("./pages/Dashboard/model/Tambah"));
+const EditModel = lazy(() => import("./pages/Dashboard/model/Edit"));
 
 export const router = createBrowserRouter([
   {
@@ -129,6 +132,9 @@ export const router = createBrowserRouter([
       { path: "merk", element: <Merk /> },
       { path: "merk/tambah", element: <TambahMerk /> },
       { path: "merk/edit/:kd_merk", element: <EditMerk /> },
+      { path: "model", element: <Model /> },
+      { path: "model/tambah", element: <TambahModel /> },
+      { path: "model/edit/:kd_model", element: <EditModel /> },
     ],
     errorElement: <ErrorPage />,
   },
