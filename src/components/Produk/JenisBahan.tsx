@@ -42,7 +42,7 @@ const JenisBahan = () => {
   return (
     <div className="flex gap-2 items-end mb-5">
       <Select
-        label="JenisBahan"
+        label="Jenis Bahan"
         name="kd_jenis_bahan"
         options={jenisBahans
           .filter((jenisBahan) => jenisBahan.status !== "0")
