@@ -69,6 +69,11 @@ const EditMerk = lazy(() => import("./pages/Dashboard/Merk/Edit"));
 const Model = lazy(() => import("./pages/Dashboard/model"));
 const TambahModel = lazy(() => import("./pages/Dashboard/model/Tambah"));
 const EditModel = lazy(() => import("./pages/Dashboard/model/Edit"));
+const JenisBahan = lazy(() => import("./pages/Dashboard/JenisBahan"));
+const TambahJenisBahan = lazy(
+  () => import("./pages/Dashboard/JenisBahan/Tambah")
+);
+const EditJenisBahan = lazy(() => import("./pages/Dashboard/JenisBahan/Edit"));
 
 export const router = createBrowserRouter([
   {
@@ -135,6 +140,9 @@ export const router = createBrowserRouter([
       { path: "model", element: <Model /> },
       { path: "model/tambah", element: <TambahModel /> },
       { path: "model/edit/:kd_model", element: <EditModel /> },
+      { path: "jenis-bahan", element: <JenisBahan /> },
+      { path: "jenis-bahan/tambah", element: <TambahJenisBahan /> },
+      { path: "jenis-bahan/edit/:kd_jenis_bahan", element: <EditJenisBahan /> },
     ],
     errorElement: <ErrorPage />,
   },

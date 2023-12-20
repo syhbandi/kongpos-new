@@ -3,8 +3,8 @@ export type GetJenisBahansType = {
   order_col: string;
   order_type: string;
   search: string;
-  limit: string;
-  length: string;
+  limit: number | any;
+  length: number | any;
 };
 
 export type GetJenisBahanType = { company_id: string; kd_jenis_bahan: string };

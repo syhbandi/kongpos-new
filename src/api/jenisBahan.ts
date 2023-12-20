@@ -38,3 +38,14 @@ export const createJenisBahan = async ({
     headers: { Authorization: `Bearer ${access_token}` },
   });
 };
+export const updateJenisBahan = async ({
+  body,
+  access_token,
+}: {
+  body: CreateJenisBahanType;
+  access_token: string;
+}) => {
+  return await api.put("jenis_bahan", body, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
+};
