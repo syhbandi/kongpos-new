@@ -4,7 +4,7 @@ export type GetMerksType = {
   order_type: string;
   search: string;
   limit: number | any;
-  length: number;
+  length: number | any;
 };
 
 export type MerkType = {

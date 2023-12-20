@@ -49,12 +49,10 @@ const Kategori = () => {
         noMargin={true}
         options={
           kategoris
-            ? kategoris
-                .filter((kategori) => kategori.status !== "0")
-                .map((kategori) => ({
-                  value: kategori.kd_kategori,
-                  label: kategori.nama,
-                }))
+            ? kategoris.map((kategori) => ({
+                value: kategori.kd_kategori,
+                label: kategori.nama,
+              }))
             : []
         }
         isLoading={query.isLoading}

@@ -45,12 +45,10 @@ const Merk = () => {
         name="kd_merk"
         options={
           merks
-            ? merks
-                .filter((merk) => merk.status !== "0")
-                .map((merk) => ({
-                  value: merk.kd_merk,
-                  label: merk.nama,
-                }))
+            ? merks.map((merk) => ({
+                value: merk.kd_merk,
+                label: merk.nama,
+              }))
             : []
         }
         noMargin={true}

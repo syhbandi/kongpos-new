@@ -44,12 +44,10 @@ const JenisBahan = () => {
       <Select
         label="Jenis Bahan"
         name="kd_jenis_bahan"
-        options={jenisBahans
-          .filter((jenisBahan) => jenisBahan.status !== "0")
-          .map((jenisBahan) => ({
-            value: jenisBahan.kd_jenis_bahan,
-            label: jenisBahan.nama,
-          }))}
+        options={jenisBahans.map((jenisBahan) => ({
+          value: jenisBahan.kd_jenis_bahan,
+          label: jenisBahan.nama,
+        }))}
         noMargin={true}
         isLoading={query.isLoading}
       />

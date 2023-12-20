@@ -46,12 +46,10 @@ const Warna = () => {
         noMargin={true}
         options={
           warnas
-            ? warnas
-                .filter((warna) => warna.status !== "0")
-                .map((warna) => ({
-                  value: warna.kd_warna,
-                  label: warna.nama,
-                }))
+            ? warnas.map((warna) => ({
+                value: warna.kd_warna,
+                label: warna.nama,
+              }))
             : []
         }
         isLoading={query.isLoading}
