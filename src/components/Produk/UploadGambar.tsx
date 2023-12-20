@@ -36,6 +36,7 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.length) return;
+    if (e.target.files[0]?.size >= 50000) return;
     const fileName = e.target.files[0].name;
     setFiles((prev) => [...prev, { fileName, progress: 0 }]);
     mutation.mutate({
@@ -71,11 +72,12 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
 
   return (
     <div className="bg-white shadow rounded p-5">
-      <h1 className="font-medium mb-5">Gambar</h1>
+      <h1 className="font-medium mb-5">Foto Produk</h1>
       <label htmlFor="upload-gambar" className="cursor-pointer mb-5">
         <div className="rounded border-2 border-dashed border-gray-300 py-10 flex flex-col items-center gap-1 justify-center">
           <MdCloudUpload className="text-blue-500 text-4xl" />
-          Telusuri file
+          <span className="font-medium">Telusuri file</span>
+          <span className="text-sm text-gray-400">(Max. 10Kb)</span>
         </div>
       </label>
       <input
