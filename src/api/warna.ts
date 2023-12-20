@@ -35,3 +35,14 @@ export const createWarna = async ({
     headers: { Authorization: `Bearer ${access_token}` },
   });
 };
+export const updateWarna = async ({
+  body,
+  access_token,
+}: {
+  body: CreateWarnaType;
+  access_token: string;
+}) => {
+  return await api.put("warna", body, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
+};

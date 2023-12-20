@@ -35,6 +35,7 @@ const menus: Menus[] = [
       { title: "merk", icon: <MdCategory />, link: "merk" },
       { title: "model", icon: <MdCategory />, link: "model" },
       { title: "jenis bahan", icon: <MdCategory />, link: "jenis-bahan" },
+      { title: "warna", icon: <MdCategory />, link: "warna" },
     ],
   },
   {

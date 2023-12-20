@@ -3,8 +3,8 @@ export type GetWarnasType = {
   order_col: string;
   order_type: string;
   search: string;
-  limit: string;
-  length: string;
+  limit: number | any;
+  length: number | any;
 };
 
 export type WarnaType = {
