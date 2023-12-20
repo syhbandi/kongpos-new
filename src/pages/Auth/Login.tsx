@@ -37,7 +37,12 @@ const Login = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    mutation.mutate({ no_hp: userName, passwd: password });
+    const no_hp = userName.includes("@")
+      ? userName
+      : userName.slice(0, 1) === "0"
+      ? "62" + userName.slice(1, userName.length)
+      : userName;
+    mutation.mutate({ no_hp, passwd: password });
   };
 
   if (Object.keys(user).length) return <Navigate to={"/dashboard"} />;
