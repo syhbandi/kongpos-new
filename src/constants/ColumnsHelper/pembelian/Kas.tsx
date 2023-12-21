@@ -20,7 +20,7 @@ const kas = [
     cell: (data) => (
       <div className="text-right">{userFormatRupiah(data.getValue())}</div>
     ),
-    header: () => <div className="ml-auto">potongan</div>,
+    header: () => <div className="ml-auto">diskon</div>,
   }),
   helper.accessor("pajak", {
     cell: (data) => (
