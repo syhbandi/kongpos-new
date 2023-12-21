@@ -32,6 +32,12 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
       setFiles([]);
       mutation.reset();
     },
+    onSuccess: (data) => {
+      setGambars((prev) => [
+        ...prev,
+        { gambar: data?.data?.data?.path[0], nomor: prev.length + 1 },
+      ]);
+    },
   });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,7 +59,7 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
     setGambars((prev) => prev.filter((gambar) => gambar.nomor !== nomor));
   };
 
-  const progressFunc = ({ loaded, total }: AxiosProgressEvent, file: any) => {
+  const progressFunc = ({ loaded, total }: AxiosProgressEvent) => {
     setFiles((prev) => {
       const newData = [...prev];
       newData[newData.length - 1].progress = Math.floor(
@@ -62,10 +68,6 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
       return newData;
     });
     if (loaded === total) {
-      setGambars((prev) => [
-        ...prev,
-        { gambar: file[0].name, nomor: prev.length + 1 },
-      ]);
       setFiles([]);
     }
   };
@@ -77,7 +79,7 @@ const UploadGambar = ({ setGambars, gambars }: Props) => {
         <div className="rounded border-2 border-dashed border-gray-300 py-10 flex flex-col items-center gap-1 justify-center">
           <MdCloudUpload className="text-blue-500 text-4xl" />
           <span className="font-medium">Telusuri file</span>
-          <span className="text-sm text-gray-400">(Max. 10Kb)</span>
+          <span className="text-sm text-gray-400">(Max. 50Kb)</span>
         </div>
       </label>
       <input

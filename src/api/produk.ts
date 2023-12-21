@@ -32,7 +32,7 @@ export const getProduk = async (
 type UploadGambar = {
   data: UploadGambarType;
   access_token: string;
-  progressFunc?: (event: AxiosProgressEvent, files: any) => void;
+  progressFunc?: (event: AxiosProgressEvent) => void;
 };
 export const uploadGambar = async ({
   data,
@@ -45,7 +45,7 @@ export const uploadGambar = async ({
       "Content-Type": "multipart/form-data",
     },
     onUploadProgress: (progressEvent) => {
-      progressFunc && progressFunc(progressEvent, data.file);
+      progressFunc && progressFunc(progressEvent);
     },
   });
 };
