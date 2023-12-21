@@ -28,17 +28,14 @@ const notaColumns = [
     ),
     header: () => <div className="ml-auto">total kotor</div>,
   }),
-  helper.accessor("potongan", {
-    cell: (data) => (
-      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
-    ),
-    header: () => <div className="ml-auto">potongan</div>,
-  }),
-  helper.accessor("diskon_uang", {
-    cell: (data) => (
-      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
-    ),
+  helper.display({
+    id: "diskon",
     header: () => <div className="ml-auto">diskon</div>,
+    cell: ({ row: { original } }) => (
+      <div className="text-right">
+        {userFormatRupiah(original.diskon_uang + original.potongan)}
+      </div>
+    ),
   }),
   helper.accessor("pajak", {
     cell: (data) => (

@@ -22,17 +22,14 @@ const penjualanDivisiColumns = [
     ),
     header: () => <div className="ml-auto">total kotor</div>,
   }),
-  helper.accessor("potongan", {
-    cell: (data) => (
-      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
-    ),
-    header: () => <div className="ml-auto">potongan</div>,
-  }),
-  helper.accessor("diskon_uang", {
-    cell: (data) => (
-      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
-    ),
+  helper.display({
+    id: "diskon",
     header: () => <div className="ml-auto">diskon</div>,
+    cell: ({ row: { original } }) => (
+      <div className="text-right">
+        {userFormatRupiah(original.potongan + original.diskon_uang)}
+      </div>
+    ),
   }),
   helper.accessor("pajak", {
     cell: (data) => (
