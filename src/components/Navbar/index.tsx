@@ -21,7 +21,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between py-4">
-        <h3 className="text-xl font-bold font-poppins">KONGPOS</h3>
+        <h3 className="text-3xl font-bold font-poppins">KONGPOS</h3>
 
         <div className="flex items-center gap-3">
           <Link to={"/login"}>
