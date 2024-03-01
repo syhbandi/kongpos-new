@@ -77,6 +77,7 @@ const EditJenisBahan = lazy(() => import("./pages/Dashboard/JenisBahan/Edit"));
 const Warna = lazy(() => import("./pages/Dashboard/Warna"));
 const TambahWarna = lazy(() => import("./pages/Dashboard/Warna/Tambah"));
 const EditWarna = lazy(() => import("./pages/Dashboard/Warna/Edit"));
+const Profil = lazy(() => import("./pages/Dashboard/Profil"));
 
 export const router = createBrowserRouter([
   {
@@ -149,6 +150,7 @@ export const router = createBrowserRouter([
       { path: "warna", element: <Warna /> },
       { path: "warna/tambah", element: <TambahWarna /> },
       { path: "warna/edit/:kd_warna", element: <EditWarna /> },
+      { path: "profil", element: <Profil /> },
     ],
     errorElement: <ErrorPage />,
   },

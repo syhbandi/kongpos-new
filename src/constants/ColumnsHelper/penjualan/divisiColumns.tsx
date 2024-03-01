@@ -18,7 +18,9 @@ const penjualanDivisiColumns = [
   }),
   helper.accessor("total_kotor", {
     cell: (data) => (
-      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
     ),
     header: () => <div className="ml-auto">total kotor</div>,
   }),
@@ -27,13 +29,17 @@ const penjualanDivisiColumns = [
     header: () => <div className="ml-auto">diskon</div>,
     cell: ({ row: { original } }) => (
       <div className="text-right">
-        {userFormatRupiah(original.potongan + original.diskon_uang)}
+        {userFormatRupiah(
+          parseFloat(original.potongan) + parseFloat(original.diskon_uang)
+        )}
       </div>
     ),
   }),
   helper.accessor("pajak", {
     cell: (data) => (
-      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
     ),
     header: () => <div className="ml-auto">pajak</div>,
   }),

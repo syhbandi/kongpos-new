@@ -25,10 +25,10 @@ export type PenjualanPerNota = {
   Customer: string;
   "Jumlah Item": string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerCustomer = {
@@ -38,10 +38,10 @@ export type PenjualanPerCustomer = {
   Divisi: string;
   Customer: string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerDivisi = {
@@ -50,50 +50,50 @@ export type PenjualanPerDivisi = {
   Divisi: string;
   "Kepala Nota": string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerKas = {
   "Kode Kas": string;
   "No Rekening": string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerUser = {
   "Kode User": string;
   User: string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerJenisBayar = {
   "Kode Jenis": string;
   "Jenis Bayar": string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerVoucher = {
   "Kode Voucher": string;
   Voucher: string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerHari = {
@@ -101,10 +101,10 @@ export type PenjualanPerHari = {
   Tanggal: string;
   Divisi: string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerBulan = {
@@ -112,10 +112,10 @@ export type PenjualanPerBulan = {
   Periode: string;
   Divisi: string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerTahun = {
@@ -123,10 +123,10 @@ export type PenjualanPerTahun = {
   Periode: string;
   Divisi: string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerBarang = {
@@ -137,10 +137,10 @@ export type PenjualanPerBarang = {
   Total: string;
   jumlah: string;
   satuan: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };
 
 export type PenjualanPerPegawai = {
@@ -149,8 +149,8 @@ export type PenjualanPerPegawai = {
   pegawai: string;
   Divisi: string;
   Total: string;
-  diskon_uang: number;
-  pajak: number;
-  potongan: number;
-  total_kotor: number;
+  diskon_uang: string;
+  pajak: string;
+  potongan: string;
+  total_kotor: string;
 };

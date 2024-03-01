@@ -7,6 +7,7 @@ import {
   MdLabel,
   MdOutlineHandshake,
   MdOutlineLogout,
+  MdPerson,
   MdQrCode,
 } from "react-icons/md";
 
@@ -47,6 +48,11 @@ const menus: Menus[] = [
     title: "Kontrak",
     link: "kontrak",
     icon: <MdOutlineHandshake />,
+  },
+  {
+    title: "Profil",
+    link: "profil",
+    icon: <MdPerson />,
   },
   {
     title: "Logout",

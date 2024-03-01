@@ -16,3 +16,18 @@ export const getUsaha = async (noHp: string) => {
   });
   return data;
 };
+
+export const getInfoUsaha = async (
+  company_id: string,
+  access_token: string
+) => {
+  const { data } = await api.get("info-toko", {
+    headers: {
+      Authorization: "Bearer " + access_token,
+    },
+    params: {
+      company_id,
+    },
+  });
+  return data;
+};
