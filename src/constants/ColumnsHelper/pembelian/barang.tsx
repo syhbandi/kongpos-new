@@ -20,23 +20,29 @@ const barang = [
     cell: (data) => data.getValue(),
   }),
   helper.accessor("jumlah", {
-    cell: (data) => useFormatNumber(data.getValue()),
+    cell: (data) => useFormatNumber(parseFloat(data.getValue())),
   }),
   helper.accessor("total_kotor", {
     cell: (data) => (
-      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
     ),
     header: () => <div className="ml-auto">total kotor</div>,
   }),
   helper.accessor("potongan", {
     cell: (data) => (
-      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
     ),
     header: () => <div className="ml-auto">diskon</div>,
   }),
   helper.accessor("pajak", {
     cell: (data) => (
-      <div className="text-right">{userFormatRupiah(data.getValue())}</div>
+      <div className="text-right">
+        {userFormatRupiah(parseFloat(data.getValue()))}
+      </div>
     ),
     header: () => <div className="ml-auto">pajak</div>,
   }),
