@@ -9,6 +9,7 @@ import cs from "../assets/cs.jpg";
 import homeHero from "../assets/homeHero.png";
 import logo from "../assets/kongpos.png";
 import NotFound from "../assets/Oops! 404 Error with a broken robot-rafiki.png";
+import kofie from "../assets/bhuwan-bansal-Imq-jC1zPMM-unsplash.jpg";
 
 export {
   hardware,
@@ -22,4 +23,5 @@ export {
   homeHero,
   logo,
   NotFound,
+  kofie,
 };
